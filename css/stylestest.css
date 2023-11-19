@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+p.small {
+    line-height: 0.9;
+  }  
+
+.button-wrap {
+    display: flex;
+    align-items: center;
+    background-color: #0044384d;
+}
+
+.carousel-container {
+    background-color: transparent;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%; /* Set a fixed width for the carousel */
+    margin: 0 auto; /* Center the carousel */
+    min-height: 320px;
+}
+
+.carousel-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    height: 40px;
+    width: 40px;
+}
+
+.test-card {
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    margin: 5px;
+    background-color: whitesmoke;
+}
+
+.scrollmenu {
+    display: flex;
+    transition: transform 0.5s;
+}
+
+.scrollMenuSongs a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    display: inline-block;
+    border-radius: 10px;
+    border: 0px solid black
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 200px;
+    height: 130px;
+    perspective: 1000px;
+    margin-right: 10px;
+}
+
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    border-radius: 10px;
+}
+
+.flip-card-front {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+
+.flip-card-front {
+    background-color: #bbb;
+    color: black;
+}
+
+.underneath {
+    height: 100px;
+    background-color: white;
+    width: 100%;
+    color: black;
+}
