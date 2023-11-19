@@ -18,7 +18,7 @@ require_once ("php/header.php");
 // Prepare the SQL statement to select data from the database
 $sql = "SELECT * FROM newTable";
 
-// Execute the SQL statement
+// Execute the SQL statements
 $result = mysqli_query($conn, $sql);
 
 // Check if any data was returned
