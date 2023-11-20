@@ -9,7 +9,7 @@
                     <!-- Button to Open the Modal -->
 
                     <div style="text-align: center; padding: 0% 0% 2% 0%">
-                        <p><small>- CREATED BY BUSINESSLOREs -</small>
+                        <p><small>- CREATED BY BUSINESSLORE -</small>
                         </p>
                     </div>
                 </div>
