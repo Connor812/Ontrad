@@ -131,12 +131,14 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
 
-            <!-- annotation -->
-            <h4 class="label"><label for="shortannotation">Annotations</label></h4>
+            <div class="row">
+                <div class="col-4">
+                <h4 class="label"><label for="shortannotation">Annotations</label></h4>
+                </div>
             <!--Annootation-->
-
-            <div> <label for="checkbox">Instrumental</label>
-
+                <div class="col-8">
+                    <h5><label for="checkbox">Instrumental</label>
+                
                 <!-- <input type="checkbox" id="myCheck" onclick="myFunction()"> -->
                 <!-- <p id="text" style="display:none">Checkbox is CHECKED!</p> -->
 
@@ -150,6 +152,7 @@ if ($result->num_rows > 0) {
 
                 <?php $checkbox = (isset($_POST['checkbox'])) ? intval($_POST['checkbox']) : 0; // returns 0 or 1 
                         ?>
+                    </h5>
             </div>
 
             <div class="row input-clr">
@@ -169,65 +172,8 @@ if ($result->num_rows > 0) {
                             placeholder="image info"><?php echo $row["imageanno"] ?></textarea>
                     </div>
                     <br>
-                    <div class="form-group">
-                        <h4 class="label"><label for="image">Images</label></h4>
-                        <div class="img py-2">
-                            <?php
-                                    
-                                    $extension = pathinfo($row["imageFull"], PATHINFO_EXTENSION);
-                                    if ($extension == "pdf") {
-                                    ?>
-                            <a href="images/<?php echo $row["imageFull"] ?>"><img src="images/pdficon.png" alt="PDF"
-                                    style="width:64px;text-align:left;" id="image_preview" class="image-set"></a>
-                            <?php
-                                    } else if ($extension == "doc" || $extension == "docx") {
-                                    ?>
-                            <a href="images/<?php echo $row["imageFull"] ?>"><img src="images/word.png" alt="Word"
-                                    style="width:64px;text-align:left;" id="image_preview" class="image-set"></a>
-                            <?php
-                                    } else {
-                                        if($row['imageFull']!=NULL && !empty($row['imageFull'])){
-                                    ?>
-                            <img src="images/<?php echo $row["imageFull"] ?>" style="width:100%;height:auto;"
-                                id="image_preview" class="image-set">
-                            <?php
-                                    }else{
-                                    echo "<img src='images/placeholder.jpg' style='width:70%;height:auto;' id='image_preview' class='image-set'>";
-                                }
-                                    }
-                                
-                                    ?>
-                        </div>
-                        <div class="row py-3">
-                            <div class="col-sm-10 p-2">
-                                <div class="container mt-1">
-                                    <div class="form-group upload-btn-wrapper">
-                                        <button class="btn btn-primary">Choose File</button>
-                                        <input type="hidden" value="<?php echo $row["imageFull"] ?>" name="old_image" />
-                                        <input class="form-control" id="image_input" type="file" name="uploadfile"
-                                            value="imgaes/<?php echo $row["imageFull"] ?>" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <script type="text/javascript">
-                    const imageInput = document.getElementById('image_input');
-                    const imagePreview = document.getElementById('image_preview');
-                    imageInput.addEventListener('change', () => {
-                        const file = imageInput.files[0];
-                        const reader = new FileReader();
-
-                        reader.addEventListener('load', () => {
-                            imagePreview.src = reader.result;
-                        });
-                        if (file) {
-                            reader.readAsDataURL(file);
-                        }
-                    });
-                    </script>
                     <div class="form-group  py-2">
+                        <h4>Thumbnail Image</h4>
                         <div class="img">
 
                             <?php
@@ -284,6 +230,65 @@ if ($result->num_rows > 0) {
                     });
                     </script>
                     <hr>
+                    <div class="form-group">
+                        <h4 class="label"><label for="image">Large Image</label></h4>
+                        <div class="img py-2">
+                            <?php
+                                    
+                                    $extension = pathinfo($row["imageFull"], PATHINFO_EXTENSION);
+                                    if ($extension == "pdf") {
+                                    ?>
+                            <a href="images/<?php echo $row["imageFull"] ?>"><img src="images/pdficon.png" alt="PDF"
+                                    style="width:64px;text-align:left;" id="image_preview" class="image-set"></a>
+                            <?php
+                                    } else if ($extension == "doc" || $extension == "docx") {
+                                    ?>
+                            <a href="images/<?php echo $row["imageFull"] ?>"><img src="images/word.png" alt="Word"
+                                    style="width:64px;text-align:left;" id="image_preview" class="image-set"></a>
+                            <?php
+                                    } else {
+                                        if($row['imageFull']!=NULL && !empty($row['imageFull'])){
+                                    ?>
+                            <img src="images/<?php echo $row["imageFull"] ?>" style="width:100%;height:auto;"
+                                id="image_preview" class="image-set">
+                            <?php
+                                    }else{
+                                    echo "<img src='images/placeholder.jpg' style='width:70%;height:auto;' id='image_preview' class='image-set'>";
+                                }
+                                    }
+                                
+                                    ?>
+                        </div>
+                        <div class="row py-3">
+                            <div class="col-sm-10 p-2">
+                                <div class="container mt-1">
+                                    <div class="form-group upload-btn-wrapper">
+                                        <button class="btn btn-primary">Choose File</button>
+                                        <input type="hidden" value="<?php echo $row["imageFull"] ?>" name="old_image" />
+                                        <input class="form-control" id="image_input" type="file" name="uploadfile"
+                                            value="imgaes/<?php echo $row["imageFull"] ?>" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                    const imageInput = document.getElementById('image_input');
+                    const imagePreview = document.getElementById('image_preview');
+                    imageInput.addEventListener('change', () => {
+                        const file = imageInput.files[0];
+                        const reader = new FileReader();
+
+                        reader.addEventListener('load', () => {
+                            imagePreview.src = reader.result;
+                        });
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                    </script>
+                    
                     <!--sheet music-->
                     <div class="form-group py-3">
                         <h4 class="label"> <label for="sheetannotation">Sheet Annotation</label></h4>
@@ -491,7 +496,7 @@ if ($result->num_rows > 0) {
                             });
                             </script>
                             <br>
-                            <h4 class="label"> <label for="video">Link</label></h4>
+                            <h4 class="label"> <label for="video">YouTube Link</label></h4>
                                 <div class="row">
                                     <div class="container mt-1">
                                         <!--<iframe id="youtubevide" src="" style="display: none; width: 100%; height: 280px;">-->
