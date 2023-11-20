@@ -1,8 +1,8 @@
 <?php
-$servername = "sql5c0f.megasqlservers.com";
-$username = "ontariotra872276";
-$password = "Bianca007";
-$dbname = "Ontarionew4989_ontariotra872276";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ontrad";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 

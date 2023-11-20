@@ -19,29 +19,37 @@ require_once("php/header2.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <style type="text/css"> </style>
+    <style type="text/css"> 
+   hr.white-break {
+      display: block;
+      content: "";
+      height: 1px; /* Adjust the height of the line break */
+      background-color: white; /* Set the background color to white */
+      margin: 1% 0%;
+      padding: 0%;
+      opacity: 80%;
+    }</style>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-    <div class="wrapper ontradgreenlite p-5">
-        <p>nov18</p>
+    <div class="wrapper ontradgreenlite">
         <div class="container-fluid" style="text-align: center;">
-            <h5 style="line-height: 120%;">Welcome to the Ontario Traditional Music Library.</h5>
-            <p class="px-5"> This resource has been created especially for singers and instrumentalists looking for
-                songs and tunes from Ontario's living musical traditions and for music from historical sources.</p>
+            <h3 style="padding-top: 2%;">Welcome to the Ontario Traditional Music Library</h3>
+            <div class="container-fluid my-3" style="padding: 0% 20%"> This resource has been created especially for singers and instrumentalists looking for
+                songs and tunes from Ontario's living musical traditions and for music from historical sources.</div>
         </div>
         <!--general search-->
-        <div class="ontradgreen ontradred p-1">
+        <div class="ontradgreen">
             <!--main search box-->
-            <form style="padding: 0%;" action="index.php" method="GET">
-                <div class="row">
+            <form style="padding:2% 2% 0% 2%;" action="index.php" method="GET">
+                <div class="row px-2">
                     <!--search enter-->
-                    <div class="col-7">
+                    <div class="col-6">
                         <div class="input-group">
-                            <input type="search" class="form-control" size="30" name="search_query" placeholder="Enter title or keyword" value="<?php echo isset($_GET['search_query']) ? htmlspecialchars($_GET['search_query']) : ''; ?>">
+                            <input type="search" class="form-control" size="30" name="search_query" placeholder="Enter title or keywords like fiddle instrumental or dirge" value="<?php echo isset($_GET['search_query']) ? htmlspecialchars($_GET['search_query']) : ''; ?>">
                         </div>
                     </div>
                     <!--circa-->
-                    <div class="col-2">
+                    <div class="col-2 my-1">
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="circa">
                             <option value="">Circa</option>
                             <option value="1750-1799" <?php if (isset($_GET['circa']) && $_GET['circa'] === '1750-1799')
@@ -62,7 +70,7 @@ require_once("php/header2.php");
                         </select>
                     </div>
                     <!--region-->
-                    <div class="col-2">
+                    <div class="col-2 my-1">
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="region">
                             <option value="">Region</option>
                             <option value="East" <?php if (isset($_GET['region']) && $_GET['region'] === 'East')
@@ -82,14 +90,15 @@ require_once("php/header2.php");
                                 North</option>
                         </select>
                     </div>
-                    <div class="col-1">
-                        <button type="submit" class="button1">Search</button>
+                    <div class="col-2 p-0">
+                       <div class="container-fluid" style="text-align:center" ><button class="btn btn-primary submit">Search</button></div>
                     </div>
                 </div>
             </form>
-            <!--  song Carousel -->
-            <div class="button-wrap">
-                <button class="prev carousel-btn" onclick="scrollHorizontally(-1)" style="cursor: pointer; color:red;">❮</button>
+            <hr class="white-break">
+            <div style="text-align: center; padding: 1% 0% 0% 0%"><h4>FEATURED SONGS</h4></div>
+            <div class="button-wrap" style="padding: 1% 3% ">
+                <button class="prev carousel-btn btn-lg" onclick="scrollHorizontally(-1)" style="cursor: pointer; color:white;">❮</button>
                 <div class="carousel-container">
                     <div class="scrollmenu scrollMenuSongs">
                         <?php
@@ -211,23 +220,22 @@ require_once("php/header2.php");
                         ?>
                     </div>
                 </div>
-                <button class="next carousel-btn" onclick="scrollHorizontally(1)" style="cursor: pointer; color:red;">❯</button>
+                <button class="next carousel-btn btn-lg" onclick="scrollHorizontally(1)" style="cursor: pointer; color:white;">❯</button>
             </div>
-            <div class="ontradbg1 pt-2">
-                <div class="ontradred py-3" style="text-align: center;">Whats this?
-                </div>
+            <div class="ontradbg1 pt-3">
+               
             </div>
             <!-- Themes carousel  -->
-            <div class="ontradgreenlite ontradred text-center">
+            <div class="ontradgreenlite text-center p-4">
                 <h4>FEATURED THEMES</h4>
                 <!--SCROLLING FIELD OF themes A t0 Z-->
 
                 <div class="ontragreen" style="border-radius: 5px">
                     <!-- theme section starts here  -->
 
-                    <div class="button-wrap">
-                        <button class="prev carousel-btn" onclick="scrollHorizontallyThemes(-2)" style="cursor: pointer;
-                        text-decoration: none; margin-right: 5px; color: red">❮</button>
+                    <div class="button-wrap p-3">
+                        <button class="prev carousel-btn btn-lg" onclick="scrollHorizontallyThemes(-2)" style="cursor: pointer;
+                        text-decoration: none; margin-right: 5px; color: white">❮</button>
                         <div class="carousel-container">
                             <div class="scrollmenu scrollMenuThemes">
 
@@ -325,33 +333,21 @@ require_once("php/header2.php");
                                 ?>
                             </div>
                         </div>
-                        <button class="next carousel-btn" onclick="scrollHorizontallyThemes(2)" style="cursor: pointer; 
-                        text-decoration: none; margin-left: 5px; color: red">❯</button>
+                        <button class="next carousel-btn btn-lg" onclick="scrollHorizontallyThemes(2)" style="cursor: pointer; 
+                        text-decoration: none; margin-left: 5px; color: white">❯</button>
                     </div>
 
                 </div>
-                <div class="input-group-btn" style="text-align: center;">
+                <div class="input-group-btn" style="text-align: center; padding: 3% 0%">
                     <button type="button" class="button1" onclick="document.location='/themelist.php'">All
                         Themes</button>
                 </div>
                 <!-- Theme Section End Here  -->
-                <br><br>
+                <br><hr style="color: white;">
                 <!-- Container (Contact Section) -->
-                <div class="container-fluid ontradgreenlite ontradred py-3" style="width: 100%;">
-                    <h5 class="text-center">CONTACT US</h5>
-                    <div class="row">
-                        <div class="col" style="width: 100%; text-align: center;">
-                            <h5> mail@ontariotraditionalmusic.ca</h5>
-                        </div>
-                    </div>
-                    <br>
-                    <!-- Button to Open the Modal -->
-
-                    <div style="text-align: center;">
-                        <p><small>- CREATED BY BUSINESSLORE -</small>
-                        </p>
-                    </div>
-                </div>
+                <?php
+                include_once("php/footer.php")
+                ?>
                 <!--end of contact-->
             </div>
         </div><!--end of wrapper-->

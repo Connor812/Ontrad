@@ -187,7 +187,7 @@
   <nav class="navbar navbar-expand-md ontradgreen">
     <!-- Brand/logo -->
     <a class="navbar-brand ontradwhite" href="index.php">
-      <img src="images/ontradlogo.jpg" style="width: 200px; height: auto; min-width: 200px; border-radius: 5px;  ">
+      <img src="images/ontradlogo.jpg" style="width: 200px; height: auto; min-width: 200px; border-radius: 10px;  ">
     </a>
 
     <!-- Links -->
