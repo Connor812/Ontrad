@@ -131,12 +131,14 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
 
-            <!-- annotation -->
-            <h4 class="label"><label for="shortannotation">Annotations</label></h4>
+            <div class="row">
+                <div class="col-4">
+                <h4 class="label"><label for="shortannotation">Annotations</label></h4>
+                </div>
             <!--Annootation-->
-
-            <div> <label for="checkbox">Instrumental</label>
-
+                <div class="col-8">
+                    <h5><label for="checkbox">Instrumental</label>
+                
                 <!-- <input type="checkbox" id="myCheck" onclick="myFunction()"> -->
                 <!-- <p id="text" style="display:none">Checkbox is CHECKED!</p> -->
 
@@ -150,6 +152,7 @@ if ($result->num_rows > 0) {
 
                 <?php $checkbox = (isset($_POST['checkbox'])) ? intval($_POST['checkbox']) : 0; // returns 0 or 1 
                         ?>
+                    </h5>
             </div>
 
             <div class="row input-clr">

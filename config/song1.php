@@ -58,7 +58,7 @@ if(isset($_GET['id'])){
                         <h3 id="songcomposer"><?php echo $row['songcomposer']; ?></h3>
                         <!--circa and region-->
                         <div class="row">
-                            <?php
+                    <?php
                     if($row['circa']!=NULL && !empty($row['circa']) || $row['region']!=NULL && !empty($row['region'])){
                        echo  "
                         <div class='col-sm-12 col-lg-4' id='circa'>
