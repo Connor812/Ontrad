@@ -58,7 +58,7 @@ if (isset($_GET['id'])) {
                 <h5 id="songcomposer"><?php echo $row['songcomposer']; ?></h5>
             </div>
             <hr style="border-color: black">
-            <div class="row container-fluid m-0">
+            <div class="row container-fluid m-0 p-0">
                 <!--composer-->
                 <!--circa and region-->
                 <div class="col-sm-7 m-0 p-0">
@@ -97,16 +97,16 @@ if (isset($_GET['id'])) {
             </div>
             <!-- Long anno and Full image-->
             <hr>
-            <div class="row">
-                <div class="col-sm-6"  style="text-align:center;">
+            <div class="row p-0">
+                <div class="col-sm-6 p-0" style="text-align:center;">
                     <?php if (!empty($row['imageFull'])) { ?>
                         <div class="container-fluid">
                             <img src="images/<?php echo $row['imageFull']; ?>" style="width: 100%; height: auto;" alt="Full Image">
                         </div>
                     <?php } ?>
                 </div>
-                <div class="col-sm-6">
-                    <div class="container-fluid">
+                <div class="col-sm-6 p-0 m-0">
+                    <div class="container-fluid p-0 m-0">
                         <?php
                         if ($row['longanno'] != NULL && !empty($row['longanno'])) {
                             echo "
@@ -130,17 +130,16 @@ if (isset($_GET['id'])) {
                 ($row['video1'] != NULL && !empty($row['video1'])) ||
                 ($row['sheetmusic'] != NULL && !empty($row['sheetmusic']))
             ) { ?>
-                <div class="row">
-                    <div class="col-sm-6" style="text-align: center;">
+                <div class="row m-0">
+                    <div class="col-sm-6 m-0">
                         <!--Audio-->
-                        <div style="margin-top: 0%; margin-bottom: 1%;">
-                            <div style="padding: 0% 3%">
+                            <div style="padding: 0% 0%">
                                 <?php
                                 if ($row['audio1'] != NULL && !empty($row['audio1'])) {
                                     echo "
-                                        <h4>Music</h4>
-                                        <p class='blurbtext'>" . $row['audioanno'] . "</p>
-                                        <audio controls style='text-align: center;'>
+                                        <h4>Recording</h4>
+                                        <p>" . $row['audioanno'] . "</p>
+                                        <audio controls style='text-align: left;'>
                                             <source src='audio/" . $row['audio1'] . "' type='audio/mpeg' id='audio1'>
                                             Your browser does not support the audio element.
                                         </audio>
@@ -148,9 +147,9 @@ if (isset($_GET['id'])) {
                                 }
                                 ?>
                             </div>
-                            <hr>
+                           
                             <!--This audio and text will not show if empty-->
-                            <div style="padding: 0% 3%">
+                            <div style="padding: 0% 1%">
                                 <?php
                                 if ($row['audio2'] != NULL && !empty($row['audio2'])) {
                                     echo "
@@ -162,11 +161,11 @@ if (isset($_GET['id'])) {
                                 }
                                 ?>
                             </div>
-                        </div>
+                            <hr style="border-color: black;">
 
                         <!--Video-->
-                        <div class="container-fluid">
-                            <div class="embed-responsive embed-responsive-16by9">
+                        
+                            <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
                                 <?php
                                 if (($row['audio1'] || $row['audio2']) != NULL && !empty($row['audio1'] || $row['audio2'])) {
                                     if ($row['video2'] != NULL && !empty($row['video2'])) {
@@ -186,43 +185,46 @@ if (isset($_GET['id'])) {
                                 }
                                 ?>
                             </div>
-                        </div>
+                        
                     </div>
                     <!--sheetmusic-->
-                    <div class="col-sm-6" style="text-align: center" id="sheetmusic">
-                        <?php
-                        if ($row['sheetmusic'] != NULL && !empty($row['sheetmusic'])) {
-                            echo "                
-                            <div class='gallery'>
+                    <div class="col-sm-6" id="sheetmusic">
+                     <!--sheetanno-->
+                     <?php
+                            if ($row['sheetanno'] != NULL && !empty($row['sheetanno'])) {
+                                echo "<h4>Score</h4>
+                                <p>" . $row['sheetanno'] . "</p>";
+                            }
+                            ?>
+                        <div class="container-fluid p-0">
+                            <?php
+                            if ($row['sheetmusic'] != NULL && !empty($row['sheetmusic'])) {
+                                echo "                
+                            <div class='gallery' style='width: 100%; height: 500px' >
                                 <a target='_blank' href='musicsheet/" . rawurlencode($row['sheetmusic']) . "'>
                             ";
-                        }
-                        $extensionFile = pathinfo($row['sheetmusic'], PATHINFO_EXTENSION);
-                        if ($extensionFile == 'pdf') {
-                            echo "<embed src='musicsheet/" . rawurlencode($row['sheetmusic']) . "'   height='700px' width='500'>
+                            }
+                            $extensionFile = pathinfo($row['sheetmusic'], PATHINFO_EXTENSION);
+                            if ($extensionFile == 'pdf') {
+                                echo "<embed src='musicsheet/" . rawurlencode($row['sheetmusic']) . "'   width='100%' height='100%'>
                                 </a>
                             </div>
                             ";
-                        } elseif ($extensionFile == 'docx') {
-                            echo "<img src='musicsheet/word.png' alt='Word' style='width:100%; height:auto; text-align:left;' class='image-set' id='thumb_previews'>
+                            } elseif ($extensionFile == 'docx') {
+                                echo "<img src='musicsheet/word.png' alt='Word' style='width:100%; height:auto; text-align:left;' class='image-set' id='thumb_previews'>
                                 </a>
                             </div>
                             ";
-                        } elseif ($extensionFile == 'jpg' || $extensionFile == 'png') {
-                            echo "<img src='musicsheet/" . $row['sheetmusic'] . "' alt='Picture' style='width:100%; height:auto; text-align:left;' class='image-set' id='thumb_previews'>
+                            } elseif ($extensionFile == 'jpg' || $extensionFile == 'png') {
+                                echo "<img src='musicsheet/" . $row['sheetmusic'] . "' alt='Picture' style='width:100%; height:auto; text-align:left;' class='image-set' id='thumb_previews'>
                                 </a>
                             </div>
                             ";
-                        } else {
-                            echo " ";
-                        }
-                        ?>
-                        <!--sheetanno-->
-                        <?php
-                        if ($row['sheetanno'] != NULL && !empty($row['sheetanno'])) {
-                            echo "<div class='blurbtext'>" . $row['sheetanno'] . "</div>";
-                        }
-                        ?>
+                            } else {
+                                echo " ";
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
             <?php } ?>
@@ -230,7 +232,7 @@ if (isset($_GET['id'])) {
             <!-- start of video1 row  -->
             <?php if ($row['video1'] != NULL && !empty($row['video1'])) { ?>
                 <div class="row w-50">
-                    <video width="500px" height="500px" controls="controls">
+                    <video width="400px" height="400px" controls="controls">
                         <source src="video/<?php echo $row['video1']; ?>" type='video/mp4' />
                     </video>
                 </div>
@@ -262,7 +264,7 @@ if (isset($_GET['id'])) {
             <br>
             <hr>
 
-            <!--footer-->
+            <!--footer
             <div class="container-fluid ontradgreenlite ontradred py-3" style="width: 100%;">
                 <h3 class="text-center">CONTACT US</h3>
                 <div class="row">
@@ -291,7 +293,7 @@ if (isset($_GET['id'])) {
                     <p><small>- CREATED BY BUSINESSLORE -</small>
                     </p>
                 </div>
-            </div>
+            </div>-->
         </div>
         <script>
             var acc = document.getElementsByClassName("accordion");
