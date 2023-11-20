@@ -25,6 +25,7 @@
     border: navajowhite;
     box-shadow: 0px 0px 11px 0px #7d757585;
     font-family: sans-serif;
+    
   }
 
   /* alert style */
