@@ -111,7 +111,15 @@ require_once("php/header2.php");
                                 exit;
                             }
 
-                            $sql = "SELECT * FROM `newtable` WHERE `Stitle` LIKE '%" . $search_query . "%'";
+                            $sql = "SELECT * FROM `newtable` WHERE 
+                            `Stitle` LIKE '%" . $search_query . "%' OR
+                            `shortanno` LIKE '%" . $search_query . "%' OR
+                            `longanno` LIKE '%" . $search_query . "%' OR
+                            `sheetanno` LIKE '%" . $search_query . "%' OR
+                            `imageanno` LIKE '%" . $search_query . "%' OR
+                            `audioanno` LIKE '%" . $search_query . "%' OR
+                            `songartist` LIKE '%" . $search_query . "%' OR
+                            `songcomposer` LIKE '%" . $search_query . "%';";
 
                             if (!empty($circa)) {
                                 $sql .= " AND `circa` = '" . $circa . "'";
