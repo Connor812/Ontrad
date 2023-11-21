@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     $sql = "SELECT * FROM `newtable` WHERE `ID` = '$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-?>
+    ?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -53,9 +53,13 @@ if (isset($_GET['id'])) {
         <div class="wrapper">
             <!--title-->
             <div class="container-fluid px-0" style="text-align: center;">
-                <h2 id="stitle"><?php echo $row['Stitle']; ?></h2>
+                <h2 id="stitle">
+                    <?php echo $row['Stitle']; ?>
+                </h2>
                 <!--composer-->
-                <h5 id="songcomposer"><?php echo $row['songcomposer']; ?></h5>
+                <h5 id="songcomposer">
+                    <?php echo $row['songcomposer']; ?>
+                </h5>
             </div>
             <hr style="border-color: black">
             <div class="row container-fluid m-0 p-0">
@@ -64,7 +68,7 @@ if (isset($_GET['id'])) {
                 <div class="col-sm-7 m-0 p-0">
                     <?php
                     if ($row['circa'] != NULL && !empty($row['circa']) || $row['region'] != NULL && !empty($row['region'])) {
-                        echo  '
+                        echo '
                                         <div class="row">
                                             <div class="col-5 p-0 m-0">
                                                 <div class="container-fluid" id="circa">
@@ -81,7 +85,7 @@ if (isset($_GET['id'])) {
                     }
                     ?>
                     <div class="lead p-2">
-                        <?php echo (!empty($row['shortanno']) ? $row['shortanno'] :  ''); ?>
+                        <?php echo (!empty($row['shortanno']) ? $row['shortanno'] : ''); ?>
                     </div>
                 </div>
                 <!--right image-->
@@ -101,7 +105,8 @@ if (isset($_GET['id'])) {
                 <div class="col-sm-6 p-0" style="text-align:center;">
                     <?php if (!empty($row['imageFull'])) { ?>
                         <div class="container-fluid">
-                            <img src="images/<?php echo $row['imageFull']; ?>" style="width: 100%; height: auto;" alt="Full Image">
+                            <img src="images/<?php echo $row['imageFull']; ?>" style="width: 100%; height: auto;"
+                                alt="Full Image">
                         </div>
                     <?php } ?>
                 </div>
@@ -133,10 +138,10 @@ if (isset($_GET['id'])) {
                 <div class="row m-0">
                     <div class="col-sm-6 m-0">
                         <!--Audio-->
-                            <div style="padding: 0% 0%">
-                                <?php
-                                if ($row['audio1'] != NULL && !empty($row['audio1'])) {
-                                    echo "
+                        <div style="padding: 0% 0%">
+                            <?php
+                            if ($row['audio1'] != NULL && !empty($row['audio1'])) {
+                                echo "
                                         <h4>Recording</h4>
                                         <p>" . $row['audioanno'] . "</p>
                                         <audio controls style='text-align: left;'>
@@ -144,58 +149,45 @@ if (isset($_GET['id'])) {
                                             Your browser does not support the audio element.
                                         </audio>
                                         ";
-                                }
-                                ?>
-                            </div>
-                           
-                            <!--This audio and text will not show if empty-->
-                            <div style="padding: 0% 1%">
-                                <?php
-                                if ($row['audio2'] != NULL && !empty($row['audio2'])) {
-                                    echo "
+                            }
+                            ?>
+                        </div>
+
+                        <!--This audio and text will not show if empty-->
+                        <div style="padding: 0% 1%">
+                            <?php
+                            if ($row['audio2'] != NULL && !empty($row['audio2'])) {
+                                echo "
                                     <audio controls style='text-align: center;'>
                                         <source src='audio/" . $row['audio2'] . "' type='audio/mpeg' id='audio1'>
                                         Your browser does not support the audio element.
                                     </audio>
                                     ";
-                                }
-                                ?>
-                            </div>
-                            <hr style="border-color: black;">
-
+                            }
+                            ?>
+                        </div>
                         <!--Video-->
-                        
-                            <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
-                                <?php
-                                if (($row['audio1'] || $row['audio2']) != NULL && !empty($row['audio1'] || $row['audio2'])) {
-                                    if ($row['video2'] != NULL && !empty($row['video2'])) {
-                                        echo "
-                                            <h4>Video</h4>
-                                            <a href='" . $row['video2'] . "' target='_blank'>" . $row['video2'] . "</a>
-                                            <p>" . $row['videoanno'] . "</p>                                     
-                                        ";
-                                    } else {
-                                        echo " ";
-                                    }
-                                } else {
-                                    echo "
-                                    <a href='" . $row['video2'] . "' target='_blank'>" . $row['video2'] . "</a>
-                                    <p>" . $row['videoanno'] . "</p> 
-                                    ";
-                                }
-                                ?>
-                            </div>
-                        
+                        <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
+                            <!-- start of video1 row  -->
+                            <?php if ($row['video1'] != NULL && !empty($row['video1'])) { ?>
+                                <div class="w-50">
+                                    <video width="400px" height="400px" controls="controls">
+                                        <source src="video/<?php echo $row['video1']; ?>" type='video/mp4' />
+                                    </video>
+                                </div>
+                            <?php } ?>
+                        </div>
+
                     </div>
                     <!--sheetmusic-->
                     <div class="col-sm-6" id="sheetmusic">
-                     <!--sheetanno-->
-                     <?php
-                            if ($row['sheetanno'] != NULL && !empty($row['sheetanno'])) {
-                                echo "<h4>Score</h4>
+                        <!--sheetanno-->
+                        <?php
+                        if ($row['sheetanno'] != NULL && !empty($row['sheetanno'])) {
+                            echo "<h4>Score</h4>
                                 <p>" . $row['sheetanno'] . "</p>";
-                            }
-                            ?>
+                        }
+                        ?>
                         <div class="container-fluid p-0">
                             <?php
                             if ($row['sheetmusic'] != NULL && !empty($row['sheetmusic'])) {
@@ -229,14 +221,7 @@ if (isset($_GET['id'])) {
                 </div>
             <?php } ?>
 
-            <!-- start of video1 row  -->
-            <?php if ($row['video1'] != NULL && !empty($row['video1'])) { ?>
-                <div class="row w-50">
-                    <video width="400px" height="400px" controls="controls">
-                        <source src="video/<?php echo $row['video1']; ?>" type='video/mp4' />
-                    </video>
-                </div>
-            <?php } ?>
+
             <!-- end of video1 row  -->
             <!--theme row-->
             <hr>
@@ -255,7 +240,13 @@ if (isset($_GET['id'])) {
                             <div class='row'>
                             ";
                     while ($row = mysqli_fetch_assoc($result1)) {
-                        echo "<div class='col-sm-4 col-lg-4' style='text-align: center;'' id='theme1'><a href='theme1.php?id=" . base64_encode($row['id']) . "'> " . $row['theme_title'] . "</a></div>";
+                        echo '
+                        <div class="col-sm-4 col-lg-4" style="text-align: center;" id="theme1">
+                        <div>
+                        <img style="width: 100%; height: auto;" src="images/' . $row['theme_image'] . '">
+                        <a href="theme1.php?id=' . base64_encode($row['id']) . '">' . $row['theme_title'] . '</a>
+                        </div>
+                        </div>';
                     }
                 }
 
@@ -300,7 +291,7 @@ if (isset($_GET['id'])) {
             var i;
 
             for (i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function() {
+                acc[i].addEventListener("click", function () {
                     this.classList.toggle("active");
                     var panel = this.nextElementSibling;
                     if (panel.style.maxHeight) {
@@ -315,9 +306,9 @@ if (isset($_GET['id'])) {
 
     </html>
 
-<?php
+    <?php
 } elseif (!isset($_GET['id'])) {
-    echo "<script>window.location.href = 'https://localhost/ontrad/index.php?error=no_song_id';</script>";
+    echo "<script>window.location.href = '/index.php?error=no_song_id';</script>";
 
     exit;
 }

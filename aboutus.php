@@ -1,35 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>OnTrad About Us</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/ontrad.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-    <!--nav-->
-    <nav class="navbar navbar-expand-sm ontradgreen">
-        <!-- Brand/logo -->
-        <a class="navbar-brand ontradwhite" href="#">ONTRAD</a>
-
-        <!-- Links -->
-        <ul class="navbar-nav ontradnav">
-            <li class="nav-item">
-                <a class="nav-link" href="aboutus.php" style="color: whitesmoke;">About Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="index.php" style="color: whitesmoke;">Songs</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="themelist.php" style="color: whitesmoke;">Themes</a>
-            </li>
-        </ul>
-    </nav>
+<?php
+require_once "php/header2.php";
+?>
     <!--end of nav-->
     <div class="wrapper">
         <div style="height: 100px;"></div>

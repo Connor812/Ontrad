@@ -25,19 +25,22 @@ require_once("php/header2.php");
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <div class="wrapper ontradgreenlite">
         <div class="container-fluid" style="text-align: center;">
-        <h3 style="padding-top: 2%;">Welcome to the Ontario Traditional Music Library</h3>
-            <div class="container-fluid my-3" style="padding: 0% 20%"> This resource has been created especially for singers and instrumentalists looking for
+            <h3 style="padding-top: 2%;">Welcome to the Ontario Traditional Music Library</h3>
+            <div class="container-fluid my-3" style="padding: 0% 20%"> This resource has been created especially for
+                singers and instrumentalists looking for
                 songs and tunes from Ontario's living musical traditions and for music from historical sources.</div>
         </div>
         <!--general search-->
         <div class="ontradgreen pb-4">
             <!--main search box-->
             <form class="song-form" style="padding:2% 2% 0% 2%;" action="index.php" method="GET">
-            <div class="row px-2">
+                <div class="row px-2">
                     <!--search enter-->
                     <div class="col-6">
                         <div class="input-group">
-                            <input type="search" class="form-control" size="30" name="search_query" placeholder="Enter title or keywords like fiddle instrumental or dirge" value="<?php echo isset($_GET['search_query']) ? htmlspecialchars($_GET['search_query']) : ''; ?>">
+                            <input type="search" class="form-control" size="30" name="search_query"
+                                placeholder="Enter title or keywords like fiddle instrumental or dirge"
+                                value="<?php echo isset($_GET['search_query']) ? htmlspecialchars($_GET['search_query']) : ''; ?>">
                         </div>
                     </div>
                     <!--circa-->
@@ -45,19 +48,19 @@ require_once("php/header2.php");
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="circa">
                             <option value="">Circa</option>
                             <option value="1750-1799" <?php if (isset($_GET['circa']) && $_GET['circa'] === '1750-1799')
-                                                            echo 'selected'; ?>>
+                                echo 'selected'; ?>>
                                 1750-1799</option>
                             <option value="1800-1849" <?php if (isset($_GET['circa']) && $_GET['circa'] === '1800-1849')
-                                                            echo 'selected'; ?>>
+                                echo 'selected'; ?>>
                                 1800-1849</option>
                             <option value="1849-1900" <?php if (isset($_GET['circa']) && $_GET['circa'] === '1849-1900')
-                                                            echo 'selected'; ?>>
+                                echo 'selected'; ?>>
                                 1850-1900</option>
                             <option value="1900-1949" <?php if (isset($_GET['circa']) && $_GET['circa'] === '1900-1949')
-                                                            echo 'selected'; ?>>
+                                echo 'selected'; ?>>
                                 1900-1949</option>
                             <option value="1950-1999" <?php if (isset($_GET['circa']) && $_GET['circa'] === '1950-1999')
-                                                            echo 'selected'; ?>>
+                                echo 'selected'; ?>>
                                 1950-1999</option>
                         </select>
                     </div>
@@ -66,24 +69,25 @@ require_once("php/header2.php");
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="region">
                             <option value="">Region</option>
                             <option value="East" <?php if (isset($_GET['region']) && $_GET['region'] === 'East')
-                                                        echo 'selected'; ?>>East
+                                echo 'selected'; ?>>East
                             </option>
                             <option value="South Central" <?php if (isset($_GET['region']) && $_GET['region'] === 'South Central')
-                                                                echo 'selected'; ?>>
+                                echo 'selected'; ?>>
                                 South Central</option>
                             <option value="South West" <?php if (isset($_GET['region']) && $_GET['region'] === 'South West')
-                                                            echo 'selected'; ?>>
+                                echo 'selected'; ?>>
                                 South West</option>
                             <option value="Central" <?php if (isset($_GET['region']) && $_GET['region'] === 'Central')
-                                                        echo 'selected'; ?>>
+                                echo 'selected'; ?>>
                                 Central</option>
                             <option value="North" <?php if (isset($_GET['region']) && $_GET['region'] === 'North')
-                                                        echo 'selected'; ?>>
+                                echo 'selected'; ?>>
                                 North</option>
                         </select>
                     </div>
                     <div class="col-2 p-0">
-                       <div class="container-fluid" style="text-align:center" ><button class="btn btn-primary submit">Search</button></div>
+                        <div class="container-fluid" style="text-align:center"><button
+                                class="btn btn-primary submit">Search</button></div>
                     </div>
                 </div>
             </form>
@@ -172,12 +176,28 @@ require_once("php/header2.php");
                                             </div>
 
                                             <div class="play-sample-container">
-                                                <audio controls class="audio">
+                                                <audio class="audio">
                                                     <source class="play-audio" src=<?php echo "audio/" . $row['audio1']; ?>
                                                         type="audio/ogg">
                                                     Your browser does not support the audio element.
                                                 </audio>
+                                                <a href="javascript:void(0);" onclick="toggleAudio(this)" class="play-audio">Play
+                                                    Audio</a>
                                             </div>
+
+                                            <script>
+                                                function toggleAudio(link) {
+                                                    var audio = link.previousElementSibling; // Get the previous sibling, which is the <audio> element
+
+                                                    if (audio.paused) {
+                                                        audio.play();
+                                                    } else {
+                                                        audio.pause();
+                                                    }
+                                                }
+                                            </script>
+
+
                                         </div>
 
                                     </div>
@@ -239,7 +259,8 @@ require_once("php/header2.php");
                                                         type="audio/ogg">
                                                     Your browser does not support the audio element.
                                                 </audio>
-                                                <a href="javascript:void(0);" onclick="toggleAudio(this)" class="play-audio">Play Audio</a>
+                                                <a href="javascript:void(0);" onclick="toggleAudio(this)" class="play-audio">Play
+                                                    Audio</a>
                                             </div>
 
                                             <script>
@@ -269,8 +290,8 @@ require_once("php/header2.php");
                 <button class="next carousel-btn" onclick="scrollHorizontally(1)"
                     style="cursor: pointer; color: white;">❯</button>
             </div>
-            <div class="ontradbg1 pt-3">    
-                           
+            <div class="ontradbg1 pt-3">
+
             </div>
 
 
@@ -408,11 +429,12 @@ require_once("php/header2.php");
                         Themes</button>
                 </div>
                 <!-- Theme Section End Here  -->
-                <br><hr style="color: white;">
+                <br>
+                <hr style="color: white;">
                 <!-- Container (Contact Section) -->
                 <?php
                 include_once("php/footer.php")
-                ?>
+                    ?>
                 <!--end of contact-->
             </div>
         </div><!--end of wrapper-->

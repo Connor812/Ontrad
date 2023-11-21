@@ -121,7 +121,7 @@ require_once("php/header2.php");
                                               <p class='card-text'>".substr($row['theme_info'], 0, 50)."...</p>
                                           </div>
                                           <div class='card-footer' style='background-color: white;'>
-                                              <a href='theme1.php?id=" . base64_encode($row['id']) . "' class='btn btn-sm btn-outline-secondary'>View Page</a>
+                                              <a href='theme1.php?id=" . base64_encode($row['id']) . "' class='btn btn-sm btn-outline-success'>View Page</a>
                                           </div>
                                       </div>
                                   </div><!-- End of songcard -->
@@ -156,7 +156,7 @@ require_once("php/header2.php");
                                               <p class='card-text'>".substr($row['theme_info'], 0, 50)."...</p>
                                           </div>
                                           <div class='card-footer' style='background-color: white;'>
-                                              <a href='theme1.php?id=" . base64_encode($row['id']) . "' class='btn btn-sm btn-outline-secondary'>View Page</a>
+                                              <a href='theme1.php?id=" . base64_encode($row['id']) . "' class='btn btn-sm btn-outline-success'>View Page</a>
                                           </div>
                                       </div>
                                   </div><!-- End of songcard -->
@@ -166,7 +166,8 @@ require_once("php/header2.php");
                     }                        
                     ?>   
                 </div>
-                <?php
+          </div>
+          <?php
                 // Pagination while searching (Filtering through Themes)
                 if(isset($_GET['search_query'])){
                   $search = $_GET['search_query'];
@@ -196,7 +197,7 @@ require_once("php/header2.php");
                   if(mysqli_num_rows($result1)>0){
                   $totalRecords = mysqli_num_rows($result1);
                   $totalPages = ceil($totalRecords / $limit);
-                  echo "<ul class='pagination mt-3'>";
+                  echo "<ul class='pagination mt-3 d-flex justify-content-center'>";
                   for($i=1; $i<=$totalPages; $i++){
                       if($i==$page){
                       $active = "active";
@@ -213,7 +214,6 @@ require_once("php/header2.php");
                    
 
                 ?>
-          </div>
         </div>
       </div>
       </div>

@@ -111,7 +111,7 @@ if(isset($_GET['id'])){
 
                   <div class='card-footer' style='background-color:white;'>
                       <div class='btn-group mt-auto' >
-                        <a href='song1.php?id=".base64_encode($row['ID'])."'  class='btn btn-sm btn-outline-secondary'>View Page</a>
+                        <a href='song1.php?id=".base64_encode($row['ID'])."'  class='btn btn-sm btn-outline-success'>View Page</a>
                     ";
                     if($row['audio1']!=NULL && !empty($row['audio1'])){                                        
                         echo "<button type='button' data-song-name='".$row['audio1']."' id='playSong' onclick='playAudio(event)' class='btn btn-sm btn-outline-secondary'>Play Song</button>";

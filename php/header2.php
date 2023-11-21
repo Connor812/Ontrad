@@ -6,10 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/ontrad.css">
 </head>
 <style>
   /*all input style */
@@ -203,18 +205,84 @@
       </li>
     </ul>
 
+    <?php
 
-    <div class="container-fluid" style="text-align: right; max-width:10%">
-      <button type="button" class="btn ontradgreen me-1"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-          <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
-        </svg>
-      </button>
-      <button type="button" class="btn ontradgreen me-1">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-          <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-        </svg>
-      </button>
-    </div>
+    if (isset($_GET['id'])) {
+      $id = base64_decode($_GET['id']);
+
+      $sql = 'SELECT `ID`, `Stitle` FROM `newtable`;';
+      $result = $conn->query($sql);
+
+      if ($result) {
+        // Check if there are any rows
+        if ($result->num_rows > 0) {
+          // Fetch all rows into an associative array
+          $rows = $result->fetch_all(MYSQLI_ASSOC);
+
+          // Initialize variables to store the results
+          $beforeID = null;
+          $afterID = null;
+          $beforeStitle = null;
+          $afterStitle = null;
+
+          // Iterate through the array to find the elements
+          foreach ($rows as $key => $item) {
+            if ($item['ID'] == $id) {
+              // Found the ID, get the IDs and Stitles before and after
+              $beforeID = ($key > 0) ? $rows[$key - 1]['ID'] : null;
+              $afterID = (isset($rows[$key + 1])) ? $rows[$key + 1]['ID'] : null;
+
+              $beforeStitle = ($key > 0) ? $rows[$key - 1]['Stitle'] : null;
+              $afterStitle = (isset($rows[$key + 1])) ? $rows[$key + 1]['Stitle'] : null;
+
+              // No need to continue the loop once found
+              break;
+            }
+          }
+
+
+
+          echo ' <div class="container-fluid" style="text-align: right; max-width:10%">';
+          if (!empty($beforeID)) {
+            ?>
+            <!-- <?php echo $beforeStitle ?> -->
+            <a href="/song1.php?id=<?php echo base64_encode($beforeID) ?>" type="button" class="btn ontradgreen me-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+              </svg>
+            </a>
+            <?php
+          }
+          if (!empty($afterID)) {
+            ?>
+
+            <a href="/song1.php?id=<?php echo base64_encode($afterID) ?>" type="button" class="btn ontradgreen me-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                <path
+                  d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+              </svg>
+            </a>
+            <!-- <?php echo $afterStitle ?> -->
+            <?php
+          }
+          echo '</div>';
+
+        } else {
+          echo "No rows found.";
+        }
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+    }
+
+    ?>
+
+
+
+
   </nav>
 
   <!--end of nav-->
