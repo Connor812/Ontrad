@@ -31,6 +31,7 @@ if(isset($_GET['message'])){
 </head>
 
 <body id="songmanager">
+    Hello World
     <!--start-->
     <form action="uploadsong.php" method="post" enctype="multipart/form-data" id="uploadsong">
         <div class="container-fluid pt-3" style="max-width: 70%;">
