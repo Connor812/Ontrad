@@ -1,6 +1,7 @@
 <?php
 require_once("config/db.php");
 require_once("php/header2.php");
+require_once("config-url.php");
 // echo decode_id($encodedId,$seed);
 
 
@@ -433,7 +434,7 @@ require_once("php/header2.php");
 
                 </div>
                 <div class="input-group-btn" style="text-align: center;">
-                    <button type="button" class="button1" onclick="document.location='/themelist.php'">All
+                    <button type="button" class="button1" onclick="document.location='<?php echo BASE_URL; ?>/themelist.php'">All
                         Themes</button>
                 </div>
                 <!-- Theme Section End Here  -->

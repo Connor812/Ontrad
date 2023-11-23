@@ -1,9 +1,10 @@
 <?php
 
 session_start();
+require_once 'config-url.php';
 
 if (!isset($_SESSION['username'])) {
-    header("Location: /admin_login.php");
+    header("Location: " . BASE_URL . "/admin_login.php");
 }
 
 ?>
