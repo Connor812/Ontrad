@@ -102,7 +102,7 @@ require_once("php/header2.php");
                               echo "
                               <div class='col'>
                                       <!-- songcard -->
-                                      <div class='card shadow-sm' style='height: 500px !important;'>
+                                      <div class='card shadow-sm' style='height: 500px !important; min-width: 348px;'>
                                  ";    
                                  $path = 'themeimage_uploads/';
                                  $completePath = $path.$row['theme_image'];

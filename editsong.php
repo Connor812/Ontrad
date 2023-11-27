@@ -33,6 +33,15 @@ require_once("php/header.php");
                 <div class="col-sm-12 col-md-3 col-lg-3 text-center">
                     <a href="editsong.php" class="btn btn-secondary" role="button">Reset</a>
                 </div>
+                <?php
+                if (isset($_GET['success'])) {
+                    ?>
+                    <div class="col-sm-12 col-md-3 col-lg-3 text-center btn btn-success">
+                        Song Deleted Successfully
+                    </div>
+                    <?php
+                }
+                ?>
             </div>
         </form>
     </div>
@@ -59,7 +68,8 @@ require_once("php/header.php");
         </tr>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr><td>" . $row["Stitle"] . "</td>" . "
-                <td><a href=edit.php?id=" . $row["ID"] . " class='btn btn-primary btn-sm'>Edit</a></td></tr>";
+                <td><a href=edit.php?id=" . $row["ID"] . " class='btn btn-primary btn-sm'>Edit</a>
+                <a href=functions/delete_song.php?id=" . $row["ID"] . " class='btn btn-danger btn-sm'>Delete</a></td></tr>";
             }
             echo "</table>";
         } else {
@@ -77,7 +87,8 @@ require_once("php/header.php");
         </tr>";
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr><td>" . $row["Stitle"] . "</td>" . "
-                <td><a href=edit.php?id=" . $row["ID"] . " class='btn btn-primary btn-sm'>Edit</a></td></tr>";
+                <td><a href=edit.php?id=" . $row["ID"] . " class='btn btn-primary btn-sm'>Edit</a>
+                <a href=functions/delete_song.php?id=" . $row["ID"] . " class='btn btn-danger btn-sm'>Delete</a></td></tr>";
             }
             echo "</table>";
         } else {

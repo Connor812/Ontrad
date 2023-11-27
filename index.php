@@ -1,6 +1,7 @@
 <?php
 require_once("config/db.php");
 require_once("php/header2.php");
+require_once "config-url.php";
 // echo decode_id($encodedId,$seed);
 
 
@@ -318,60 +319,7 @@ require_once("php/header2.php");
                             <div class="scrollmenu scrollMenuThemes">
 
                                 <?php
-                                if (isset($_GET['search_query'])) {
-                                    $search_query = $_GET['search_query'];
-                                    $sql = "SELECT * FROM `themes` WHERE `theme_title` LIKE '%" . $search_query . "%' AND `status` = 'Featured'";
-                                    $result = mysqli_query($conn, $sql);
-
-                                    if (mysqli_num_rows($result) > 0) {
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            ?>
-
-
-                                            <a href="theme1.php?id=<?php echo base64_encode($row['id']); ?>">
-                                                <!--themelink-->
-                                                <p class="carousel-title">
-                                                    <?php echo substr($row['theme_title'], 0, 15); ?>..
-                                                </p>
-                                                <div class="flip-card">
-                                                    <div class="flip-card-inner">
-                                                        <div class="flip-card-front">
-                                                            <!--thumbnail-->
-
-                                                            <?php
-                                                            $path = 'themeimage_uploads/';
-                                                            $completePath = $path . $row['theme_image'];
-                                                            if (($row['theme_image'] != NULL || !empty($row['theme_image'])) && file_exists($completePath)) { ?>
-                                                                <img src="themeimage_uploads/<?php echo $row['theme_image']; ?>"
-                                                                    alt="Avatar" style="height: 130px; width: 100%;">
-                                                            <?php } else { ?>
-                                                                <svg class="bd-placeholder-img card-img-top" width="100%" height="200px"
-                                                                    xmlns="http://www.w3.org/2000/svg" role="img"
-                                                                    aria-label="Placeholder: Thumbnail"
-                                                                    preserveAspectRatio='xMidYMid slice' focusable='false'>
-                                                                    <title>Placeholder</title>
-                                                                    <rect width="100%" height="130px" fill="#55595c" /><text x="50%"
-                                                                        y="50%" fill="#eceeef" dy=".3em">ONTRAD IMAGE</text>
-                                                                </svg>
-
-                                                            <?php }
-                                                            ?>
-                                                        </div>
-                                                        <div class="flip-card-back">
-                                                            <!--Byline-->
-                                                            <p style="text-wrap: wrap; word-wrap: break-word; padding: 3px;">
-                                                                <?php echo substr($row['theme_info'], 0, 20) ?>...
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <?php
-                                        }
-                                    } else {
-                                        echo "<p style='text-align:center; color: white; margin-top: 20px;'>No Theme Found related to '" . $search_query . "'</p>";
-                                    }
-                                } else {
+                                    // This gets the featured themes and displays them
                                     $sql = "SELECT * FROM `themes` WHERE `status` = 'Featured'";
                                     $result = mysqli_query($conn, $sql);
                                     if (mysqli_num_rows($result) > 0) {
@@ -423,7 +371,6 @@ require_once("php/header2.php");
                                             <?php
                                         }
                                     }
-                                }
                                 ?>
                             </div>
                         </div>
@@ -433,7 +380,7 @@ require_once("php/header2.php");
 
                 </div>
                 <div class="input-group-btn" style="text-align: center;">
-                    <button type="button" class="button1" onclick="document.location='/themelist.php'">All
+                    <button type="button" class="button1" onclick="document.location='<?php echo BASE_URL . '/themelist.php'; ?>'">All
                         Themes</button>
                 </div>
                 <!-- Theme Section End Here  -->

@@ -1,7 +1,7 @@
 <?php
 require_once("config/db.php");
 require_once("php/header.php");
-if(isset($_GET['message'])){
+if (isset($_GET['message'])) {
     $message = $_GET['message'];
     echo " 
     <script>
@@ -19,14 +19,14 @@ if(isset($_GET['message'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
-    #progressBar {
-        width: 0%;
-        height: 24px;
-        background-color: #6ecd75;
-        border-radius: 20px;
-        text-align: center;
-        margin-top: 20px;
-    }
+        #progressBar {
+            width: 0%;
+            height: 24px;
+            background-color: #6ecd75;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -142,25 +142,25 @@ if(isset($_GET['message'])){
                                 </div>
                             </div>
                             <script type="text/javascript">
-                            const imageInput = document.getElementById('image_input');
-                            const imagePreview = document.getElementById('image_preview');
-                            imageInput.addEventListener('change', () => {
-                                const file = imageInput.files[0];
-                                const reader = new FileReader();
+                                const imageInput = document.getElementById('image_input');
+                                const imagePreview = document.getElementById('image_preview');
+                                imageInput.addEventListener('change', () => {
+                                    const file = imageInput.files[0];
+                                    const reader = new FileReader();
 
-                                reader.addEventListener('load', () => {
-                                    imagePreview.src = reader.result;
+                                    reader.addEventListener('load', () => {
+                                        imagePreview.src = reader.result;
+                                    });
+                                    if (file) {
+                                        reader.readAsDataURL(file);
+                                    }
                                 });
-                                if (file) {
-                                    reader.readAsDataURL(file);
-                                }
-                            });
                             </script>
                             <!--thumbnail image-->
                             <div class="form-group  py-2">
-                            <h4 class="label">
-                                <label for="image">Thumbnail Image</label>
-                            </h4>
+                                <h4 class="label">
+                                    <label for="image">Thumbnail Image</label>
+                                </h4>
                                 <a href="images/placeholder.jpg"></a>
                                 <div class="img py-2">
                                     <img src="images/placeholder.jpg" class="img-fluid img-thumbnail" alt="Lights"
@@ -179,19 +179,19 @@ if(isset($_GET['message'])){
                                 </div>
                             </div>
                             <script type="text/javascript">
-                            const imagethumb = document.getElementById('imagethumb');
-                            const thumb_preview = document.getElementById('thumb_preview');
-                            imagethumb.addEventListener('change', () => {
-                                const file = imagethumb.files[0];
-                                const reader = new FileReader();
+                                const imagethumb = document.getElementById('imagethumb');
+                                const thumb_preview = document.getElementById('thumb_preview');
+                                imagethumb.addEventListener('change', () => {
+                                    const file = imagethumb.files[0];
+                                    const reader = new FileReader();
 
-                                reader.addEventListener('load', () => {
-                                    thumb_preview.src = reader.result;
+                                    reader.addEventListener('load', () => {
+                                        thumb_preview.src = reader.result;
+                                    });
+                                    if (file) {
+                                        reader.readAsDataURL(file);
+                                    }
                                 });
-                                if (file) {
-                                    reader.readAsDataURL(file);
-                                }
-                            });
                             </script>
                             <hr>
                             <!--sheet music-->
@@ -217,31 +217,31 @@ if(isset($_GET['message'])){
                                     </div>
                                 </div>
                             </div>
-                            <script type="text/javascript">                            
-                            const imagethumbs = document.getElementById('sheet-thumb');
-                            const thumb_previews = document.getElementById('sheet_preview');
+                            <script type="text/javascript">
+                                const imagethumbs = document.getElementById('sheet-thumb');
+                                const thumb_previews = document.getElementById('sheet_preview');
 
-                            imagethumbs.addEventListener('change', () => {
-                                const file = imagethumbs.files[0];
-                                if (file) {
-                                    const fileName = file.name;
-                                    const fileExtension = fileName.split('.').pop().toLowerCase();
+                                imagethumbs.addEventListener('change', () => {
+                                    const file = imagethumbs.files[0];
+                                    if (file) {
+                                        const fileName = file.name;
+                                        const fileExtension = fileName.split('.').pop().toLowerCase();
 
-                                    if (fileExtension === 'png' || fileExtension === 'jpg') {
-                                        const reader = new FileReader();
-                                        reader.addEventListener('load', () => {
-                                            thumb_previews.src = reader.result;
-                                        });
-                                        reader.readAsDataURL(file);
-                                    } else if (fileExtension === 'pdf') {
-                                        thumb_previews.src = 'musicsheet/pdficon.png'; 
+                                        if (fileExtension === 'png' || fileExtension === 'jpg') {
+                                            const reader = new FileReader();
+                                            reader.addEventListener('load', () => {
+                                                thumb_previews.src = reader.result;
+                                            });
+                                            reader.readAsDataURL(file);
+                                        } else if (fileExtension === 'pdf') {
+                                            thumb_previews.src = 'musicsheet/pdficon.png';
+                                        } else {
+                                            alert("Image is Not Uploaded Successfully. Try Again")
+                                        }
                                     } else {
-                                        alert("Image is Not Uploaded Successfully. Try Again") 
+                                        thumb_previews.src = '';
                                     }
-                                } else {
-                                    thumb_previews.src = ''; 
-                                }
-                            });
+                                });
 
                             </script>
                         </div>
@@ -268,29 +268,29 @@ if(isset($_GET['message'])){
                             </div>
                         </div>
                         <script>
-                        // Get the input file element
-                        var audio1 = document.getElementById('audio1');
+                            // Get the input file element
+                            var audio1 = document.getElementById('audio1');
 
-                        // Add an event listener to the input file element
-                        audio1.addEventListener('change', function() {
-                            // Get the selected file
-                            var file = audio1.files[0];
+                            // Add an event listener to the input file element
+                            audio1.addEventListener('change', function () {
+                                // Get the selected file
+                                var file = audio1.files[0];
 
-                            // Create a new FileReader object
-                            var reader = new FileReader();
+                                // Create a new FileReader object
+                                var reader = new FileReader();
 
-                            // Add an event listener to the FileReader object
-                            reader.addEventListener('load', function() {
-                                // Get the audio element
-                                var audio = document.getElementById('audio_player');
+                                // Add an event listener to the FileReader object
+                                reader.addEventListener('load', function () {
+                                    // Get the audio element
+                                    var audio = document.getElementById('audio_player');
 
-                                // Set the src attribute of the audio element to the data URL
-                                audio.src = reader.result;
+                                    // Set the src attribute of the audio element to the data URL
+                                    audio.src = reader.result;
+                                });
+
+                                // Read the contents of the selected file as a data URL
+                                reader.readAsDataURL(file);
                             });
-
-                            // Read the contents of the selected file as a data URL
-                            reader.readAsDataURL(file);
-                        });
                         </script>
                         <br>
                         <h4 class="label"><label for="audio2">Audio2</label></h4>
@@ -305,29 +305,29 @@ if(isset($_GET['message'])){
                             </div>
                         </div>
                         <script>
-                        // Get the input file element
-                        var audio2 = document.getElementById('audio2');
+                            // Get the input file element
+                            var audio2 = document.getElementById('audio2');
 
-                        // Add an event listener to the input file element
-                        audio2.addEventListener('change', function() {
-                            // Get the selected file
-                            var file = audio2.files[0];
+                            // Add an event listener to the input file element
+                            audio2.addEventListener('change', function () {
+                                // Get the selected file
+                                var file = audio2.files[0];
 
-                            // Create a new FileReader object
-                            var reader = new FileReader();
+                                // Create a new FileReader object
+                                var reader = new FileReader();
 
-                            // Add an event listener to the FileReader object
-                            reader.addEventListener('load', function() {
-                                // Get the audio element
-                                var audio = document.getElementById('audioplayer');
+                                // Add an event listener to the FileReader object
+                                reader.addEventListener('load', function () {
+                                    // Get the audio element
+                                    var audio = document.getElementById('audioplayer');
 
-                                // Set the src attribute of the audio element to the data URL
-                                audio.src = reader.result;
+                                    // Set the src attribute of the audio element to the data URL
+                                    audio.src = reader.result;
+                                });
+
+                                // Read the contents of the selected file as a data URL
+                                reader.readAsDataURL(file);
                             });
-
-                            // Read the contents of the selected file as a data URL
-                            reader.readAsDataURL(file);
-                        });
                         </script>
                         <!--Video-->
                         <hr>
@@ -348,44 +348,44 @@ if(isset($_GET['message'])){
                                 <input type="file" class="custom-file-input" name="video1" id="video1"
                                     onchange="checkFileSize(this)">
                                 <script type="text/javascript">
-                                function checkFileSize(input) {
-                                    if (input.files && input.files[0]) {
-                                        const fileSize = input.files[0].size / 1024 / 1024; // Convert to MB
-                                        if (fileSize > 40) {
-                                            alert("File size cannot exceed 40 MB.");
-                                            input.value = ""; // Clear the input file
+                                    function checkFileSize(input) {
+                                        if (input.files && input.files[0]) {
+                                            const fileSize = input.files[0].size / 1024 / 1024; // Convert to MB
+                                            if (fileSize > 40) {
+                                                alert("File size cannot exceed 40 MB.");
+                                                input.value = ""; // Clear the input file
+                                            }
                                         }
                                     }
-                                }
                                 </script>
                                 <div id="progressBar">
                                     <div id="progressBarFill"></div>
                                 </div>
                             </div>
                             <script>
-                            // Get the input file element
-                            var video1 = document.getElementById('video1');
+                                // Get the input file element
+                                var video1 = document.getElementById('video1');
 
-                            // Add an event listener to the input file element
-                            video1.addEventListener('change', function() {
-                                // Get the selected file
-                                var file = video1.files[0];
+                                // Add an event listener to the input file element
+                                video1.addEventListener('change', function () {
+                                    // Get the selected file
+                                    var file = video1.files[0];
 
-                                // Create a new FileReader object
-                                var reader = new FileReader();
+                                    // Create a new FileReader object
+                                    var reader = new FileReader();
 
-                                // Add an event listener to the FileReader object
-                                reader.addEventListener('load', function() {
-                                    // Get the audio element
-                                    var video = document.getElementById('videoplayer');
+                                    // Add an event listener to the FileReader object
+                                    reader.addEventListener('load', function () {
+                                        // Get the audio element
+                                        var video = document.getElementById('videoplayer');
 
-                                    // Set the src attribute of the audio element to the data URL
-                                    video.src = reader.result;
+                                        // Set the src attribute of the audio element to the data URL
+                                        video.src = reader.result;
+                                    });
+
+                                    // Read the contents of the selected file as a data URL
+                                    reader.readAsDataURL(file);
                                 });
-
-                                // Read the contents of the selected file as a data URL
-                                reader.readAsDataURL(file);
-                            });
                             </script>
                             <br>
 
@@ -418,53 +418,57 @@ if(isset($_GET['message'])){
                 <p class="card-title">clicking choose theme brings up list of themes<br>Each song can have up to three
                     themes</p><br>
 
-                   
-                    <input type="text" id="themeInput" class="form-control" placeholder="Themes" name="theme2" style="text-align: center;" value="">
-                    <button type="button" class="btn btn-primary mt-2 mb-2" style="width: 30%;" data-toggle="modal" data-target="#themelist">Choose Themes</button>
-                    <div class="col-lg-2 col-md-3 col-sm-6">
-                        <!-- The Edit Modal -->
-                        <div class="modal fade" id="themelist">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Choose Theme</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <!-- Modal body -->
-                                    <div class="modal-body" style="text-align: left;">
-                                        <table class="table themeLoadTable">
-                                            <thead>
+
+                <input type="text" id="themeInput" class="form-control" placeholder="Themes" name="theme2"
+                    style="text-align: center;" value="">
+                <button type="button" class="btn btn-primary mt-2 mb-2" style="width: 30%;" data-toggle="modal"
+                    data-target="#themelist">Choose Themes</button>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <!-- The Edit Modal -->
+                    <div class="modal fade" id="themelist">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Choose Theme</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="modal-body" style="text-align: left;">
+                                    <table class="table themeLoadTable">
+                                        <thead>
                                             <?php
-                                                $sql = "SELECT * FROM `themes`";
-                                                $result = mysqli_query($conn, $sql);
-                                                if($result){
-                                                    while($row = mysqli_fetch_assoc($result)){
-                                                        echo "
+                                            $sql = "SELECT * FROM `themes`";
+                                            $result = mysqli_query($conn, $sql);
+                                            if ($result) {
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    echo "
                                                         <tr>
                                                             <td style='padding:0;'>
                                                                 <label class='row-label' style='margin:5px;'>
                                                                     <input type='hidden' id='selectedIdsInput' name='selectedIds[]' value=''>
-                                                                    <input type='checkbox' class='theme_title_load' name='selectedThemes[]' id='".$row['id']."' value='".$row['theme_title']."'>
-                                                                    ".$row['theme_title']."
+                                                                    <input type='checkbox' class='theme_title_load' name='selectedThemes[]' id='" . $row['id'] . "' value='" . $row['theme_title'] . "'>
+                                                                    " . $row['theme_title'] . "
                                                                 </label>
                                                             </td>
                                                         </tr>                                                          
                                                         ";
-                                                    }
                                                 }
+                                            }
                                             ?>
                                         </thead>
-                                        </table>
-                                    </div>
-                                    <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                        <button type="button" id="choose-theme-btn" onclick="setSelectedThemes()" class="btn btn-danger btn-small" data-dismiss="modal" aria-hidden="true">Choose Theme</button>
-                                    </div>
+                                    </table>
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" id="choose-theme-btn" onclick="setSelectedThemes()"
+                                        class="btn btn-danger btn-small" data-dismiss="modal" aria-hidden="true">Choose
+                                        Theme</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
                 <hr>
             </div>
@@ -544,68 +548,68 @@ if(isset($_GET['message'])){
     <br>
 
     <script type="text/javascript">
-    jQuery(document).ready(function() {
-        const fileInput = document.getElementById('video1');
-        const progressBar = document.getElementById('progressBar');
+        jQuery(document).ready(function () {
+            const fileInput = document.getElementById('video1');
+            const progressBar = document.getElementById('progressBar');
 
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            const fileSize = file.size;
+            fileInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                const fileSize = file.size;
 
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                progressBar.style.width = '100%';
-                progressBar.innerText = '100%';
-            };
-            reader.onprogress = (event) => {
-                const percentComplete = Math.round((event.loaded / fileSize) * 100);
-                progressBar.style.width = `${percentComplete}%`;
-                progressBar.innerText = `${percentComplete}%`;
-            };
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    progressBar.style.width = '100%';
+                    progressBar.innerText = '100%';
+                };
+                reader.onprogress = (event) => {
+                    const percentComplete = Math.round((event.loaded / fileSize) * 100);
+                    progressBar.style.width = `${percentComplete}%`;
+                    progressBar.innerText = `${percentComplete}%`;
+                };
 
-            reader.readAsDataURL(file);
-        });
-        jQuery('input[type=file]').change(function() {
+                reader.readAsDataURL(file);
+            });
+            jQuery('input[type=file]').change(function () {
 
-            var text = jQuery(this).val().split('\\').pop()
+                var text = jQuery(this).val().split('\\').pop()
 
-            jQuery(this).prev().text(text)
+                jQuery(this).prev().text(text)
+
+            })
+            jQuery('#youtube').change(function () {
+                var abc = jQuery(this).val()
+                if (abc != '') {
+                    zxc = abc.split('watch?v=');
+                    xyz = zxc.join("embed/")
+                    jQuery('#youtubevide').attr('src', xyz)
+                    jQuery('#youtubevide').show()
+                } else {
+                    jQuery('#youtubevide').hide()
+                }
+
+            })
+
 
         })
-        jQuery('#youtube').change(function() {
-            var abc = jQuery(this).val()
-            if (abc != '') {
-                zxc = abc.split('watch?v=');
-                xyz = zxc.join("embed/")
-                jQuery('#youtubevide').attr('src', xyz)
-                jQuery('#youtubevide').show()
+
+        let selectedThemes = [];
+        let selectedIds = [];
+        function setSelectedThemes() {
+            const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"].theme_title_load:checked');
+            // console.log(selectedCheckboxes)
+            if (selectedCheckboxes.length <= 3) {
+                selectedThemes = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
+                selectedIds = Array.from(selectedCheckboxes).map(checkbox => checkbox.id);
+
+                document.getElementById('themeInput').value = selectedThemes.join(', ');
+                document.getElementById('selectedIdsInput').value = selectedIds.join(', ');
+
             } else {
-                jQuery('#youtubevide').hide()
+                alert('You can select up to three themes.');
             }
-
-        })
-
-
-    })
-
-    let selectedThemes = [];
-    let selectedIds = [];
-    function setSelectedThemes() {
-        const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"].theme_title_load:checked');
-        // console.log(selectedCheckboxes)
-        if (selectedCheckboxes.length <= 3) {
-            selectedThemes = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
-            selectedIds = Array.from(selectedCheckboxes).map(checkbox => checkbox.id);
-
-            document.getElementById('themeInput').value = selectedThemes.join(', ');
-            document.getElementById('selectedIdsInput').value = selectedIds.join(', ');
-
-        } else {
-            alert('You can select up to three themes.');
         }
-    }
 
-    
+
 
 
 

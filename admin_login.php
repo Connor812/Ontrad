@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,8 +14,18 @@
     <nav>
         <span>
             ONTRAD ADMIN
-</span>
+        </span>
     </nav>
+
+    <?php
+    session_start();
+
+    require_once 'config-url.php';
+
+    if (isset($_SESSION['username'])) {
+        echo '<script>window.location.href = "' . BASE_URL . '/songmanager.php"</script>';
+    }
+    ?>
 
     <form action="functions/admin_login.inc.php" method="post">
         <div class="input-container">

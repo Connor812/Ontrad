@@ -77,7 +77,7 @@ if(isset($_GET['id'])){
         <!--SCROLLING FIELD OF SONGS A t0 Z-->
     <div class="ontragreen pb-5 ">
       <div style="text-align: center;">
-          <h4><!-- reverse order of songs A to Z --> &uarr; &nbsp; &darr;</h4> 
+          <h4>Songs Related to <?php echo $row['theme_title'];  ?></h4> 
       </div>
       <div class="album">
         <div class="container">
