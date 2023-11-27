@@ -50,9 +50,9 @@ require_once("php/header2.php");
        <div class="introbox pt-4 ontragreen ontradbg1">
        <div style="text-align: center;">
             <h3>Themes</h3>
-            <br>
+            <hr style='border-color:black; padding: 0% 5%;'>
             <div class="row" style="text-align: center; padding-left: 5%; padding-right: 5%;">
-                <div class="col-md-6"> <img src="homeimage/on_0001_dance.jpg" style="width: 80%;"></div>
+                <div class="col-md-6"> <img src="homeimage/on_0001_dance.jpg" style="width: 80%; border-radius: 10px;"></div>
                 <div class="col-md-6">
                      <div class="textarea p-2" style="text-align: left">
                    <p class="card-text"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
@@ -75,8 +75,9 @@ require_once("php/header2.php");
    
     <div class="ontragreen pb-5 ">
       <div style="text-align: center;">
-          <h4><!-- reverse order of songs A to Z --> &uarr; &nbsp; &darr;</h4> 
+          <h4>All Themes</h4> 
       </div>
+      <hr style='border-color:black; padding: 0% 5%;'>
       <div class="album">
         <div class="container">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -93,7 +94,7 @@ require_once("php/header2.php");
                       if(empty($search)){
                         echo "<script>window.location.href = 'themelist.php';</script>";
                       }
-                      $sql = "SELECT * FROM `themes` WHERE `status` = 'Featured' AND `theme_title` LIKE CONCAT('%', '$search' , '%') LIMIT {$offset}, {$limit}";
+                      $sql = "SELECT * FROM `themes` WHERE `theme_title` LIKE CONCAT('%', '$search' , '%') LIMIT {$offset}, {$limit}";
                       $result = mysqli_query($conn, $sql);
                       
                       
@@ -129,7 +130,7 @@ require_once("php/header2.php");
                           }
                       }else{ echo "No Songs Found"; }
                     }else{
-                      $sql = "SELECT * FROM `themes` WHERE `status` = 'Featured' LIMIT {$offset}, {$limit}";
+                      $sql = "SELECT * FROM `themes` LIMIT {$offset}, {$limit}";
                       $result = mysqli_query($conn, $sql);
                       
                       if(mysqli_num_rows($result)>0){
@@ -221,7 +222,7 @@ require_once("php/header2.php");
     <!--end of media-->
     <!-- FOOTER (Contact Section) -->
     <!-- Container (Contact Section) -->
-    <div class="container-fluid ontradgreenlite ontradred py-3" style="width: 100%;">
+    <div class="container-fluid ontradgreenlite py-3" style="width: 100%; color:white;">
         <h5 class="text-center">CONTACT US</h5>
         <div class="row">
             <div class="col" style="width: 100%; text-align: center;">

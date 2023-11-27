@@ -67,7 +67,7 @@ require_once("php/header.php");
                         <div class="container-fluid p-3"
                             style="border-style: solid; border-color: blue; border-width: 1px; text-align: center;">
                             <img id="themeImage" name="image" src="themeimage_uploads/<?php echo $themeImage;?>"
-                                alt="Theme Image" style="max-width: 100%; max-height: 200px;" required>
+                                alt="Theme Image" style="max-width: 100%; max-height: auto;" required>
                             <p type="hidden" id="imageName">Image Name: <?php echo $themeImage;?></p>
                         </div>
                         <br>

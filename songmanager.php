@@ -2,13 +2,10 @@
 require_once("config/db.php");
 require_once("php/header.php");
 if (isset($_GET['message'])) {
-    $message = $_GET['message'];
-    echo " 
-    <script>
-    alert(' $message ')
-    location.replace('songmanager.php');
-    </script>
-    ";
+    if (isset($_GET['message'])) {
+        $message = $_GET['message'];
+        echo "<script>alert(' $message ')location.replace('songmanager.php');</script>";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -19,6 +16,15 @@ if (isset($_GET['message'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
+        #progressBar {
+            width: 0%;
+            height: 24px;
+            background-color: #6ecd75;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
         #progressBar {
             width: 0%;
             height: 24px;
@@ -147,7 +153,19 @@ if (isset($_GET['message'])) {
                                 imageInput.addEventListener('change', () => {
                                     const file = imageInput.files[0];
                                     const reader = new FileReader();
+                                    const imageInput = document.getElementById('image_input');
+                                    const imagePreview = document.getElementById('image_preview');
+                                    imageInput.addEventListener('change', () => {
+                                        const file = imageInput.files[0];
+                                        const reader = new FileReader();
 
+                                        reader.addEventListener('load', () => {
+                                            imagePreview.src = reader.result;
+                                        });
+                                        if (file) {
+                                            reader.readAsDataURL(file);
+                                        }
+                                    });
                                     reader.addEventListener('load', () => {
                                         imagePreview.src = reader.result;
                                     });
@@ -158,6 +176,9 @@ if (isset($_GET['message'])) {
                             </script>
                             <!--thumbnail image-->
                             <div class="form-group  py-2">
+                                <h4 class="label">
+                                    <label for="image">Thumbnail Image</label>
+                                </h4>
                                 <h4 class="label">
                                     <label for="image">Thumbnail Image</label>
                                 </h4>
@@ -184,7 +205,19 @@ if (isset($_GET['message'])) {
                                 imagethumb.addEventListener('change', () => {
                                     const file = imagethumb.files[0];
                                     const reader = new FileReader();
+                                    const imagethumb = document.getElementById('imagethumb');
+                                    const thumb_preview = document.getElementById('thumb_preview');
+                                    imagethumb.addEventListener('change', () => {
+                                        const file = imagethumb.files[0];
+                                        const reader = new FileReader();
 
+                                        reader.addEventListener('load', () => {
+                                            thumb_preview.src = reader.result;
+                                        });
+                                        if (file) {
+                                            reader.readAsDataURL(file);
+                                        }
+                                    });
                                     reader.addEventListener('load', () => {
                                         thumb_preview.src = reader.result;
                                     });
@@ -202,10 +235,9 @@ if (isset($_GET['message'])) {
                             </div>
                             <br>
                             <h4 class="label"> <label>Sheet Music</label> </h4>
-                            <div style="width: 100%; height: auto; border-style: solid; border-color:blue;">
-                                <img src="images/sheet1.png" alt="Lights" style="width:100%; height:auto;"
-                                    id="sheet_preview" required>
-                            </div>
+                            <embed id="embed-sheet-music" src="images/sheet1.png"
+                                style="width: 100%; height: 550px; border-style: solid; border-color:blue;">
+                            </embed>
                             <div class="row">
                                 <div class="col-sm-10 p-2">
                                     <div class="container mt-1">
@@ -393,8 +425,10 @@ if (isset($_GET['message'])) {
                         <h4 class="label"> <label for="video">YouTube</label></h4>
                         <div class="row">
                             <div class="container mt-1">
-                                <iframe id="youtubevide" src="" style="display: none;width: 100%;    height: 280px;">
-                                </iframe>
+                                <iframe id="youtubevideo" width="560" height="315" src="" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
                                 <div class="custom-file mb-1">
                                     <input type="text" class="form-control" placeholder="YouTube" name="video2"
                                         id="youtube">

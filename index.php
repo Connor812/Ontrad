@@ -1,7 +1,7 @@
 <?php
 require_once("config/db.php");
 require_once("php/header2.php");
-require_once "config-url.php";
+require_once("config-url.php");
 // echo decode_id($encodedId,$seed);
 
 

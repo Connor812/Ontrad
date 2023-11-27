@@ -55,7 +55,6 @@ if ($result->num_rows > 0) {
 </head>
 
 <body id="songmanager">
-    version 4.5
     <!--start-->
     <form action="update.php" method="post" enctype="multipart/form-data" id="uploadsong">
 
@@ -63,7 +62,7 @@ if ($result->num_rows > 0) {
             <div class="row d-none">
                 <!--search and load-->
                 <div class="col-8">
-                    <h3>Song Manager</h3>
+                    <h3>Song Editor</h3>
                     <div class="input-group mb-3 d-none">
                         <input type="text" class="form-control" placeholder="SEARCH SONG NAME"
                             aria-label="Recipient's username" aria-describedby="button-addon2">

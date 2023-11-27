@@ -3,6 +3,7 @@ session_start();
 require_once '../config/db.php';
 require_once '../config-url.php';
 
+
 $username = $_POST['username'];
 $pwd = $_POST['pwd'];
 $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
@@ -10,13 +11,12 @@ $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 echo $username . "<br>";
 echo $pwd . "<br>";
 echo $hashedPwd . "<br>";
-echo "update";
 
 // Check if $username or $pwd is empty
 if (empty($username) || empty($pwd)) {
     // Redirect with an error message
     echo "empty input";
-    echo '<script>window.location.href = "' . BASE_URL . '/admin_login.php?error=empty_username_or_pwd";</script>';
+    echo '<script>window.location.href = "' . BASE_URL .'/admin_login.php?error=empty_username_or_pwd";</script>';
     exit;
 }
 
@@ -42,12 +42,12 @@ if ($stmt) {
             exit;
         } else {
             // Password doesn't match
-            echo '<script>window.location.href = "' . BASE_URL . '//admin_login.php?error=pwd_doesnt_match";</script>';
+            echo '<script>window.location.href = "' . BASE_URL . '/admin_login.php?error=pwd_doesnt_match";</script>';
             exit;
         }
     } else {
         // Username doesn't exist
-        echo '<script>window.location.href = "' . BASE_URL . '//admin_login.php?error=username_doesnt_exist";</script>';
+        echo '<script>window.location.href = "' . BASE_URL . '/admin_login.php?error=username_doesnt_exist";</script>';
         exit;
     }
 } else {
