@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     $sql = "SELECT * FROM `newtable` WHERE `ID` = '$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-?>
+    ?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -119,7 +119,8 @@ if (isset($_GET['id'])) {
                     <div class="col-sm-6 p-0" style="text-align:center;">
                         <?php if (!empty($row['imageFull'])) { ?>
                             <div class="container-fluid">
-                                <img src="images/<?php echo $row['imageFull']; ?>" style="width: 100%; height: auto; border-radius: 10px;" alt="Full Image">
+                                <img src="images/<?php echo $row['imageFull']; ?>"
+                                    style="width: 100%; height: auto; border-radius: 10px;" alt="Full Image">
                             </div>
                         <?php } ?>
                     </div>
@@ -225,7 +226,7 @@ if (isset($_GET['id'])) {
                             </div>
                             ";
                                 } elseif ($extensionFile == 'jpg' || $extensionFile == 'png') {
-                                    echo "<img src='musicsheet/" . $row['sheetmusic'] . "' alt='Picture' style='width:100%; height:auto; text-align:left;' class='image-set' id='thumb_previews'>
+                                    echo "<img src='musicsheet/" . $row['sheetmusic'] . "' alt='Picture' style='width:100%; height: 500px; text-align:left;' class='image-set' id='thumb_previews'>
                                 </a>
                             </div>
                             ";
@@ -270,16 +271,13 @@ if (isset($_GET['id'])) {
                     ?>
                 </div>
             </div>
-            <?php
-            require_once("php/footer.php");
-            ?>
         </div>
         <script>
             var acc = document.getElementsByClassName("accordion");
             var i;
 
             for (i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function() {
+                acc[i].addEventListener("click", function () {
                     this.classList.toggle("active");
                     var panel = this.nextElementSibling;
                     if (panel.style.maxHeight) {
@@ -291,12 +289,16 @@ if (isset($_GET['id'])) {
             }
         </script>
     </body>
+
     </html>
 
-<?php
+    <?php
 } elseif (!isset($_GET['id'])) {
     echo "<script>window.location.href = '/index.php?error=no_song_id';</script>";
 
     exit;
 }
+
+require_once("php/footer.php");
+
 ?>

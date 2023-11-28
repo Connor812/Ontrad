@@ -179,9 +179,6 @@ if (isset($_GET['message'])) {
                                 <h4 class="label">
                                     <label for="image">Thumbnail Image</label>
                                 </h4>
-                                <h4 class="label">
-                                    <label for="image">Thumbnail Image</label>
-                                </h4>
                                 <a href="images/placeholder.jpg"></a>
                                 <div class="img py-2">
                                     <img src="images/placeholder.jpg" class="img-fluid img-thumbnail" alt="Lights"
@@ -236,7 +233,7 @@ if (isset($_GET['message'])) {
                             <br>
                             <h4 class="label"> <label>Sheet Music</label> </h4>
                             <embed id="embed-sheet-music" src="images/sheet1.png"
-                                style="width: 100%; height: 550px; border-style: solid; border-color:blue;">
+                                style="width: 100%; height: auto; border-style: solid; border-color:blue;">
                             </embed>
                             <div class="row">
                                 <div class="col-sm-10 p-2">
@@ -425,16 +422,50 @@ if (isset($_GET['message'])) {
                         <h4 class="label"> <label for="video">YouTube</label></h4>
                         <div class="row">
                             <div class="container mt-1">
-                                <iframe id="youtubevideo" width="560" height="315" src="" title="YouTube video player"
+                                <iframe id="youtubevideo" width="560" height="315" title="YouTube video player"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen></iframe>
+                                    allowfullscreen style="display: none;"></iframe>
                                 <div class="custom-file mb-1">
                                     <input type="text" class="form-control" placeholder="YouTube" name="video2"
                                         id="youtube">
                                 </div>
                             </div>
                         </div>
+                        <script>
+                            // Function to update the YouTube video URL
+                            function updateYouTubeVideo() {
+                                var youtubeInput = document.getElementById('youtube');
+                                var youtubeVideo = document.getElementById('youtubevideo');
+
+                                // Get the YouTube video URL from the input field
+                                var videoUrl = youtubeInput.value;
+
+                                // Extract the YouTube video ID
+                                var videoId = getYouTubeVideoId(videoUrl);
+
+                                // Set the video source if a valid video ID is found
+                                if (videoId) {
+                                    var embedUrl = 'https://www.youtube.com/embed/' + videoId;
+                                    youtubeVideo.src = embedUrl;
+                                    youtubeVideo.style.display = 'block'; // Show the video element
+                                } else {
+                                    youtubeVideo.src = ''; // Clear the video source
+                                    youtubeVideo.style.display = 'none'; // Hide the video element
+                                }
+                            }
+
+                            // Function to extract YouTube video ID from URL
+                            function getYouTubeVideoId(url) {
+                                var regExp = /^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/;
+                                var match = url.match(regExp);
+                                return (match && match[2].length === 11) ? match[2] : null;
+                            }
+
+                            // Attach an event listener to the input field to trigger the update
+                            document.getElementById('youtube').addEventListener('input', updateYouTubeVideo);
+                        </script>
+
                     </div>
                 </div>
                 <!--end of col-->
@@ -610,19 +641,6 @@ if (isset($_GET['message'])) {
                 jQuery(this).prev().text(text)
 
             })
-            jQuery('#youtube').change(function () {
-                var abc = jQuery(this).val()
-                if (abc != '') {
-                    zxc = abc.split('watch?v=');
-                    xyz = zxc.join("embed/")
-                    jQuery('#youtubevide').attr('src', xyz)
-                    jQuery('#youtubevide').show()
-                } else {
-                    jQuery('#youtubevide').hide()
-                }
-
-            })
-
 
         })
 

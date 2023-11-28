@@ -108,14 +108,14 @@ require_once("php/header2.php");
                                  $path = 'themeimage_uploads/';
                                  $completePath = $path.$row['theme_image'];
                               echo ($row['theme_image']!=NULL || !empty($row['theme_image'])) && file_exists($completePath) ?
-                              "<img src='themeimage_uploads/" . $row['theme_image'] . "' style='max-height: 200px;' alt='Image Not found'>": "
-                              <svg class='bd-placeholder-img card-img-top' width='100%' height='200'
-                                              xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail'
+                              "<a href='theme1.php?id=" . base64_encode($row['id']) . "'><img class='theme-img' src='themeimage_uploads/" . $row['theme_image'] . "' style='max-height: 200px; width: 100%;' alt='Image Not found'></a>": "
+                              <a href='theme1.php?id=" . base64_encode($row['id']) . "'><svg class='bd-placeholder-img card-img-top' width='100%' height='200'
+                                              role='img' aria-label='Placeholder: Thumbnail'
                                               preserveAspectRatio='xMidYMid slice' focusable='false'>
                                               <title>Placeholder</title>
                                               <rect width='100%' height='100%' fill='#55595c' /><text x='50%' y='50%' fill='#eceeef'
                                                   dy='.3em'>ONTRAD IMAGE</text>
-                                          </svg>";
+                                          </svg></a>";
                               echo "            
                                           <div class='card-body'>
                                               <h4> ".$row['theme_title']."</h4>
@@ -143,14 +143,15 @@ require_once("php/header2.php");
                                  $path = 'themeimage_uploads/';
                                  $completePath = $path.$row['theme_image'];
                               echo ($row['theme_image']!=NULL || !empty($row['theme_image'])) && file_exists($completePath) ?
-                              "<img src='themeimage_uploads/" . $row['theme_image'] . "' style='max-height: 200px;' alt='Image Not found'>": "
-                              <svg class='bd-placeholder-img card-img-top' width='100%' height='200'
+                              "
+                              <a href='theme1.php?id=" . base64_encode($row['id']) . "'><img class='theme-img' src='themeimage_uploads/" . $row['theme_image'] . "' style='max-height: 200px; width: 100%;' alt='Image Not found'></a>": "
+                              <a href='theme1.php?id=" . base64_encode($row['id']) . "'><svg class='bd-placeholder-img card-img-top' width='100%' height='200'
                                               xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail'
                                               preserveAspectRatio='xMidYMid slice' focusable='false'>
                                               <title>Placeholder</title>
                                               <rect width='100%' height='100%' fill='#55595c' /><text x='50%' y='50%' fill='#eceeef'
                                                   dy='.3em'>ONTRAD IMAGE</text>
-                                          </svg>";
+                                          </svg></a>";
                               echo "            
                                           <div class='card-body'>
                                               <h4> ".$row['theme_title']."</h4>

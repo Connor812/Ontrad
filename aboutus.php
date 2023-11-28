@@ -2,7 +2,7 @@
 require_once "php/header2.php";
 ?>
     <!--end of nav-->
-    <div class="wrapper">
+    <div class="wrapper" style="min-height: 100vh;">
         <div style="height: 100px;"></div>
         <h4 style="text-align: center; padding: 0% 20%;"><small>"Non eaque iste aut iure nihil qui velit labore sed odio enim qui blanditiis molestiae. Ut delectus numquam et repellat tenetur eos inventore culpa et repellat quibusdam ut excepturi autem et galisum quia."</small> </h4>
         <div class="row">
@@ -249,59 +249,9 @@ require_once "php/header2.php";
             <div class="col-sm-2"></div>
         </div>
     </div>
-    <!-- Container (Contact Section) -->
-    <div class="container-fluid ontradgreenlite ontradred py-3 mt-3" style="width: 100%;">
-        <h4 class="text-center">CONTACT US</h4>
-        <div class="row">
-            <div class="col" style="width: 100%; text-align: center;">
-                <h5> Villa Nova, Ontario, Canada - mail@ontariotraditionalmusic.com</h5>
-            </div>
-        </div>
-        <br>
-        <!-- Button to Open the Modal -->
-        <div style="text-align: center;">
-            <button type="button" class="button1" data-toggle="modal" data-target="#dropline">
-                Drop us a line
-            </button>
-        </div>
-        <!-- The Modal -->
-        <div class="modal" id="dropline">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="alert alert-light m-3" style="padding: 3% 10% 3% 10%">
-                        <p style="text-align: center;">
-                            <img src="images/ontradlogo160px.jpg" style="text-align: center;">
-                            <hr>
-                            We welcome your comments and suggestions
-                        </p>
-                        <div class="row">
-                            <div class="col-sm-6 form-group">
-                                <input class="form-control" style="width: 100%;" id="name" name="name"
-                                    placeholder="Name" type="text" required>
-                            </div>
-                            <div class="col-sm-6 form-group">
-                                <input class="form-control" id="email" name="email" placeholder="Email" type="email"
-                                    required>
-                            </div>
-                        </div>
-                        <textarea class="form-control" id="comments" name="comments" placeholder="Comment"
-                            rows="5"></textarea><br>
-                        <div class="row">
-                            <div class="col-sm-12 form-group">
-                                <button class="button1 pull-right" type="submit">Send</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br><br>
-        <div style="text-align: center;">
-            <p><small>- CREATED BY BUSINESSLORE -</small>
-            </p>
-        </div>
-    </div><!--end of contact-->
-    </div> <!--end of wrapper-->
+    <?php 
+        require_once("php/footer.php");
+    ?>
     <script>
         var acc = document.getElementsByClassName("accordion");
         var i;

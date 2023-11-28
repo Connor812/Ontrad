@@ -6,7 +6,7 @@ if (isset($_GET['id'])) {
     $sql = "SELECT * FROM `themes` WHERE `id` = $id";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-?>
+    ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -56,49 +56,55 @@ if (isset($_GET['id'])) {
         <!--Data-->
         <!--end of data-->
 
-       <div class="introbox pt-4 ontragreen ontradbg1">
-       <div style="text-align: center;">
-            <h3><?php echo $row['theme_title'];?></h3>
-            <br>
-            <div class="row" style="text-align: center; padding-left: 5%; padding-right: 5%;">
-                <!-- <div class="col-md-6"> <img src="homeimage/on_0004_fiddle.jpg" style="width: 80%;"></div> -->
-                <?php
-                $path = 'themeimage_uploads/';
-                $completePath = $path.$row['theme_image'];
-                echo ($row['theme_image'] != NULL || !empty($row['theme_image'])) && file_exists($completePath) ?
-                "<div class='col-md-6'> <img src='themeimage_uploads/" . $row['theme_image'] . "' style='width: 80%;'></div>": " <div class='col-md-6'></div>";
-                ?>
-                <div class="col-md-6">
-                     <div class="textarea p-2" style="text-align: left">
-                   <p class="card-text"> <?php echo $row['theme_info']; ?></p>
+        <div class="introbox pt-4 ontragreen ontradbg1">
+            <div style="text-align: center;">
+                <h3>
+                    <?php echo $row['theme_title']; ?>
+                </h3>
+                <br>
+                <div class="row" style="text-align: center; padding-left: 5%; padding-right: 5%;">
+                    <!-- <div class="col-md-6"> <img src="homeimage/on_0004_fiddle.jpg" style="width: 80%;"></div> -->
+                    <?php
+                    $path = 'themeimage_uploads/';
+                    $completePath = $path . $row['theme_image'];
+                    echo ($row['theme_image'] != NULL || !empty($row['theme_image'])) && file_exists($completePath) ?
+                        "<div class='col-md-6'> <img src='themeimage_uploads/" . $row['theme_image'] . "' style='width: 80%;'></div>" : " <div class='col-md-6'></div>";
+                    ?>
+                    <div class="col-md-6">
+                        <div class="textarea p-2" style="text-align: left">
+                            <p class="card-text">
+                                <?php echo $row['theme_info']; ?>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
-        </div>
 
-        <hr>
-       
-        <!--SCROLLING FIELD OF SONGS A t0 Z-->
-    <div class="ontragreen pb-5 ">
-      <div style="text-align: center;">
-          <h4>Songs Related to <?php echo $row['theme_title'];  ?></h4> 
-      </div>
-      <div class="album">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-             <?php 
-             $sql = "SELECT * FROM newtable LEFT JOIN themes_songs ON newtable.ID = themes_songs.song_id WHERE theme_id = '$id'";
-             $result = mysqli_query($conn, $sql);
+            <hr>
+
+            <!--SCROLLING FIELD OF SONGS A t0 Z-->
+            <div class="ontragreen pb-5 ">
+                <div style="text-align: center;">
+                    <h4>Songs Related to
+                        <?php echo $row['theme_title']; ?>
+                    </h4>
+                </div>
+                <div class="album">
+                    <div class="container">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            <?php
+                            $sql = "SELECT * FROM newtable LEFT JOIN themes_songs ON newtable.ID = themes_songs.song_id WHERE theme_id = '$id'";
+                            $result = mysqli_query($conn, $sql);
 
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo "
                 <div class='col'><!-- songcard -->
-                <div class='card shadow-sm' style='height: 600px !important;'>
+                <div class='card shadow-sm' style='min-width: 348px; height: 600px !important;'>
                 ";
 
                                     echo $row['imageThumb'] != NULL || !empty($row['imageThumb'])
-                                        ? "<img src='images/" . $row['imageThumb'] . "' style='max-height: 200px;' alt='Image Not found'>"
+                                        ? "<a href='song1.php?id=" . base64_encode($row['ID']) . "'><img class='theme-img' src='images/" . $row['imageThumb'] . "' style='max-height: 200px; width: 100%;' alt='Image Not found'></a>"
                                         : "<svg class='bd-placeholder-img card-img-top' width='100%' height='200px'
                     xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail'
                     preserveAspectRatio='xMidYMid slice' focusable='false'>
@@ -142,20 +148,20 @@ if (isset($_GET['id'])) {
             </div>
         </div>
         <?php
-       require_once("php/footer.php");
-       ?>
-        
+        require_once("php/footer.php");
+        ?>
+
         <!--end of scrolling songlist -->
         <!--end of media-->
         <!-- FOOTER (Contact Section) -->
         <!-- Container (Contact Section) -->
-       
+
         <script>
             var acc = document.getElementsByClassName("accordion");
             var i;
 
             for (i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function() {
+                acc[i].addEventListener("click", function () {
                     this.classList.toggle("active");
                     var panel = this.nextElementSibling;
                     if (panel.style.maxHeight) {
@@ -226,7 +232,7 @@ if (isset($_GET['id'])) {
 
     </html>
 
-<?php
+    <?php
 } else {
     echo "No Theme Found";
 }
