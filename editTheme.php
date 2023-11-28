@@ -5,15 +5,15 @@ require_once("config/db.php");
 if(isset($_GET['id'])){
     $id = $_GET['id'];
     $sql = "
-    SELECT t1.*,t2.ID, t2.Stitle, t2.theme_id, t2.song_id
+    SELECT t1.*, t2.ID AS t2_ID, t2.Stitle, t2.theme_id, t2.song_id
     FROM themes t1
     LEFT JOIN (
-        SELECT ID, Stitle, theme_id, song_id
+        SELECT newtable.ID, newtable.Stitle, themes_songs.theme_id, themes_songs.song_id
         FROM newtable
         LEFT JOIN themes_songs ON newtable.ID = themes_songs.song_id
-        WHERE theme_id = '$id'
+        WHERE themes_songs.theme_id = '$id'
     ) t2 ON t1.id = '$id'
-    WHERE t1.id = '$id'
+    WHERE t1.id = '$id';
     
     ";
     $result = mysqli_query($conn, $sql);
