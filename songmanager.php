@@ -2,10 +2,13 @@
 require_once("config/db.php");
 require_once("php/header.php");
 if (isset($_GET['message'])) {
-    if (isset($_GET['message'])) {
-        $message = $_GET['message'];
-        echo "<script>alert(' $message ')location.replace('songmanager.php');</script>";
-    }
+    $message = $_GET['message'];
+    echo " 
+    <script>
+    alert(' $message ')
+    location.replace('songmanager.php');
+    </script>
+    ";
 }
 ?>
 <!DOCTYPE html>
@@ -16,15 +19,6 @@ if (isset($_GET['message'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
-        #progressBar {
-            width: 0%;
-            height: 24px;
-            background-color: #6ecd75;
-            border-radius: 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
         #progressBar {
             width: 0%;
             height: 24px;
@@ -153,19 +147,7 @@ if (isset($_GET['message'])) {
                                 imageInput.addEventListener('change', () => {
                                     const file = imageInput.files[0];
                                     const reader = new FileReader();
-                                    const imageInput = document.getElementById('image_input');
-                                    const imagePreview = document.getElementById('image_preview');
-                                    imageInput.addEventListener('change', () => {
-                                        const file = imageInput.files[0];
-                                        const reader = new FileReader();
 
-                                        reader.addEventListener('load', () => {
-                                            imagePreview.src = reader.result;
-                                        });
-                                        if (file) {
-                                            reader.readAsDataURL(file);
-                                        }
-                                    });
                                     reader.addEventListener('load', () => {
                                         imagePreview.src = reader.result;
                                     });
@@ -202,19 +184,7 @@ if (isset($_GET['message'])) {
                                 imagethumb.addEventListener('change', () => {
                                     const file = imagethumb.files[0];
                                     const reader = new FileReader();
-                                    const imagethumb = document.getElementById('imagethumb');
-                                    const thumb_preview = document.getElementById('thumb_preview');
-                                    imagethumb.addEventListener('change', () => {
-                                        const file = imagethumb.files[0];
-                                        const reader = new FileReader();
 
-                                        reader.addEventListener('load', () => {
-                                            thumb_preview.src = reader.result;
-                                        });
-                                        if (file) {
-                                            reader.readAsDataURL(file);
-                                        }
-                                    });
                                     reader.addEventListener('load', () => {
                                         thumb_preview.src = reader.result;
                                     });
@@ -232,46 +202,62 @@ if (isset($_GET['message'])) {
                             </div>
                             <br>
                             <h4 class="label"> <label>Sheet Music</label> </h4>
-                            <embed id="embed-sheet-music" src="images/sheet1.png"
-                                style="width: 100%; height: auto; border-style: solid; border-color:blue;">
-                            </embed>
+                            <div style="width: 100%; height: auto; border-style: solid;">
+                                <embed id="embed-sheet-music" src="images/sheet1.png"
+                                    style="width: 100%; height: auto;">
+                            </div>
                             <div class="row">
                                 <div class="col-sm-10 p-2">
                                     <div class="container mt-1">
                                         <div class="custom-file mb-1 upload-btn-wrapper">
-                                            <button class="btn btn-primary">Choose File</button>
+                                            <button id="chooseFileBtn" class="btn btn-primary">Choose File</button>
                                             <input type="file" class="custom-file-input" name="sheetmusic"
                                                 id="sheet-thumb">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <script type="text/javascript">
-                                const imagethumbs = document.getElementById('sheet-thumb');
-                                const thumb_previews = document.getElementById('sheet_preview');
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    // File input change event
+                                    document.getElementById('sheet-thumb').addEventListener('change', function () {
+                                        handleFileSelect(this);
+                                    });
 
-                                imagethumbs.addEventListener('change', () => {
-                                    const file = imagethumbs.files[0];
-                                    if (file) {
-                                        const fileName = file.name;
-                                        const fileExtension = fileName.split('.').pop().toLowerCase();
+                                    // Function to handle file selection
+                                    function handleFileSelect(input) {
+                                        var file = input.files[0];
+                                        var chooseFileBtn = input.parentElement.querySelector('button'); // Select the button within the same parent element
 
-                                        if (fileExtension === 'png' || fileExtension === 'jpg') {
-                                            const reader = new FileReader();
-                                            reader.addEventListener('load', () => {
-                                                thumb_previews.src = reader.result;
-                                            });
-                                            reader.readAsDataURL(file);
-                                        } else if (fileExtension === 'pdf') {
-                                            thumb_previews.src = 'musicsheet/pdficon.png';
+                                        // Check if a file is selected
+                                        if (file) {
+                                            // Check if the selected file is a PDF
+                                            if (file.type === 'application/pdf') {
+                                                // Read the selected file and update the embed element
+                                                var reader = new FileReader();
+                                                reader.onload = function (e) {
+                                                    document.getElementById('embed-sheet-music').src = e.target.result;
+                                                };
+                                                reader.readAsDataURL(file);
+                                            } else {
+                                                // Alert the user for the wrong document type
+                                                alert('Please upload a PDF file.');
+                                                // Clear the file input after a short delay
+                                                setTimeout(function () {
+                                                    input.value = '';
+                                                }, 0);
+                                                // Set the button text back to 'Choose File' after a short delay
+                                                setTimeout(function () {
+                                                    chooseFileBtn.innerText = 'Choose File';
+                                                }, 0);
+                                            }
                                         } else {
-                                            alert("Image is Not Uploaded Successfully. Try Again")
+                                            // User canceled the file selection
+                                            // Set the button text back to 'Choose File'
+                                            chooseFileBtn.innerText = 'Choose File';
                                         }
-                                    } else {
-                                        thumb_previews.src = '';
                                     }
                                 });
-
                             </script>
                         </div>
                     </div>
@@ -422,10 +408,8 @@ if (isset($_GET['message'])) {
                         <h4 class="label"> <label for="video">YouTube</label></h4>
                         <div class="row">
                             <div class="container mt-1">
-                                <iframe id="youtubevideo" width="560" height="315" title="YouTube video player"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowfullscreen style="display: none;"></iframe>
+                                <iframe id="youtubevide" src="" style="display: none;width: 100%;    height: 280px;">
+                                </iframe>
                                 <div class="custom-file mb-1">
                                     <input type="text" class="form-control" placeholder="YouTube" name="video2"
                                         id="youtube">
@@ -433,38 +417,41 @@ if (isset($_GET['message'])) {
                             </div>
                         </div>
                         <script>
-                            // Function to update the YouTube video URL
-                            function updateYouTubeVideo() {
+                            document.addEventListener('DOMContentLoaded', function () {
+                                // YouTube input field change event
+                                document.getElementById('youtube').addEventListener('input', function () {
+                                    displayYouTubeVideo();
+                                });
+                            });
+
+                            function displayYouTubeVideo() {
+                                // Get the YouTube link from the input field
                                 var youtubeInput = document.getElementById('youtube');
-                                var youtubeVideo = document.getElementById('youtubevideo');
+                                var youtubeLink = youtubeInput.value;
 
-                                // Get the YouTube video URL from the input field
-                                var videoUrl = youtubeInput.value;
+                                // Extract the video ID from the YouTube link
+                                var videoId = getYoutubeVideoId(youtubeLink);
 
-                                // Extract the YouTube video ID
-                                var videoId = getYouTubeVideoId(videoUrl);
+                                // Set the src attribute of the iframe with the YouTube video link
+                                var iframe = document.getElementById('youtubevide');
+                                iframe.src = 'https://www.youtube.com/embed/' + videoId;
 
-                                // Set the video source if a valid video ID is found
-                                if (videoId) {
-                                    var embedUrl = 'https://www.youtube.com/embed/' + videoId;
-                                    youtubeVideo.src = embedUrl;
-                                    youtubeVideo.style.display = 'block'; // Show the video element
-                                } else {
-                                    youtubeVideo.src = ''; // Clear the video source
-                                    youtubeVideo.style.display = 'none'; // Hide the video element
-                                }
+                                // Display the iframe
+                                iframe.style.display = 'block';
+
+                                // Update the input value with the generated YouTube link
+                                youtubeInput.value = 'https://www.youtube.com/embed?v=' + videoId;
                             }
 
-                            // Function to extract YouTube video ID from URL
-                            function getYouTubeVideoId(url) {
-                                var regExp = /^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/;
-                                var match = url.match(regExp);
-                                return (match && match[2].length === 11) ? match[2] : null;
+                            // Function to extract the video ID from a YouTube link
+                            function getYoutubeVideoId(link) {
+                                var regExp = /^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|\?v=)([^#\&\?]*).*/;
+                                var match = link.match(regExp);
+                                return (match && match[1].length === 11) ? match[1] : '';
                             }
-
-                            // Attach an event listener to the input field to trigger the update
-                            document.getElementById('youtube').addEventListener('input', updateYouTubeVideo);
                         </script>
+
+
 
                     </div>
                 </div>
@@ -641,7 +628,6 @@ if (isset($_GET['message'])) {
                 jQuery(this).prev().text(text)
 
             })
-
         })
 
         let selectedThemes = [];

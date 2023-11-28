@@ -310,21 +310,24 @@ if ($result->num_rows > 0) {
                                 <div style="text-align: center;">
                                     <div style="text-align:left;">
                                         <?php if ($extension == "pdf") { ?>
-                                            <embed id="embed-sheet-music" src="musicsheet/<?php echo str_replace('#', '%23', $row["sheetmusic"]) ?>"
+                                            <embed id="embed-sheet-music"
+                                                src="musicsheet/<?php echo str_replace('#', '%23', $row["sheetmusic"]) ?>"
                                                 style="width: 100%; height: 550px; border-style: solid; border-color:blue;">
                                             </embed>
                                         <?php } else if ($extension == "doc" || $extension == "docx") {
                                             echo "doc"; ?>
-                                                <a href="musicsheet/<?php echo str_replace('#', '%23', $row["sheetmusic"]) ?>"><img src="musicsheet/word.png"
-                                                        alt="Word" style="width:100%; height:auto; text-align:left;" class="image-set"
+                                                <a href="musicsheet/<?php echo str_replace('#', '%23', $row["sheetmusic"]) ?>"><img
+                                                        src="musicsheet/word.png" alt="Word"
+                                                        style="width:100%; height:auto; text-align:left;" class="image-set"
                                                         id="thumb_previews"></a>
                                         <?php } else {
                                             if ($row['sheetmusic'] != NULL && !empty($row['sheetmusic'])) {
                                                 echo "empty";
                                                 ?>
                                                     <a href="musicsheet/<?php echo str_replace('#', '%23', $row["sheetmusic"]) ?>"><img
-                                                            src="musicsheet/<?php echo str_replace('#', '%23', $row["sheetmusic"]) ?>" alt="Image"
-                                                            style="width:100%;height:auto;" class="image-set" id="thumb_previews"></a>
+                                                            src="musicsheet/<?php echo str_replace('#', '%23', $row["sheetmusic"]) ?>"
+                                                            alt="Image" style="width:100%;height:auto;" class="image-set"
+                                                            id="thumb_previews"></a>
                                                 <?php
                                             } else {
                                                 echo "<img src='images/sheet1.png' style='width:70%;height:auto;' id='thumb_previews' class='image-set'>";
@@ -509,8 +512,11 @@ if ($result->num_rows > 0) {
                                         <h4 class="label"> <label for="video">YouTube Link</label></h4>
                                         <div class="row">
                                             <div class="container mt-1">
-                                                <!--<iframe id="youtubevide" src="" style="display: none; width: 100%; height: 280px;">-->
-                                                <!-- </iframe> -->
+                                                <iframe id="youtubevideo" src="<?php echo $row['video2']; ?>" width="560" height="315" title="YouTube video player"
+                                                    frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    allowfullscreen style="display: none;"></iframe>
+
                                                 <div class="custom-file mb-1">
                                                     <input type="text" class="form-control" id="youtube" maxlength="500"
                                                         placeholder="Link" name="video2" value='<?php echo $row['video2']; ?>'>
