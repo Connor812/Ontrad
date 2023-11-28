@@ -86,7 +86,7 @@ require_once("php/header.php");
                     </div>
                     <br>
                     <div class="form-group upload-btn-wrapper" style="text-align: center;">
-                        <input class="form-control"  id="imageInput" type="file" name="file" value="" onchange="displaySelectedImage()">
+                        <input class="form-control" style="width: 100%; text-align:center;" id="imageInput" type="file" name="file" value="" onchange="displaySelectedImage()">
                         <button id="uploadButton" type="button" class="btn btn-primary btn-sm">Upload New
                             Image</button>
                     </div>
