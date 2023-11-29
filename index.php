@@ -146,7 +146,7 @@ require_once("config-url.php");
                                 $paramTypes .= str_repeat("s", count($types) * 3);
                                 $bindParams = array_merge($bindParams, array_merge($types, $types, $types));
                             }
-                
+
                             $stmt = mysqli_prepare($conn, $sql);
 
                             if ($stmt) {
@@ -196,6 +196,7 @@ require_once("config-url.php");
                                                     </small>
                                                 </div>
                                                 <div class="play-sample-container">
+
                                                     <audio class="audio">
                                                         <source class="play-audio" src=<?php echo "audio/" . $row['audio1']; ?>
                                                             type="audio/ogg">
@@ -213,6 +214,7 @@ require_once("config-url.php");
                                                             audio.pause();
                                                         }
                                                     }
+
                                                 </script>
                                             </div>
                                         </div>
@@ -274,14 +276,20 @@ require_once("config-url.php");
                                             </div>
 
                                             <div class="play-sample-container">
-                                                <audio class="audio">
-                                                    <source class="play-audio" src=<?php echo "audio/" . $row['audio1']; ?>
-                                                        type="audio/ogg">
-                                                    Your browser does not support the audio element.
-                                                </audio>
-                                                <a href="javascript:void(0);" onclick="toggleAudio(this)" class="play-audio">Play
-                                                    Audio</a>
+                                                <?php
+                                                if (!empty($row['audio1'])) {
+                                                    $audioFilePath = "audio/" . rawurlencode($row['audio1']); // rawurlencode handles spaces and special characters
+                                                    ?>
+                                                    <audio class="audio">
+                                                        <source class="play-audio" src="<?php echo $audioFilePath; ?>"
+                                                            type="audio/mpeg">
+                                                        Your browser does not support the audio element.
+                                                    </audio>
+                                                    <a href="javascript:void(0);" onclick="toggleAudio(this)" class="play-audio">Play
+                                                        Audio</a>
+                                                <?php } ?>
                                             </div>
+
 
                                             <script>
                                                 function toggleAudio(link) {
