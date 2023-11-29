@@ -177,7 +177,9 @@ require_once("config-url.php");
                                                             <rect width="100%" height="130px" fill="#55595c" /><text x="50%" y="50%"
                                                                 fill="#eceeef" dy=".3em">ONTRAD IMAGE</text>
                                                         </svg>
-                                                    <?php } ?>
+
+                                                    <?php }
+                                                    ?>
                                                 </div>
                                             </a>
                                             <div class="card-bottom-section" style="color: black;">
@@ -195,28 +197,38 @@ require_once("config-url.php");
                                                         </a>
                                                     </small>
                                                 </div>
-                                                <div class="play-sample-container">
 
-                                                    <audio class="audio">
-                                                        <source class="play-audio" src=<?php echo "audio/" . $row['audio1']; ?>
-                                                            type="audio/ogg">
-                                                        Your browser does not support the audio element.
-                                                    </audio>
-                                                    <a href="javascript:void(0);" onclick="toggleAudio(this)" class="play-audio">Play
-                                                        Audio</a>
+                                                <div class="play-sample-container">
+                                                    <?php
+                                                    if (!empty($row['audio1'])) {
+                                                        $audioFilePath = "audio/" . rawurlencode($row['audio1']); // rawurlencode handles spaces and special characters
+                                                        ?>
+                                                        <audio class="audio">
+                                                            <source class="play-audio" src="<?php echo $audioFilePath; ?>"
+                                                                type="audio/mpeg">
+                                                            Your browser does not support the audio element.
+                                                        </audio>
+                                                        <a href="javascript:void(0);" onclick="toggleAudio(this)" class="play-audio">Play
+                                                            Audio</a>
+                                                    <?php } ?>
                                                 </div>
+
+
                                                 <script>
                                                     function toggleAudio(link) {
                                                         var audio = link.previousElementSibling; // Get the previous sibling, which is the <audio> element
+
                                                         if (audio.paused) {
                                                             audio.play();
                                                         } else {
                                                             audio.pause();
                                                         }
                                                     }
-
                                                 </script>
+
+
                                             </div>
+
                                         </div>
                                         <?php
                                     }
