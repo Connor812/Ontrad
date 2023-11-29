@@ -85,7 +85,7 @@ require_once("php/header.php");
                         <p type="hidden" id="imageName">Image Name: <?php echo $themeImage; ?></p>
                     </div>
                     <br>
-                    <div class="form-group upload-btn-wrapper" style="text-align: center;">
+                    <div class="form-group upload-btn-wrapper" style="width: 100%; height: 40px; display: flex; justify-content: center">
                         <input class="form-control" style="width: 100%; text-align:center;" id="imageInput" type="file" name="file" value="" onchange="displaySelectedImage()">
                         <button id="uploadButton" type="button" class="btn btn-primary btn-sm">Upload New
                             Image</button>
