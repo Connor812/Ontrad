@@ -512,10 +512,10 @@ if ($result->num_rows > 0) {
                                         <h4 class="label"> <label for="video">YouTube Link</label></h4>
                                         <div class="row">
                                             <div class="container mt-1">
-                                                <iframe id="youtubevideo" src="<?php echo $row['video2']; ?>" width="560" height="315" title="YouTube video player"
-                                                    frameborder="0"
+                                                <iframe id="youtubevideo" src="" width="560" height="315"
+                                                    title="YouTube video player" frameborder="0"
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                    allowfullscreen style="display: none;"></iframe>
+                                                    allowfullscreen></iframe>
 
                                                 <div class="custom-file mb-1">
                                                     <input type="text" class="form-control" id="youtube" maxlength="500"
@@ -523,31 +523,42 @@ if ($result->num_rows > 0) {
                                                 </div>
                                             </div>
                                         </div>
+
                                         <script>
-                                            // Get the input file element
-                                            var video2 = document.getElementById('video2');
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                // On page load, display the YouTube video using the link from the input field
+                                                displayYouTubeVideo();
 
-                                            // Add an event listener to the input file element
-                                            video2.addEventListener('change', function () {
-                                                // Get the selected file
-                                                var file = video2.files[0];
-
-                                                // Create a new FileReader object
-                                                var reader = new FileReader();
-
-                                                // Add an event listener to the FileReader object
-                                                reader.addEventListener('load', function () {
-                                                    // Get the audio element
-                                                    var videop = document.getElementById('video_player');
-
-                                                    // Set the src attribute of the audio element to the data URL
-                                                    videop.src = reader.result;
+                                                // YouTube input field change event
+                                                document.getElementById('youtube').addEventListener('input', function () {
+                                                    displayYouTubeVideo();
                                                 });
-
-                                                // Read the contents of the selected file as a data URL
-                                                reader.readAsDataURL(file);
                                             });
+
+                                            function displayYouTubeVideo() {
+                                                // Get the YouTube link from the input field
+                                                var youtubeInput = document.getElementById('youtube');
+                                                var youtubeLink = youtubeInput.value;
+
+                                                // Extract the video ID from the YouTube link
+                                                var videoId = getYoutubeVideoId(youtubeLink);
+
+                                                // Set the src attribute of the iframe with the YouTube video link
+                                                var iframe = document.getElementById('youtubevideo'); // Fix typo here (changed 'youtubevide' to 'youtubevideo')
+                                                iframe.src = 'https://www.youtube.com/embed/' + videoId;
+
+                                                // Display the iframe
+                                                iframe.style.display = 'block';
+                                            }
+
+                                            // Function to extract the video ID from a YouTube link
+                                            function getYoutubeVideoId(link) {
+                                                var regExp = /^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|\?v=)([^#\&\?]*).*/;
+                                                var match = link.match(regExp);
+                                                return (match && match[1].length === 11) ? match[1] : '';
+                                            }
                                         </script>
+
                                     </div>
                                 </div>
                                 <!--end of container-->
