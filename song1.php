@@ -159,7 +159,7 @@ if (isset($_GET['id'])) {
                                         <h4>Recording</h4>
                                         <p>" . $row['audioanno'] . "</p>
                                         <div style='text-align:center; padding: 0% 0%'>
-                                         <audio controls>
+                                         <audio style='width: 100%;' controls>
                                             <source src='audio/" . $row['audio1'] . "' type='audio/mpeg' id='audio1'>
                                             Your browser does not support the audio element.
                                         </audio>
@@ -175,7 +175,7 @@ if (isset($_GET['id'])) {
                                 if ($row['audio2'] != NULL && !empty($row['audio2'])) {
                                     echo "
                                     <div style='text-align:center; padding: 0% 0%'>
-                                    <audio controls style='text-align: center;'>
+                                    <audio style='width: 100%;' controls>
                                         <source src='audio/" . $row['audio2'] . "' type='audio/mpeg' id='audio1'>
                                         Your browser does not support the audio element.
                                     </audio>
@@ -185,15 +185,27 @@ if (isset($_GET['id'])) {
                                 ?>
                             </div>
                             <!--Video-->
-                            <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
+                            <?php if (!empty($row['video1'])) {
+                                echo '<h2>Video</h2>';
+                            } ?>
+                            <div style="width: 530px; height: auto;">
                                 <!-- start of video1 row  -->
                                 <?php if ($row['video1'] != NULL && !empty($row['video1'])) { ?>
-                                    <div class="w-50">
+                                    <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
                                         <video width="400px" height="400px" controls="controls">
                                             <source src="video/<?php echo $row['video1']; ?>" type='video/mp4' />
                                         </video>
                                     </div>
-                                <?php } ?>
+                                    <?php
+                                    if (!empty($row['videoanno'])) {
+                                        ?>
+                                        <div style="width: 100%; word-wrap: break-word;">
+                                                <?php echo $row['videoanno']; ?>
+                                        </div>
+                                        <?php
+                                    }
+
+                                } ?>
                             </div>
 
                         </div>
@@ -236,6 +248,28 @@ if (isset($_GET['id'])) {
                                 ?>
                             </div>
                         </div>
+
+                        <?php
+
+                        if (!empty($row['video2']) || !$row['video2'] == null) {
+                            ?>
+                            <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center;">
+                                <h2>Youtube</h2>
+                                <iframe width='660' height='415' src="<?php echo $row['video2']; ?>" title='YouTube video player'
+                                    frameborder='0'
+                                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                                    allowfullscreen></iframe>
+                            </div>
+
+                            <?php
+                        }
+
+
+
+                        ?>
+
+
+
                     </div>
                 <?php } ?>
 
@@ -261,8 +295,8 @@ if (isset($_GET['id'])) {
                             echo '
                         <div class="col-sm-4 col-lg-4" style="text-align: center; color: black;" id="theme1">
                         <div>
-                        <img style="width: 100%; height: auto;" src="themeimage_uploads/' . $row['theme_image'] . '">
-                        <div><h6 style="color:black" href="theme1.php?id=' . base64_encode($row['id']) . '">' . $row['theme_title'] . '</h6>
+                        <a href="theme1.php?id=' . base64_encode($row['id']) . '" ><img class="theme-img" style="width: 100%; height: auto;" src="themeimage_uploads/' . $row['theme_image'] . '"></a>
+                        <div><h6 style="color:black">' . $row['theme_title'] . '</h6>
                         </div>
                         </div>
                         </div>';
