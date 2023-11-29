@@ -28,7 +28,7 @@ require_once("config-url.php");
         <div class="container-fluid" style="text-align: center;">
             <h3 style="padding-top: 2%;">Welcome to the Ontario Traditional Music Library</h3>
             <div class="container-fluid my-3" style="padding: 0% 20%"> This resource has been created especially for
-                singers and instrumentalists looking for
+                singers and instrumentalists looking for0
                 songs and tunes from Ontario's living musical traditions and for music from historical sources.</div>
         </div>
         <!--general search-->

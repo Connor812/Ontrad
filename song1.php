@@ -186,26 +186,27 @@ if (isset($_GET['id'])) {
                             </div>
                             <!--Video-->
                             <?php if (!empty($row['video1'])) {
-                                echo '<h2>Video</h2>';
+                                echo '<h4>Video</h4>';
                             } ?>
                             <div style="width: 530px; height: auto;">
                                 <!-- start of video1 row  -->
                                 <?php if ($row['video1'] != NULL && !empty($row['video1'])) { ?>
-                                    <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
-                                        <video width="400px" height="400px" controls="controls">
-                                            <source src="video/<?php echo $row['video1']; ?>" type='video/mp4' />
-                                        </video>
-                                    </div>
                                     <?php
                                     if (!empty($row['videoanno'])) {
                                         ?>
                                         <div style="width: 100%; word-wrap: break-word;">
-                                                <?php echo $row['videoanno']; ?>
+                                            <?php echo $row['videoanno']; ?>
                                         </div>
                                         <?php
                                     }
 
                                 } ?>
+                                <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
+                                    <video width="400px" height="400px" controls="controls">
+                                        <source src="video/<?php echo $row['video1']; ?>" type='video/mp4' />
+                                    </video>
+                                </div>
+
                             </div>
 
                         </div>
@@ -223,23 +224,25 @@ if (isset($_GET['id'])) {
                                 if ($row['sheetmusic'] != NULL && !empty($row['sheetmusic'])) {
                                     echo "                
                             <div class='gallery' style='width: 100%; height: 500px' >
-                                <a target='_blank' href='musicsheet/" . rawurlencode($row['sheetmusic']) . "'>
+                                
                             ";
                                 }
                                 $extensionFile = pathinfo($row['sheetmusic'], PATHINFO_EXTENSION);
                                 if ($extensionFile == 'pdf') {
                                     echo "<embed src='musicsheet/" . rawurlencode($row['sheetmusic']) . "'   width='100%' height='100%'>
-                                </a>
+                                    
+                                
                             </div>
+                            <a class='btn btn-primary m-2' href='musicsheet/" . rawurlencode($row['sheetmusic']) . "'>Open</a>
                             ";
                                 } elseif ($extensionFile == 'docx') {
                                     echo "<img src='musicsheet/word.png' alt='Word' style='width:100%; height:auto; text-align:left;' class='image-set' id='thumb_previews'>
-                                </a>
+                                
                             </div>
                             ";
                                 } elseif ($extensionFile == 'jpg' || $extensionFile == 'png') {
                                     echo "<img src='musicsheet/" . $row['sheetmusic'] . "' alt='Picture' style='width:100%; height: 500px; text-align:left;' class='image-set' id='thumb_previews'>
-                                </a>
+                                
                             </div>
                             ";
                                 } else {
@@ -254,7 +257,7 @@ if (isset($_GET['id'])) {
                         if (!empty($row['video2']) || !$row['video2'] == null) {
                             ?>
                             <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center;">
-                                <h2>Youtube</h2>
+                                <h4>Youtube</h4>
                                 <iframe width='660' height='415' src="<?php echo $row['video2']; ?>" title='YouTube video player'
                                     frameborder='0'
                                     allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
