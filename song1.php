@@ -208,8 +208,8 @@ if (isset($_GET['id'])) {
                                 </div>
 
                             </div>
-
                         </div>
+                           <!-- end of video1 row  -->
                         <!--sheetmusic-->
                         <div class="col-sm-6" id="sheetmusic">
                             <!--sheetanno-->
@@ -277,7 +277,7 @@ if (isset($_GET['id'])) {
                 <?php } ?>
 
 
-                <!-- end of video1 row  -->
+             
                 <!--theme row-->
                 <hr>
                 <div class="container-fluid">
