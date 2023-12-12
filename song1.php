@@ -202,7 +202,7 @@ if (isset($_GET['id'])) {
 
                                 } ?>
                                 <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
-                                    <video width="400px" height="400px" controls="controls">
+                                    <video width="100%" height="auto" controls="controls">
                                         <source src="video/<?php echo $row['video1']; ?>" type='video/mp4' />
                                     </video>
                                 </div>
