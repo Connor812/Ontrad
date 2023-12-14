@@ -334,7 +334,7 @@ require_once("config-url.php");
             </div>
 
 
-            <!-- Themes carousel  -->
+            <!-- Themes carousel -->
             <div class="ontradgreenlite ontradred text-center mt-3">
                 <h4 style="color: white;">FEATURED THEMES</h4>
                 <!--SCROLLING FIELD OF themes A t0 Z-->
@@ -579,8 +579,6 @@ require_once("config-url.php");
             //         scrollContainer.scrollLeft += scrollAmount;
             //     }
             // }
-        </script>
-        <script src="js/scrollmenu.js"></script>
 </body>
 
 </html>

@@ -92,7 +92,7 @@ require_once("config-url.php");
                 </div>
             </form>
             <hr class="white-break">
-            <!--  song Carousel -->
+            <!--  song Carousel
             <h4 style="text-align: center;">FEATURED SONGS</h4>
             <div class="button-wrap pb-3 pl-3 pr-3">
                 <button class="prev carousel-btn" onclick="scrollHorizontally(-1)"
@@ -159,7 +159,7 @@ require_once("config-url.php");
                                         ?>
                                         <div class="test-card shadow bg-body-tertiary rounded" style="min-width: 200px;">
                                             <a class="song-link" href="song1.php?id=<?php echo base64_encode($row['ID']); ?>">
-                                                <!--thumbnail-->
+                                                thumbnail
                                                 <div class="card-image-container">
                                                     <?php
                                                     $path = 'images/';
@@ -248,7 +248,7 @@ require_once("config-url.php");
 
                                     <div class="test-card shadow bg-body-tertiary rounded" style="min-width: 200px;">
                                         <a class="song-link" href="song1.php?id=<?php echo base64_encode($row['ID']); ?>">
-                                            <!--thumbnail-->
+                                            thumbnail
                                             <div class="card-image-container">
                                                 <?php
                                                 $path = 'images/';
@@ -329,6 +329,7 @@ require_once("config-url.php");
                 <button class="next carousel-btn" onclick="scrollHorizontally(1)"
                     style="cursor: pointer; color: white;">❯</button>
             </div>
+                 --><!-- end of song section -->
             <div class="ontradbg1 pt-3">
 
             </div>
