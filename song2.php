@@ -579,6 +579,7 @@ require_once("config-url.php");
             //         scrollContainer.scrollLeft += scrollAmount;
             //     }
             // }
+            </script>
 </body>
 
 </html>
