@@ -10,7 +10,7 @@ require_once("config-url.php");
 <html lang="en">
 
 <head>
-    <title>OnTrad Homepage hello</title>
+    <title>OnTrad Homepage</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
