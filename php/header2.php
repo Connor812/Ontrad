@@ -189,12 +189,15 @@
   <!--nav-->
   <nav class="navbar navbar-expand-md ontradgreen">
     <!-- Brand/logo -->
-    <a class="navbar-brand ontradwhite" href="index.php">
+    <a class="navbar-brand ontradwhite" href="home.php">
       <img src="images/ontradlogo.jpg" style="width: 200px; height: auto; min-width: 200px; border-radius: 5px;  ">
     </a>
 
     <!-- Links -->
     <ul class="navbar-nav ontradnav" style="text-align: left;">
+    <li class="nav-item">
+        <a class="nav-link" href="home.php" style="color: whitesmoke;">Home</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="aboutus.php" style="color: whitesmoke;">About Us</a>
       </li>

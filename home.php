@@ -28,12 +28,19 @@ require_once("config-url.php");
         <div class="container-fluid" style="text-align: center;">
             <h3 style="padding-top: 2%;">Welcome to the Ontario Traditional Music Library</h3>
             <div class="container-fluid my-3" style="padding: 0% 20%"> This resource has been created especially for
-                singers and instrumentalists looking for songs and tunes from Ontario's living musical traditions and for music from historical sources.</div>
+                singers and instrumentalists looking for songs and tunes from Ontario's living musical traditions and
+                for music from historical sources.</div>
         </div>
         <!--general search-->
         <div class="ontradgreen pb-4">
             <!--main search box-->
-            <form class="song-form" style="padding:2% 2% 0% 2%;" action="index.php" method="GET">
+            <div>
+                <h2 style="margin: 10px;">Search For Song</h2>
+            </div>
+            <form class="song-form" style="padding: 0% 2% 0% 2%;" action="index.php" method="GET">
+
+
+
                 <div class="row px-2">
                     <!--search enter-->
                     <div class="col-6">
@@ -86,8 +93,9 @@ require_once("config-url.php");
                         </select>
                     </div>
                     <div class="col-2 p-0">
-                        <div class="container-fluid" style="text-align:center"><button
-                                class="btn btn-primary submit">Search</button></div>
+                        <div class="container-fluid" style="text-align:center">
+                            <button class="btn btn-primary submit">Search</button>
+                        </div>
                     </div>
                 </div>
             </form>
