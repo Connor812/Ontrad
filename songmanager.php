@@ -271,11 +271,7 @@ if (isset($_GET['message'])) {
                             <h4 class="label"> <label>Sheet Music</label> </h4>
                             <div style="width: 100%; height: 560px; border-style: solid;">
                                 <embed id="embed-sheet-music" src="images/sheet1.png"
-<<<<<<< HEAD
-                                    style="width: 100%; height: 100%; min-height: 622px;">
-=======
                                     style="width: 100%; height: 550px;">
->>>>>>> 8a75cbc (made some changes)
                             </div>
                             <div class="row">
                                 <div class="col-sm-10 p-2">
