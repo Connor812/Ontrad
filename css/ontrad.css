@@ -446,18 +446,6 @@ input.larger {
   }
 }
 
-/* .song-form {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-
-.song-form > * {
-  flex-grow: 1;
-} */
-
 @media screen and (max-width: 766px) {
   .song-form {
     margin: 0% 2%;
@@ -471,8 +459,6 @@ input.larger {
     display: flex;
     justify-content: center;
   }
-
-
 }
 
 .theme-img {
