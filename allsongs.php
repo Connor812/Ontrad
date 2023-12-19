@@ -34,25 +34,20 @@ require_once("config-url.php");
         <!--general search-->
         <div class="ontradgreen pb-4">
             <!--main search box-->
-            <div>
-                <h2 style="margin: 10px;">Search For Song</h2>
-            </div>
-            <form class="song-form" style="padding: 0% 2% 0% 2%;" action="index.php" method="GET">
-
-
-
-                <div class="row px-2">
-                    <!--search enter-->
-                    <div class="col-6">
+            <form class="song-form" style="padding:2% 2% 0% 2%;" action="index.php" method="GET">
+                <div class="row g-2">
+                    <!-- Search enter -->
+                    <div class="col-md-6">
                         <div class="input-group">
                             <input type="search" class="form-control" size="30" name="search_query"
                                 placeholder="Enter title or keywords like fiddle instrumental or dirge"
                                 value="<?php echo isset($_GET['search_query']) ? htmlspecialchars($_GET['search_query']) : ''; ?>">
                         </div>
                     </div>
-                    <!--circa-->
-                    <div class="col-2 my-1">
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="circa">
+
+                    <!-- Circa -->
+                    <div class="col-md-2 song-form-input-container">
+                        <select class="form-select song-form-input" name="circa">
                             <option value="">Circa</option>
                             <option value="1750-1799" <?php if (isset($_GET['circa']) && $_GET['circa'] === '1750-1799')
                                 echo 'selected'; ?>>
@@ -71,9 +66,10 @@ require_once("config-url.php");
                                 1950-1999</option>
                         </select>
                     </div>
-                    <!--region-->
-                    <div class="col-2 my-1">
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="region">
+
+                    <!-- Region -->
+                    <div class="col-md-2 song-form-input-container">
+                        <select class="form-select song-form-input" name="region">
                             <option value="">Region</option>
                             <option value="East" <?php if (isset($_GET['region']) && $_GET['region'] === 'East')
                                 echo 'selected'; ?>>East
@@ -92,15 +88,17 @@ require_once("config-url.php");
                                 North</option>
                         </select>
                     </div>
-                    <div class="col-2 p-0">
-                        <div class="container-fluid" style="text-align:center">
+
+                    <div class="col-md-2">
+                        <div class="container-fluid" style="text-align: center">
                             <button class="btn btn-primary submit">Search</button>
                         </div>
                     </div>
                 </div>
+
             </form>
             <hr class="white-break">
-            <!--  song Carousel
+            <!--  song Carousel -->
             <h4 style="text-align: center;">FEATURED SONGS</h4>
             <div class="button-wrap pb-3 pl-3 pr-3">
                 <button class="prev carousel-btn" onclick="scrollHorizontally(-1)"
@@ -167,7 +165,7 @@ require_once("config-url.php");
                                         ?>
                                         <div class="test-card shadow bg-body-tertiary rounded" style="min-width: 200px;">
                                             <a class="song-link" href="song1.php?id=<?php echo base64_encode($row['ID']); ?>">
-                                                thumbnail
+                                                <!--thumbnail-->
                                                 <div class="card-image-container">
                                                     <?php
                                                     $path = 'images/';
@@ -256,7 +254,7 @@ require_once("config-url.php");
 
                                     <div class="test-card shadow bg-body-tertiary rounded" style="min-width: 200px;">
                                         <a class="song-link" href="song1.php?id=<?php echo base64_encode($row['ID']); ?>">
-                                            thumbnail
+                                            <!--thumbnail-->
                                             <div class="card-image-container">
                                                 <?php
                                                 $path = 'images/';
@@ -337,7 +335,6 @@ require_once("config-url.php");
                 <button class="next carousel-btn" onclick="scrollHorizontally(1)"
                     style="cursor: pointer; color: white;">❯</button>
             </div>
-                 --><!-- end of song section -->
             <div class="ontradbg1 pt-3">
 
             </div>

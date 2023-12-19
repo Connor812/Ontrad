@@ -28,12 +28,19 @@ require_once("config-url.php");
         <div class="container-fluid" style="text-align: center;">
             <h3 style="padding-top: 2%;">Welcome to the Ontario Traditional Music Library</h3>
             <div class="container-fluid my-3" style="padding: 0% 20%"> This resource has been created especially for
-                singers and instrumentalists looking for songs and tunes from Ontario's living musical traditions and for music from historical sources.</div>
+                singers and instrumentalists looking for songs and tunes from Ontario's living musical traditions and
+                for music from historical sources.</div>
         </div>
         <!--general search-->
         <div class="ontradgreen pb-4">
             <!--main search box-->
-            <form class="song-form" style="padding:2% 2% 0% 2%;" action="index.php" method="GET">
+            <div>
+                <h2 style="margin: 10px;">Search For Song</h2>
+            </div>
+            <form class="song-form" style="padding: 0% 2% 0% 2%;" action="index.php" method="GET">
+
+
+
                 <div class="row px-2">
                     <!--search enter-->
                     <div class="col-6">
@@ -86,13 +93,14 @@ require_once("config-url.php");
                         </select>
                     </div>
                     <div class="col-2 p-0">
-                        <div class="container-fluid" style="text-align:center"><button
-                                class="btn btn-primary submit">Search</button></div>
+                        <div class="container-fluid" style="text-align:center">
+                            <button class="btn btn-primary submit">Search</button>
+                        </div>
                     </div>
                 </div>
             </form>
             <hr class="white-break">
-            <!--  song Carousel -->
+            <!--  song Carousel
             <h4 style="text-align: center;">FEATURED SONGS</h4>
             <div class="button-wrap pb-3 pl-3 pr-3">
                 <button class="prev carousel-btn" onclick="scrollHorizontally(-1)"
@@ -159,7 +167,7 @@ require_once("config-url.php");
                                         ?>
                                         <div class="test-card shadow bg-body-tertiary rounded" style="min-width: 200px;">
                                             <a class="song-link" href="song1.php?id=<?php echo base64_encode($row['ID']); ?>">
-                                                <!--thumbnail-->
+                                                thumbnail
                                                 <div class="card-image-container">
                                                     <?php
                                                     $path = 'images/';
@@ -248,7 +256,7 @@ require_once("config-url.php");
 
                                     <div class="test-card shadow bg-body-tertiary rounded" style="min-width: 200px;">
                                         <a class="song-link" href="song1.php?id=<?php echo base64_encode($row['ID']); ?>">
-                                            <!--thumbnail-->
+                                            thumbnail
                                             <div class="card-image-container">
                                                 <?php
                                                 $path = 'images/';
@@ -329,6 +337,7 @@ require_once("config-url.php");
                 <button class="next carousel-btn" onclick="scrollHorizontally(1)"
                     style="cursor: pointer; color: white;">❯</button>
             </div>
+                 --><!-- end of song section -->
             <div class="ontradbg1 pt-3">
 
             </div>
