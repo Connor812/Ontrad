@@ -82,17 +82,8 @@ if (!isset($_SESSION['username'])) {
         position: relative;
         overflow: hidden;
         display: inline-block;
+        width: 200px;
     }
-
-    /* .btn {
-    border: 2px solid gray;
-    color: gray;
-    background-color: white;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: bold;
-} */
 
     .upload-btn-wrapper input[type=file] {
         font-size: 100px;
@@ -101,6 +92,17 @@ if (!isset($_SESSION['username'])) {
         top: 0;
         opacity: 0;
     }
+
+    .custom-file-input {
+        width: 100%;
+        height: 40px;
+    }
+
+    .custom-file-input:hover {
+        cursor: pointer;
+    }
+
+
 
     .fileuploader {
         display: flex;
