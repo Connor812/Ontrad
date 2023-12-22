@@ -35,15 +35,16 @@ require_once("config-url.php");
         <div class="ontradgreen pb-4">
             <!--main search box-->
             <div>
-                <h2 style="margin: 10px;">Search For Song</h2>
+                <h6 style="margin: 20px; text-align: center;">Enter In A Name of a Song or Key Words
+            </h6>
             </div>
-            <form class="song-form" style="padding: 0% 2% 0% 2%;" action="index.php" method="GET">
+            <form class="song-form" style="padding: 0% 2% 0% 2%;" action="allsongs.php" method="GET">
 
 
 
                 <div class="row px-2">
                     <!--search enter-->
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="input-group">
                             <input type="search" class="form-control" size="30" name="search_query"
                                 placeholder="Enter title or keywords like fiddle instrumental or dirge"
@@ -51,8 +52,8 @@ require_once("config-url.php");
                         </div>
                     </div>
                     <!--circa-->
-                    <div class="col-2 my-1">
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="circa">
+                    <div class="col-md-2 song-form-input-container">
+                        <select class="form-select song-form-input form-select-sm" aria-label=".form-select-sm example" name="circa">
                             <option value="">Circa</option>
                             <option value="1750-1799" <?php if (isset($_GET['circa']) && $_GET['circa'] === '1750-1799')
                                 echo 'selected'; ?>>
@@ -72,8 +73,8 @@ require_once("config-url.php");
                         </select>
                     </div>
                     <!--region-->
-                    <div class="col-2 my-1">
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="region">
+                    <div class="col-md-2 song-form-input-container">
+                        <select class="form-select song-form-input form-select-sm" aria-label=".form-select-sm example" name="region">
                             <option value="">Region</option>
                             <option value="East" <?php if (isset($_GET['region']) && $_GET['region'] === 'East')
                                 echo 'selected'; ?>>East
@@ -92,7 +93,7 @@ require_once("config-url.php");
                                 North</option>
                         </select>
                     </div>
-                    <div class="col-2 p-0">
+                    <div class="col-md-2">
                         <div class="container-fluid" style="text-align:center">
                             <button class="btn btn-primary submit">Search</button>
                         </div>
@@ -355,7 +356,7 @@ require_once("config-url.php");
                         <button class="prev carousel-btn" onclick="scrollHorizontallyThemes(-2)" style="cursor: pointer;
                         text-decoration: none; margin-right: 5px; color: white;">❮</button>
                         <div class="carousel-container">
-                            <div class="scrollmenu scrollMenuThemes">
+                            <div class="scrollmenu scrollMenuSongs scrollMenuThemes">
 
                                 <?php
                                 // This gets the featured themes and displays them
