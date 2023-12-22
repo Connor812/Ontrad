@@ -25,17 +25,11 @@ require_once("config-url.php");
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <div class="wrapper ontradgreenlite">
-        <div class="container-fluid" style="text-align: center;">
-            <h3 style="padding-top: 2%;">Welcome to the Ontario Traditional Music Library</h3>
-            <div class="container-fluid my-3" style="padding: 0% 20%"> This resource has been created especially for
-                singers and instrumentalists looking for songs and tunes from Ontario's living musical traditions and
-                for music from historical sources.</div>
-        </div>
         <!--general search-->
         <div class="ontradgreen pb-4">
             <!--main search box-->
-            <form class="song-form" style="padding:2% 2% 0% 2%;" action="index.php" method="GET">
-                <div class="row g-2">
+            <form class="song-form" style="padding:2% 2% 0% 2%;" action="allsongs.php" method="GET">
+                <div class="row px-2">
                     <!-- Search enter -->
                     <div class="col-md-6">
                         <div class="input-group">
@@ -99,7 +93,7 @@ require_once("config-url.php");
             </form>
             <hr class="white-break">
             <!--  song Carousel -->
-            <h4 style="text-align: center;">FEATURED SONGS</h4>
+            <h4 style="text-align: center;">Results</h4>
             <div class="button-wrap pb-3 pl-3 pr-3">
                 <button class="prev carousel-btn" onclick="scrollHorizontally(-1)"
                     style="cursor: pointer; color: white;">❮</button>
