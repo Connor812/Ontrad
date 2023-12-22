@@ -149,13 +149,12 @@ if (isset($_GET['id'])) {
                     ($row['video1'] != NULL && !empty($row['video1'])) ||
                     ($row['sheetmusic'] != NULL && !empty($row['sheetmusic']))
                 ) { ?>
-                    <div class="row m-0">
-                        <div class="col-sm-6 m-0">
-                            <!--Audio-->
-                            <div>
-                                <?php
-                                if ($row['audio1'] != NULL && !empty($row['audio1'])) {
-                                    echo "
+
+                    <!--Audio-->
+                    <div>
+                        <?php
+                        if ($row['audio1'] != NULL && !empty($row['audio1'])) {
+                            echo "
                                         <h4>Recording</h4>
                                         <p>" . $row['audioanno'] . "</p>
                                         <div style='text-align:center; padding: 0% 0%'>
@@ -165,15 +164,14 @@ if (isset($_GET['id'])) {
                                         </audio>
                                         </div>
                                         ";
-                                }
-                                ?>
-                            </div>
-
-                            <!--This audio and text will not show if empty-->
-                            <div style="text-align:center; padding: 2% 0%">
-                                <?php
-                                if ($row['audio2'] != NULL && !empty($row['audio2'])) {
-                                    echo "
+                        }
+                        ?>
+                    </div>
+                    <!--This audio and text will not show if empty-->
+                    <div style="text-align:center; padding: 2% 0%">
+                        <?php
+                        if ($row['audio2'] != NULL && !empty($row['audio2'])) {
+                            echo "
                                     <div style='text-align:center; padding: 0% 0%'>
                                     <audio style='width: 100%;' controls>
                                         <source src='audio/" . $row['audio2'] . "' type='audio/mpeg' id='audio1'>
@@ -181,48 +179,54 @@ if (isset($_GET['id'])) {
                                     </audio>
                                     </div>
                                     ";
-                                }
+                        }
+                        ?>
+                    </div>
+                    <div class="row m-0">
+                        <!--Video-->
+                        <div class="col-lg-6">
+                            <?php
+                            if (!empty($row["video1"])) {
                                 ?>
-                            </div>
-                            <!--Video-->
-                            <?php if (!empty($row['video1'])) {
-                                echo '<h4>Video</h4>';
-                            } ?>
-                            <div style="width: 530px; height: auto;">
-                                <!-- start of video1 row  -->
-                                <?php if ($row['video1'] != NULL && !empty($row['video1'])) { ?>
-                                    <?php
-                                    if (!empty($row['videoanno'])) {
-                                        ?>
-                                        <div style="width: 100%; word-wrap: break-word;">
-                                            <?php echo $row['videoanno']; ?>
-                                        </div>
-                                        <?php
-                                    }
-
+                                <?php if (!empty($row['video1'])) {
+                                    echo '<h4>Video</h4>';
                                 } ?>
-                                <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
-                                    <video width="100%" height="auto" controls="controls">
-                                        <source src="video/<?php echo $row['video1']; ?>" type='video/mp4' />
-                                    </video>
-                                </div>
+                                <div style="width: 100%px; max-width: 530px; height: auto;">
+                                    <!-- start of video1 row  -->
+                                    <?php if ($row['video1'] != NULL && !empty($row['video1'])) { ?>
+                                        <?php
+                                        if (!empty($row['videoanno'])) {
+                                            ?>
+                                            <div style="width: 100%; word-wrap: break-word;">
+                                                <?php echo $row['videoanno']; ?>
+                                            </div>
+                                            <?php
+                                        }
 
+                                    } ?>
+                                    <div class="embed-responsive embed-responsive-16by9 p-0 m-0">
+                                        <video width="100%" height="auto" controls="controls">
+                                            <source src="video/<?php echo $row['video1']; ?>" type='video/mp4' />
+                                        </video>
+                                    </div>
+                                    <?php
+                            }
+                            ?>
                             </div>
                         </div>
-                           <!-- end of video1 row  -->
+                        <!-- end of video1 row  -->
                         <!--sheetmusic-->
-                        <div class="col-sm-6" id="sheetmusic">
+                        <div class="col-lg-6" id="sheetmusic">
                             <!--sheetanno-->
                             <?php
                             if ($row['sheetanno'] != NULL && !empty($row['sheetanno'])) {
-                                echo "<h4>Score</h4>
-                                <p>" . $row['sheetanno'] . "</p>";
+                                echo "<p>" . $row['sheetanno'] . "</p>";
                             }
                             ?>
                             <div class="container-fluid p-0">
                                 <?php
                                 if ($row['sheetmusic'] != NULL && !empty($row['sheetmusic'])) {
-                                    echo "                
+                                    echo "<h4>Score</h4>                
                             <div class='gallery' style='width: 100%; height: 500px' >
                                 
                             ";
@@ -266,18 +270,12 @@ if (isset($_GET['id'])) {
 
                             <?php
                         }
-
-
-
                         ?>
-
-
-
                     </div>
                 <?php } ?>
 
 
-             
+
                 <!--theme row-->
                 <hr>
                 <div class="container-fluid">
