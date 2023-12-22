@@ -210,7 +210,7 @@ if ($result->num_rows > 0) {
                                     <div class="col-sm-10 p-2">
                                         <div class="container mt-1">
                                             <div class="custom-file mb-1 upload-btn-wrapper">
-                                                <button class="btn btn-primary">Choose File</button>
+                                                <button id="thumbimage-upload-btn" class="btn btn-primary">Choose File</button>
                                                 <input type="hidden" value="<?php echo $row["imageThumb"] ?>"
                                                     name="thumb_image" />
                                                 <input type="file" class="custom-file-input" name="imagethumb" id="imagethumb">
@@ -220,16 +220,57 @@ if ($result->num_rows > 0) {
                                 </div>
 
                                 <script type="text/javascript">
-                                    const imagethumb = document.getElementById('imagethumb');
-                                    const thumb_preview = document.getElementById('thumb_preview');
-                                    imagethumb.addEventListener('change', () => {
-                                        const file = imagethumb.files[0];
-                                        const reader = new FileReader();
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        // Select the file input and image preview elements
+                                        const fileInput = document.getElementById('imagethumb');
+                                        const thumbPreview = document.getElementById('thumb_preview');
+                                        const fileButton = document.getElementById('thumbimage-upload-btn');
 
-                                        reader.addEventListener('load', () => {
-                                            thumb_preview.src = reader.result;
-                                        });
-                                        if (file) {
+                                        // Store the initial text of the button
+                                        const initialButtonText = fileButton.innerText;
+
+                                        // Add an event listener for file input change
+                                        fileInput.addEventListener('change', handleFileSelect);
+
+                                        function handleFileSelect(event) {
+                                            const file = event.target.files[0];
+
+                                            // Check if a file is selected
+                                            if (file) {
+                                                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                                                const fileType = file.type;
+
+                                                // Check if the selected file is an image
+                                                if (allowedTypes.includes(fileType)) {
+                                                    // Display the selected image in the preview section
+                                                    displayImage(file);
+                                                } else {
+                                                    // Display an alert if the file type is not allowed
+                                                    alert('Upload image type only. Supported formats: JPEG, PNG, GIF');
+                                                    // Reset the file input to clear the selected file
+                                                    fileInput.value = '';
+                                                    // Restore the initial text of the button after a short delay
+                                                    setTimeout(() => {
+                                                        fileButton.innerText = initialButtonText;
+                                                    }, 100);
+                                                }
+                                            }
+                                        }
+
+                                        function displayImage(file) {
+                                            // Create a FileReader to read the selected file
+                                            const reader = new FileReader();
+
+                                            // Set the onload event for the FileReader
+                                            reader.onload = function (e) {
+                                                // Display the selected image in the preview section
+                                                thumbPreview.src = e.target.result;
+
+                                                // Update the button text with the name of the uploaded image
+                                                fileButton.innerText = file.name;
+                                            };
+
+                                            // Read the selected file as a data URL
                                             reader.readAsDataURL(file);
                                         }
                                     });
@@ -268,7 +309,7 @@ if ($result->num_rows > 0) {
                                         <div class="col-sm-10 p-2">
                                             <div class="container mt-1">
                                                 <div class="form-group upload-btn-wrapper">
-                                                    <button class="btn btn-primary">Choose File</button>
+                                                    <button id="image-upload-btn" class="btn btn-primary">Choose File</button>
                                                     <input type="hidden" value="<?php echo $row["imageFull"] ?>"
                                                         name="old_image" />
                                                     <input class="form-control" id="image_input" type="file" name="uploadfile"
@@ -278,23 +319,62 @@ if ($result->num_rows > 0) {
                                         </div>
                                     </div>
                                 </div>
-
                                 <script type="text/javascript">
-                                    const imageInput = document.getElementById('image_input');
-                                    const imagePreview = document.getElementById('image_preview');
-                                    imageInput.addEventListener('change', () => {
-                                        const file = imageInput.files[0];
-                                        const reader = new FileReader();
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        // Select the file input and image preview elements
+                                        const fileInput = document.getElementById('image_input');
+                                        const imagePreview = document.getElementById('image_preview');
+                                        const fileButton = document.getElementById('image-upload-btn');
 
-                                        reader.addEventListener('load', () => {
-                                            imagePreview.src = reader.result;
-                                        });
-                                        if (file) {
+                                        // Store the initial text of the button
+                                        const initialButtonText = fileButton.innerText;
+
+                                        // Add an event listener for file input change
+                                        fileInput.addEventListener('change', handleFileSelect);
+
+                                        function handleFileSelect(event) {
+                                            const file = event.target.files[0];
+
+                                            // Check if a file is selected
+                                            if (file) {
+                                                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                                                const fileType = file.type;
+
+                                                // Check if the selected file is an image
+                                                if (allowedTypes.includes(fileType)) {
+                                                    // Display the selected image in the preview section
+                                                    displayImage(file);
+                                                } else {
+                                                    // Display an alert if the file type is not allowed
+                                                    alert('Upload image type only. Supported formats: JPEG, PNG, GIF');
+                                                    // Reset the file input to clear the selected file
+                                                    fileInput.value = '';
+                                                    // Restore the initial text of the button after a short delay
+                                                    setTimeout(() => {
+                                                        fileButton.innerText = initialButtonText;
+                                                    }, 100);
+                                                }
+                                            }
+                                        }
+
+                                        function displayImage(file) {
+                                            // Create a FileReader to read the selected file
+                                            const reader = new FileReader();
+
+                                            // Set the onload event for the FileReader
+                                            reader.onload = function (e) {
+                                                // Display the selected image in the preview section
+                                                imagePreview.src = e.target.result;
+
+                                                // Update the button text with the name of the uploaded image
+                                                fileButton.innerText = file.name;
+                                            };
+
+                                            // Read the selected file as a data URL
                                             reader.readAsDataURL(file);
                                         }
                                     });
                                 </script>
-
                                 <!--sheet music-->
                                 <div class="form-group py-3">
                                     <h4 class="label"> <label for="sheetannotation">Sheet Annotation</label></h4>
@@ -312,7 +392,7 @@ if ($result->num_rows > 0) {
                                         <?php if ($extension == "pdf") { ?>
                                             <embed id="embed-sheet-music"
                                                 src="musicsheet/<?php echo str_replace('#', '%23', $row["sheetmusic"]) ?>"
-                                                style="width: 100%; height: 550px; border-style: solid; border-color:blue;">
+                                                style="width: 100%; height: 700px; border-style: solid;">
                                             </embed>
                                         <?php } else if ($extension == "doc" || $extension == "docx") {
                                             echo "doc"; ?>
@@ -335,8 +415,6 @@ if ($result->num_rows > 0) {
                                         } ?>
                                     </div>
                                 </div>
-
-
                                 <div class="row">
                                     <div class="col-sm-10 p-2">
                                         <div class="container mt-1">
@@ -344,34 +422,53 @@ if ($result->num_rows > 0) {
                                                 <button class="btn btn-primary">Choose File</button>
                                                 <input type="hidden" value="<?php echo $row["sheetmusic"] ?>"
                                                     name="sheetmusic_image" />
-                                                <input type="file" class="custom-file-input" name="sheetmusic" id="imagethumbs">
+                                                <input type="file" class="custom-file-input" name="sheetmusic" id="sheet-thumb">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <script type="text/javascript">
-                                    const imagethumbs = document.getElementById('imagethumbs');
-                                    const thumb_previews = document.getElementById('thumb_previews');
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        // File input change event
+                                        var sheetThumbInput = document.getElementById('sheet-thumb');
+                                        var initialButtonText = sheetThumbInput.parentElement.querySelector('button').innerText;
 
-                                    imagethumbs.addEventListener('change', () => {
-                                        const file = imagethumbs.files[0];
-                                        if (file) {
-                                            const fileName = file.name;
-                                            const fileExtension = fileName.split('.').pop().toLowerCase();
+                                        sheetThumbInput.addEventListener('change', function () {
+                                            handleFileSelect(this, initialButtonText);
+                                        });
 
-                                            if (fileExtension === 'png' || fileExtension === 'jpg') {
-                                                const reader = new FileReader();
-                                                reader.addEventListener('load', () => {
-                                                    thumb_previews.src = reader.result;
-                                                });
-                                                reader.readAsDataURL(file);
-                                            } else if (fileExtension === 'pdf') {
-                                                thumb_previews.src = 'musicsheet/pdficon.png';
+                                        // Function to handle file selection
+                                        function handleFileSelect(input, initialText) {
+                                            var file = input.files[0];
+                                            var chooseFileBtn = input.parentElement.querySelector('button'); // Select the button within the same parent element
+
+                                            // Check if a file is selected
+                                            if (file) {
+                                                // Check if the selected file is a PDF
+                                                if (file.type === 'application/pdf') {
+                                                    // Read the selected file and update the embed element
+                                                    var reader = new FileReader();
+                                                    reader.onload = function (e) {
+                                                        document.getElementById('embed-sheet-music').src = e.target.result;
+                                                    };
+                                                    reader.readAsDataURL(file);
+                                                } else {
+                                                    // Alert the user for the wrong document type
+                                                    alert('Please upload a PDF file.');
+                                                    // Clear the file input after a short delay
+                                                    setTimeout(function () {
+                                                        input.value = '';
+                                                    }, 0);
+                                                    // Set the button text back to the initial text after a short delay
+                                                    setTimeout(function () {
+                                                        chooseFileBtn.innerText = initialText;
+                                                    }, 0);
+                                                }
                                             } else {
-                                                alert("Image is Not Uploaded Successfully. Try Again")
+                                                // User canceled the file selection
+                                                // Set the button text back to the initial text
+                                                chooseFileBtn.innerText = initialText;
                                             }
-                                        } else {
-                                            thumb_previews.src = '';
                                         }
                                     });
                                 </script>
@@ -387,80 +484,134 @@ if ($result->num_rows > 0) {
                                             placeholder="audio info"><?php echo $row["audioanno"] ?></textarea>
                                     </div>
                                     <br>
-                                    <h4 class="label"><label for="audio1">Audio1</label></h4>
+                                    <h4 class="label"><label for="audio1">Audio 1</label></h4>
                                     <audio class="my-2" id="audio_player" controls>
-                                        <source src="audio/<?php echo $row["audio1"] ?>" type="audio/mpeg">
+                                        <source id="audio1_src" src="audio/<?php echo $row["audio1"] ?>" type="audio/mpeg">
                                     </audio>
                                     <div class="container mt-1">
                                         <div class="custom-file mb-1 upload-btn-wrapper">
-                                            <button class="btn btn-primary">Choose File</button>
+                                            <button id="upload-audio1-btn" class="btn btn-primary">Choose File</button>
                                             <input type="hidden" value="<?php echo $row["audio1"] ?>" name="old_audio1" />
                                             <input type="file" id="audio1" class="custom-file-input" value="Audio1"
                                                 name="audio1">
                                         </div>
                                     </div>
                                     <script>
-                                        // Get the input file element
-                                        var audio1 = document.getElementById('audio1');
+                                        document.addEventListener("DOMContentLoaded", function () {
+                                            // Get the file input element for audio1
+                                            var fileInputAudio1 = document.getElementById('audio1');
+                                            // Get the upload button for audio1
+                                            var uploadButtonAudio1 = document.getElementById('upload-audio1-btn');
+                                            // Get the audio player for audio1
+                                            var audioPlayerAudio1 = document.getElementById('audio_player');
+                                            // Get the source element within the audio player for audio1
+                                            var audioSourceAudio1 = audioPlayerAudio1.querySelector('#audio1_src');
 
-                                        // Add an event listener to the input file element
-                                        audio1.addEventListener('change', function () {
-                                            // Get the selected file
-                                            var file = audio1.files[0];
+                                            // Store the initial button text for audio1
+                                            var initialButtonTextAudio1 = uploadButtonAudio1.innerHTML;
 
-                                            // Create a new FileReader object
-                                            var reader = new FileReader();
+                                            // Add event listener for file input change for audio1
+                                            fileInputAudio1.addEventListener('change', function () {
+                                                // Get the selected file for audio1
+                                                var selectedFileAudio1 = fileInputAudio1.files[0];
 
-                                            // Add an event listener to the FileReader object
-                                            reader.addEventListener('load', function () {
-                                                // Get the audio element
-                                                var audio = document.getElementById('audio_player');
+                                                // Check if a file is selected for audio1
+                                                if (selectedFileAudio1) {
+                                                    // Check if the selected file type is audio/mpeg for audio1
+                                                    if (selectedFileAudio1.type === 'audio/mpeg') {
+                                                        // Display the file name on the button for audio1
+                                                        uploadButtonAudio1.innerHTML = selectedFileAudio1.name;
 
-                                                // Set the src attribute of the audio element to the data URL
-                                                audio.src = reader.result;
+                                                        // Set the source of the audio player to the selected file for audio1
+                                                        audioSourceAudio1.src = URL.createObjectURL(selectedFileAudio1);
+                                                        audioPlayerAudio1.load(); // Load the new source for audio1
+
+                                                        // Remove any previous error message for audio1
+                                                        // alert('File uploaded successfully!'); // Commented out the alert for audio1
+                                                    } else {
+                                                        // Display an alert for incorrect file type for audio1
+                                                        alert('Upload Audio File Type');
+
+                                                        // Create a new file input element for audio1
+                                                        var newFileInputAudio1 = document.createElement('input');
+                                                        newFileInputAudio1.type = 'file';
+                                                        newFileInputAudio1.id = 'audio1';
+                                                        newFileInputAudio1.className = 'custom-file-input';
+
+                                                        // Replace the existing file input with the new one for audio1
+                                                        fileInputAudio1.parentNode.replaceChild(newFileInputAudio1, fileInputAudio1);
+
+                                                        // Reset the button text to its initial state for audio1
+                                                        uploadButtonAudio1.innerHTML = initialButtonTextAudio1;
+                                                    }
+                                                }
                                             });
-
-                                            // Read the contents of the selected file as a data URL
-                                            reader.readAsDataURL(file);
                                         });
                                     </script>
                                     <br>
                                     <h4 class="label"><label for="audio2">Audio2</label></h4>
                                     <audio class="my-2" id="audioplayer" controls>
-                                        <source src="audio/<?php echo $row["audio2"] ?>" type="audio/mpeg">
+                                        <source id="audio2_source" src="audio/<?php echo $row["audio2"] ?>" type="audio/mpeg">
                                     </audio>
                                     <div class="col-sm-10 p-2">
                                         <div class="container mt-1">
                                             <div class="custom-file mb-1 upload-btn-wrapper">
-                                                <button class="btn btn-primary">Choose File</button>
+                                                <button id="audio2-upload-btn" class="btn btn-primary">Choose File</button>
                                                 <input type="hidden" value="<?php echo $row["audio2"] ?>" name="old_audio2" />
                                                 <input type="file" class="custom-file-input" name="audio2" id="audio2">
                                             </div>
                                         </div>
                                     </div>
                                     <script>
-                                        // Get the input file element
-                                        var audio2 = document.getElementById('audio2');
+                                        document.addEventListener("DOMContentLoaded", function () {
+                                            // Get the file input element for audio2
+                                            var fileInputAudio2 = document.getElementById('audio2');
+                                            // Get the upload button for audio2
+                                            var uploadButtonAudio2 = document.getElementById('audio2-upload-btn');
+                                            // Get the audio player for audio2
+                                            var audioPlayerAudio2 = document.getElementById('audioplayer');
+                                            // Get the source element within the audio player for audio2
+                                            var audioSourceAudio2 = document.getElementById('audio2_source');
 
-                                        // Add an event listener to the input file element
-                                        audio2.addEventListener('change', function () {
-                                            // Get the selected file
-                                            var file = audio2.files[0];
+                                            // Store the initial button text for audio2
+                                            var initialButtonTextAudio2 = uploadButtonAudio2.innerHTML;
 
-                                            // Create a new FileReader object
-                                            var reader = new FileReader();
+                                            // Add event listener for file input change for audio2
+                                            fileInputAudio2.addEventListener('change', function () {
+                                                // Get the selected file for audio2
+                                                var selectedFileAudio2 = fileInputAudio2.files[0];
 
-                                            // Add an event listener to the FileReader object
-                                            reader.addEventListener('load', function () {
-                                                // Get the audio element
-                                                var audio = document.getElementById('audioplayer');
+                                                // Check if a file is selected for audio2
+                                                if (selectedFileAudio2) {
+                                                    // Check if the selected file type is audio/mpeg for audio2
+                                                    if (selectedFileAudio2.type === 'audio/mpeg') {
+                                                        // Display the file name on the button for audio2
+                                                        uploadButtonAudio2.innerHTML = selectedFileAudio2.name;
 
-                                                // Set the src attribute of the audio element to the data URL
-                                                audio.src = reader.result;
+                                                        // Set the source of the audio player to the selected file for audio2
+                                                        audioSourceAudio2.src = URL.createObjectURL(selectedFileAudio2);
+                                                        audioPlayerAudio2.load(); // Load the new source for audio2
+
+                                                        // Remove any previous error message for audio2
+                                                        // alert('File uploaded successfully!'); // Commented out the alert for audio2
+                                                    } else {
+                                                        // Display an alert for incorrect file type for audio2
+                                                        alert('Upload Audio File Type');
+
+                                                        // Create a new file input element for audio2
+                                                        var newFileInputAudio2 = document.createElement('input');
+                                                        newFileInputAudio2.type = 'file';
+                                                        newFileInputAudio2.id = 'audio2';
+                                                        newFileInputAudio2.className = 'custom-file-input';
+
+                                                        // Replace the existing file input with the new one for audio2
+                                                        fileInputAudio2.parentNode.replaceChild(newFileInputAudio2, fileInputAudio2);
+
+                                                        // Reset the button text to its initial state for audio2
+                                                        uploadButtonAudio2.innerHTML = initialButtonTextAudio2;
+                                                    }
+                                                }
                                             });
-
-                                            // Read the contents of the selected file as a data URL
-                                            reader.readAsDataURL(file);
                                         });
                                     </script>
                                     <!--Video-->
@@ -469,43 +620,74 @@ if ($result->num_rows > 0) {
                                     <textarea class="form-control" rows="3" name="videoanno"
                                         placeholder="video info"><?php echo $row["videoanno"] ?></textarea>
                                     <br>
-                                    <h4 class="label"> <label for="video">Video1</label></h4>
-                                    <video width="320" height="240" controls id="videoplayer">
-                                        <source src="video/<?php echo $row["video1"] ?>" type="video/mp4">
-                                    </video>
+                                    <h4 class="label pb-2"> <label for="imageannotation">Video Annotation</label></h4>
+                                    <textarea class="form-control" rows="3" name="videoanno"
+                                        placeholder="video info"><?php echo $row["videoanno"] ?></textarea>
                                     <br>
-                                    <div class="container mt-1 ">
+                                    <h4 class="label"> <label for="video">Video1</label></h4>
+                                    <video width="550" height="auto" controls id="videoplayer">
+                                        <?php
+                                        if (!empty($row["video1"])) {
+                                            echo '<source src="video/' . $row["video1"] . '" type="video/mp4">';
+                                        }
+                                        ?>
+                                    </video>
+
+                                    <br>
+                                    <div class="container mt-1">
                                         <div class="custom-file mb-1 upload-btn-wrapper">
-                                            <button class="btn btn-primary">Choose File</button>
+                                            <button id="upload-video1-btn" type="button" class="btn btn-primary">Choose
+                                                File</button>
                                             <input type="hidden" value="<?php echo $row["video1"] ?>" name="old_video1" />
-                                            <input type="file" class="custom-file-input" name="video1" id="video1">
-                                            <div id="progressBar">
-                                                <div id="progressBarFill"></div>
-                                            </div>
+                                            <input type="file" class="custom-file-input" name="video1" id="video1"
+                                                onchange="checkFileSize(event)" />
                                         </div>
                                         <script>
-                                            // Get the input file element
-                                            var video1 = document.getElementById('video1');
+                                            function checkFileSize(input) {
+                                                const file = input.files[0];
+                                                const videoPlayer = document.getElementById('videoplayer');
+                                                const button = input.previousElementSibling;
 
-                                            // Add an event listener to the input file element
-                                            video1.addEventListener('change', function () {
-                                                // Get the selected file
-                                                var file = video1.files[0];
+                                                const validVideoTypes = ['video/mp4', 'video/webm', 'video/ogg'];
 
-                                                // Create a new FileReader object
-                                                var reader = new FileReader();
+                                                if (file) {
+                                                    console.log('File type:', file.type); // Log the file type
 
-                                                // Add an event listener to the FileReader object
-                                                reader.addEventListener('load', function () {
-                                                    // Get the audio element
-                                                    var video = document.getElementById('videoplayer');
+                                                    if (validVideoTypes.includes(file.type) && file.size <= 40000000) {
+                                                        const objectURL = URL.createObjectURL(file);
 
-                                                    // Set the src attribute of the audio element to the data URL
-                                                    video.src = reader.result;
-                                                });
+                                                        videoPlayer.src = objectURL;
 
-                                                // Read the contents of the selected file as a data URL
-                                                reader.readAsDataURL(file);
+                                                        // Remove the poster attribute only if src was not set before
+                                                        if (!videoPlayer.src) {
+                                                            videoPlayer.poster = '';
+                                                        }
+                                                    } else {
+                                                        // Error handling for invalid file type or size
+                                                        if (!validVideoTypes.includes(file.type)) {
+                                                            alert('Please upload a valid video file.');
+                                                        } else {
+                                                            alert('Please choose a valid video file under 40MB.');
+                                                        }
+
+                                                        input.value = ''; // Clear the input
+
+                                                        // Remove video source only if src was not set before
+                                                        if (!videoPlayer.src) {
+                                                            videoPlayer.removeAttribute('src');
+                                                            // Set the poster if there is no video source
+                                                            videoPlayer.poster = 'images/upload_video.jpg';
+                                                            // Reset button text
+                                                            setTimeout(function () {
+                                                                button.innerText = 'Choose File';
+                                                            }, 50);
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            document.getElementById('video1').addEventListener('change', function () {
+                                                checkFileSize(this);
                                             });
                                         </script>
                                         <br>
@@ -526,9 +708,6 @@ if ($result->num_rows > 0) {
 
                                         <script>
                                             document.addEventListener('DOMContentLoaded', function () {
-                                                // On page load, display the YouTube video using the link from the input field
-                                                displayYouTubeVideo();
-
                                                 // YouTube input field change event
                                                 document.getElementById('youtube').addEventListener('input', function () {
                                                     displayYouTubeVideo();
@@ -544,11 +723,14 @@ if ($result->num_rows > 0) {
                                                 var videoId = getYoutubeVideoId(youtubeLink);
 
                                                 // Set the src attribute of the iframe with the YouTube video link
-                                                var iframe = document.getElementById('youtubevideo'); // Fix typo here (changed 'youtubevide' to 'youtubevideo')
+                                                var iframe = document.getElementById('youtubevideo');
                                                 iframe.src = 'https://www.youtube.com/embed/' + videoId;
 
                                                 // Display the iframe
                                                 iframe.style.display = 'block';
+
+                                                // Update the input value with the generated YouTube link
+                                                youtubeInput.value = 'https://www.youtube.com/embed/' + videoId;
                                             }
 
                                             // Function to extract the video ID from a YouTube link
@@ -666,103 +848,6 @@ if ($result->num_rows > 0) {
                         <!--end of main container-->
             </form>
             <script type="text/javascript">
-                jQuery(document).ready(function () {
-
-                    const fileInput = document.getElementById('video1');
-                    const progressBar = document.getElementById('progressBar');
-
-                    fileInput.addEventListener('change', (event) => {
-                        const file = event.target.files[0];
-                        const fileSize = file.size;
-
-                        const reader = new FileReader();
-                        reader.onloadend = () => {
-                            progressBar.style.width = '100%';
-                            progressBar.innerText = '100%';
-                        };
-                        reader.onprogress = (event) => {
-                            const percentComplete = Math.round((event.loaded / fileSize) * 100);
-                            progressBar.style.width = `${percentComplete}%`;
-                            progressBar.innerText = `${percentComplete}%`;
-                        };
-
-                        reader.readAsDataURL(file);
-                    });
-
-
-                    //var abc = jQuery('input[type=hidden]').length
-                    //for(var i=0; i<=abc;i++){
-                    //var xyz =jQuery('input[type=hidden]').eq(i).val()
-                    //   console.log(xyz)
-                    //   jQuery('input[type=hidden]').eq(i).parent().find('button').text(xyz)
-
-
-                    ///}
-                    var asd = jQuery('input[name=thumb_image]').val()
-
-                    jQuery('input[name=thumb_image]').parent().parent().next().find('button').text(asd)
-
-
-                    jQuery('input[type=file]').change(function () {
-
-                        var text = jQuery(this).val().split('\\').pop()
-
-                        jQuery(this).parent().find('button').text(text)
-
-                    })
-                    if (jQuery('#youtube') != '') {
-                        var abc = jQuery('#youtube').val()
-                        zxc = abc.split('watch?v=');
-                        xyz = zxc.join("embed/")
-                        jQuery('#youtubevide').attr('src', xyz)
-                        jQuery('#youtubevide').show()
-
-                    }
-                    jQuery('#youtube').change(function () {
-                        var abc = jQuery(this).val()
-                        if (abc != '') {
-                            zxc = abc.split('watch?v=');
-                            xyz = zxc.join("embed/")
-                            jQuery('#youtubevide').attr('src', xyz)
-                            jQuery('#youtubevide').show()
-                        } else {
-                            jQuery('#youtubevide').hide()
-                        }
-
-                    })
-
-
-                })
-
-                function myFunction() {
-                    // Get the checkbox
-                    var checkBox = document.getElementById("myCheck");
-                    // Get the output text
-                    var text = document.getElementById("text");
-
-                    // If the checkbox is checked, display the output text
-                    if (checkBox.checked == true) {
-                        text.style.display = "block";
-                    } else {
-                        text.style.display = "none";
-                    }
-                }
-
-                // let selectedThemes = [];
-                // let selectedIds = [];
-
-                // function setSelectedThemes() {
-                //     var selectedCheckboxes = document.querySelectorAll('input[type="checkbox"].theme_title_load:checked');
-                //     if (selectedCheckboxes.length <= 3) {
-                //         selectedThemes = selectedThemes.concat(Array.from(selectedCheckboxes).map(checkbox => checkbox.value));
-                //         selectedIds = selectedIds.concat(Array.from(selectedCheckboxes).map(checkbox => checkbox.id));
-
-                //         document.getElementById('themeInput').value = selectedThemes.join(', ');
-                //         document.getElementById('selectedIdsInput').value = selectedIds.join(', ');
-                //     } else {
-                //         alert('You can select up to three themes.');
-                //     }
-                // }
 
                 const preselectedThemeIds = <?php echo json_encode($preselectedThemesIds); ?>;
                 let selectedIds = preselectedThemeIds;
