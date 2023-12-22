@@ -260,36 +260,6 @@ if (isset($_POST['title']) && !empty($_POST['title'])) {
     $selectedThemes = array_fill(0, 3, null);
   }
 
-  echo "After filling with null: ";
-  var_dump($selectedThemes);
-
-  echo "These are all the files: <br>";
-  echo "Stitle: $Stitle<br>";
-  echo "songyear: $songyear<br>";
-  echo "songcomposer: $songcomposer<br>";
-  echo "songartist: $songartist<br>";
-  echo "circa: $circa<br>";
-  echo "region: $region<br>";
-  echo "shortanno: $shortanno<br>";
-  echo "longanno: $longanno<br>";
-  echo "imageanno: $imageanno<br>";
-  echo "imageFull: $imageFull<br>";
-  echo "imageThumb: $imageThumb<br>";
-  echo "sheetanno: $sheetanno<br>";
-  echo "sheetmusic: $sheetmusic<br>";
-  echo "audioanno: $audioanno<br>";
-  echo "audio1: $audio1<br>";
-  echo "audio2: $audio2<br>";
-  echo "videoanno: $videoanno<br>";
-  echo "video1: $video1<br>";
-  echo "video2: $video2<br>";
-  echo "selectedThemes[0]: {$selectedThemes[0]}<br>";
-  echo "selectedThemes[1]: {$selectedThemes[1]}<br>";
-  echo "selectedThemes[2]: {$selectedThemes[2]}<br>";
-  echo "fileToUpload: $fileToUpload<br>";
-
-
-
   // Use prepared statement
   $stmt = $conn->prepare("INSERT INTO newtable (Stitle, songyear, songcomposer, songartist, circa, region, shortanno, longanno, imageanno, imageFull, imageThumb, sheetanno, sheetmusic, audioanno, audio1, audio2, videoanno, video1, video2, theme1, theme2, theme3, fileToUpload) 
                           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
