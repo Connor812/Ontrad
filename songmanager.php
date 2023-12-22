@@ -187,9 +187,6 @@ if (isset($_GET['message'])) {
                                     }
                                 });
                             </script>
-
-
-
                             <!--thumbnail image-->
                             <div class="form-group  py-2">
                                 <h4 class="label">
@@ -269,9 +266,9 @@ if (isset($_GET['message'])) {
                             </div>
                             <br>
                             <h4 class="label"> <label>Sheet Music</label> </h4>
-                            <div style="width: 100%; height: 560px; border-style: solid;">
+                            <div style="width: 100%; height: auto; border-style: solid;">
                                 <embed id="embed-sheet-music" src="images/sheet1.png"
-                                    style="width: 100%; height: 550px;">
+                                    style="width: 100%; height: 700px;">
                             </div>
                             <div class="row">
                                 <div class="col-sm-10 p-2">
@@ -454,12 +451,9 @@ if (isset($_GET['message'])) {
                         <br>
                         <div class="container mt-1">
                             <div class="custom-file mb-1 upload-btn-wrapper">
-                                <button class="btn btn-primary">Choose File</button>
-                                <input style="width: 111px; height: 38px; .custom-file-input:hover {cursor: pointer;}" type="file" class="custom-file-input" name="video1" id="video1"
+                                <button class="btn btn-primary" type="button">Choose File</button>
+                                <input type="file" class="custom-file-input" name="video1" id="video1"
                                     onchange="checkFileSize(this)">
-                                <div id="progressBar">
-                                    <div id="progressBarFill"></div>
-                                </div>
                             </div>
                             <script>
                                 function checkFileSize(input) {
@@ -469,33 +463,31 @@ if (isset($_GET['message'])) {
 
                                     const validVideoTypes = ['video/mp4', 'video/webm', 'video/ogg'];
 
-                                    if (file && validVideoTypes.includes(file.type) && file.size <= 40000000) {
-                                        const reader = new FileReader();
+                                    if (file) {
+                                        console.log('File type:', file.type); // Log the file type
 
-                                        reader.onload = function (e) {
-                                            videoPlayer.src = e.target.result;
+                                        if (validVideoTypes.includes(file.type) && file.size <= 40000000) {
+                                            const objectURL = URL.createObjectURL(file);
+
+                                            videoPlayer.src = objectURL;
                                             videoPlayer.poster = ''; // Remove the poster attribute
-                                        };
-
-                                        reader.readAsDataURL(file);
-                                    } else {
-                                        // Error handling for invalid file type or size
-                                        if (!validVideoTypes.includes(file.type)) {
-                                            alert('Please upload a valid video file.');
                                         } else {
-                                            alert('Please choose a valid video file under 40MB.');
+                                            // Error handling for invalid file type or size
+                                            if (!validVideoTypes.includes(file.type)) {
+                                                alert('Please upload a valid video file.');
+                                            } else {
+                                                alert('Please choose a valid video file under 40MB.');
+                                            }
+
+                                            input.value = ''; // Clear the input
+                                            videoPlayer.removeAttribute('src'); // Remove video source
+                                            videoPlayer.poster = 'images/upload_video.jpg'; // Reset poster if needed
+                                            // Reset button text
+                                            setTimeout(function () {
+                                                button.innerText = 'Choose File';
+                                            }, 50);
                                         }
-
-                                        input.value = ''; // Clear the input
-                                        videoPlayer.removeAttribute('src'); // Remove video source
-                                        videoPlayer.poster = 'images/upload_video.jpg'; // Reset poster if needed
-                                        // Reset button text
-                                        setTimeout(function () {
-                                            button.innerText = 'Choose File';
-                                        }, 50);
                                     }
-
-
                                 }
 
                                 document.getElementById('video1').addEventListener('change', function () {
@@ -510,7 +502,7 @@ if (isset($_GET['message'])) {
                         <h4 class="label"> <label for="video">YouTube</label></h4>
                         <div class="row">
                             <div class="container mt-1">
-                                <iframe id="youtubevide" src="" style="display: none;width: 100%;    height: 280px;">
+                                <iframe id="youtubevideo" src="" style="display: none;width: 100%;    height: 280px;">
                                 </iframe>
                                 <div class="custom-file mb-1">
                                     <input type="text" class="form-control" placeholder="YouTube" name="video2"
@@ -535,7 +527,7 @@ if (isset($_GET['message'])) {
                                 var videoId = getYoutubeVideoId(youtubeLink);
 
                                 // Set the src attribute of the iframe with the YouTube video link
-                                var iframe = document.getElementById('youtubevide');
+                                var iframe = document.getElementById('youtubevideo');
                                 iframe.src = 'https://www.youtube.com/embed/' + videoId;
 
                                 // Display the iframe
@@ -640,7 +632,7 @@ if (isset($_GET['message'])) {
                             <textarea class="form-control" rows="5" id="comment" placeholder="Image info"></textarea>
                         </div>
                         <br>
-                        <div class="upload-btn-wrapper">
+                        <div class="">
                             <h4>Find image and load text and image below<br></h4>
 
                             <button class="btn">Choose Image</button>
