@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
             $themeImage = $row['theme_image'];
             $status = $row['status'];
             $songInfo = array(
-                "ID" => $row['ID'],
+                "ID" => $row['song_id'],
                 "Stitle" => $row['Stitle'],
             );
             $songsArray[] = $songInfo;
@@ -33,8 +33,6 @@ if (isset($_GET['id'])) {
         echo "No data found";
     }
 }
-
-
 
 require_once("php/header.php");
 ?>
@@ -47,7 +45,9 @@ require_once("php/header.php");
             <!--title and edit modal-->
             <div class="row">
                 <div class="col-lg-8 col-md-6 col-sm-12">
-                    <input type="text" class="form-control " value="<?php echo $themeTitle; ?>" id="themetitle" name="title" data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="Please add Theme Title." required>
+                    <input type="text" class="form-control " value="<?php echo $themeTitle; ?>" id="themetitle"
+                        name="title" data-toggle="popover" data-trigger="manual" data-placement="bottom"
+                        data-content="Please add Theme Title." required>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6" style="text-align: right;">
                     <!--Theme is placed on the index page in the featured theme section-->
@@ -58,10 +58,13 @@ require_once("php/header.php");
             <hr style="border-color: black; padding: 0% 0%;">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12" style="text-align: left;">
-                    <textarea class="form-control" rows="5" name="annotation" id="themeannotation" data-toggle="popover" data-trigger="manual" data-placement="bottom" data-content="Please add Theme Title." required><?php echo $themeDescription ?></textarea>
+                    <textarea class="form-control" rows="5" name="annotation" id="themeannotation" data-toggle="popover"
+                        data-trigger="manual" data-placement="bottom" data-content="Please add Theme Title."
+                        required><?php echo $themeDescription ?></textarea>
                     <div class="p-2">
                         <form class="form-inline" method="GET" action="thememanager.php">
-                            <input class="form-control" type="text" id="search_query" name="search_query" placeholder="Start typing to find a song to add to the theme list">
+                            <input class="form-control" type="text" id="search_query" name="search_query"
+                                placeholder="Start typing to find a song to add to the theme list">
                             <h5 style="text-align: center; padding: 2% 1%;">Results</h5>
                             <table class="table mainTable" style="border: solid;">
                                 <thead>
@@ -71,39 +74,46 @@ require_once("php/header.php");
                             </table>
                             <form action="thememanager.php" method="GET">
                                 <div style="text-align: center;">
-                                    <button type="button" name="checkedSongs" class="btn btn-primary btn-sm transferRows" id="add_songs_btn">Add checked
+                                    <button type="button" name="checkedSongs"
+                                        class="btn btn-primary btn-sm transferRows" id="add_songs_btn">Add checked
                                         songs to theme</button>
                                 </div>
                             </form>
                         </form>
                     </div>
-                    
+
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="container-fluid p-3" style="border-style: solid; border-color: blue; border-width: 1px; text-align: center;">
-                        <img id="themeImage" name="image" src="themeimage_uploads/<?php echo $themeImage; ?>" alt="Theme Image" style="max-width: 100%; max-height: auto;" required>
-                        <p type="hidden" id="imageName">Image Name: <?php echo $themeImage; ?></p>
+                    <div class="container-fluid p-3"
+                        style="border-style: solid; border-color: blue; border-width: 1px; text-align: center;">
+                        <img id="themeImage" name="image" src="themeimage_uploads/<?php echo $themeImage; ?>"
+                            alt="Theme Image" style="max-width: 100%; max-height: auto;" required>
+                        <p type="hidden" id="imageName">Image Name:
+                            <?php echo $themeImage; ?>
+                        </p>
                     </div>
                     <br>
-                    <div class="form-group upload-btn-wrapper" style="width: 100%; height: 40px; display: flex; justify-content: center">
-                        <input class="form-control" style="width: 100%; text-align:center;" id="imageInput" type="file" name="file" value="" onchange="displaySelectedImage()">
+                    <div class="form-group upload-btn-wrapper"
+                        style="width: 100%; height: 40px; display: flex; justify-content: center">
+                        <input class="form-control" style="width: 100%; text-align:center;" id="imageInput" type="file"
+                            name="file" value="" onchange="displaySelectedImage()">
                         <button id="uploadButton" type="button" class="btn btn-primary btn-sm">Upload New
                             Image</button>
                     </div>
                     <div class="container-fluid" style="text-align: center;">
-                            <h5 class="label"> <label for="choosesong">Theme Songs</label></h5>
-                            <p>Each checked song will appear in the theme<br>
-                                unclick check box and upload to remove song</p>
-                            <table class="table secondTable" style="text-align: left;">
-                                <thead>
-                                </thead>
-                                <tbody id="songs_results">
-                                    <?php
-                                    foreach ($songsArray as $song) {
-                                        $song_id = $song['ID'];
-                                        $songTitle = $song['Stitle'];
+                        <h5 class="label"> <label for="choosesong">Theme Songs</label></h5>
+                        <p>Each checked song will appear in the theme<br>
+                            unclick check box and upload to remove song</p>
+                        <table class="table secondTable" style="text-align: left;">
+                            <thead>
+                            </thead>
+                            <tbody id="songs_results">
+                                <?php
+                                foreach ($songsArray as $song) {
+                                    $song_id = $song['ID'];
+                                    $songTitle = $song['Stitle'];
 
-                                        echo "
+                                    echo "
                                                     <tr>
                                                         <td style='padding:0;'>
                                                             <label class='row-label song-label' for='" . $song_id . "' data-song-id='" . $song_id . "' style='margin:5px;'>
@@ -113,18 +123,19 @@ require_once("php/header.php");
                                                         </td>
                                                     </tr>
                                                     ";
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                            
-                    <div style="display:flex; justify-content:center; align-items:center;">
-                        <div id="loader" style="display: none;">
-                            <img src="loader/loader.gif" alt="Loading..." />
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+
+                        <div style="display:flex; justify-content:center; align-items:center;">
+                            <div id="loader" style="display: none;">
+                                <img src="loader/loader.gif" alt="Loading..." />
+                            </div>
+                            <button id="theme-update-btn" type="button" class="btn btn-primary btn-sm"
+                                data-toggle="upload">Update Theme</button>
                         </div>
-                        <button id="theme-update-btn" type="button" class="btn btn-primary btn-sm" data-toggle="upload">Update Theme</button>
                     </div>
-                        </div>
                 </div>
             </div>
             <hr style="color: black; width: 90%; border-color:black; padding: 0%;">
@@ -140,12 +151,12 @@ require_once("php/header.php");
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
 
-                        reader.onload = function(e) {
+                        reader.onload = function (e) {
                             image.src = e.target.result;
                             imageName.innerText = input.files[0].name; // Display the image name
                         };
 
-                        reader.onerror = function(e) {
+                        reader.onerror = function (e) {
                             console.error("Error reading the file: " + e.target.error);
                         };
 
@@ -154,7 +165,7 @@ require_once("php/header.php");
                 }
             </script>
             <hr>
-            
+
         </div>
 
         <br>
@@ -165,7 +176,7 @@ require_once("php/header.php");
 <script type="text/javascript">
 </script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         var status = document.getElementById("btncheck1");
         var phpStatus = "<?php echo $status; ?>";
         var label = document.querySelector('label[for="btncheck1"]');
@@ -178,7 +189,7 @@ require_once("php/header.php");
             label.classList.add('active');
         }
 
-        $(document).on("click", "#btncheck1", function() {
+        $(document).on("click", "#btncheck1", function () {
             let element = this;
             let label = element.classList.contains("btn-check") ? element.nextElementSibling : element;
             label.classList.toggle("active");
@@ -188,35 +199,20 @@ require_once("php/header.php");
 
 <?php $dbSongsArray = json_encode($songsArray) ?>
 <script>
-    $(document).ready(function() {
-        var transferredIDs = [];
-        // getting the second Table Ids 
-        let songLabels = document.querySelectorAll(".song-label");
-        let secondTableIds = [];
-        songLabels.forEach(song => {
-            secondTableIds.push(song.dataset.songId);
-        });
-        // console.log(secondTableIds);
-
-        $('#search_query').on('keyup', function() {
+    $(document).ready(function () {
+        $('#search_query').on('keyup', function () {
             var searchQuery = $(this).val();
-
 
             if (searchQuery) {
                 $.ajax({
                     method: 'POST',
                     url: 'songSearch.php',
-                    data: {
-                        search_query: searchQuery,
-                        dbArrayIds: secondTableIds,
-                        transferred_ids: transferredIDs,
-                    },
-                    success: function(data) {
+                    data: { search_query: searchQuery },
+                    success: function (data) {
                         $('#search_results').html(data);
                     },
-                    error: function() {
-                        $('#search_results').html(
-                            '<tr><td colspan="2">An error occurred.</td></tr>');
+                    error: function () {
+                        $('#search_results').html('<tr><td colspan="2">An error occurred.</td></tr>');
                     }
                 });
             } else {
@@ -225,13 +221,13 @@ require_once("php/header.php");
         });
 
 
-        $(function() {
-            $(document).on("click", ".transferRows", function(e) {
+        $(function () {
+            $(document).on("click", ".transferRows", function (e) {
                 e.preventDefault();
                 var selectedRows = $(".mainTable input.song_checkbox:checked").parents("tr");
                 var clonedRows = selectedRows.clone();
                 $(".secondTable").append(clonedRows);
-                selectedRows.find("input.song_checkbox").map(function() {
+                selectedRows.find("input.song_checkbox").map(function () {
                     transferredIDs.push($(this).attr("id"));
                 }).get();
 
@@ -242,7 +238,7 @@ require_once("php/header.php");
         });
     });
 
-    $(document).on("click", "#theme-update-btn", function(e) {
+    $(document).on("click", "#theme-update-btn", function (e) {
         let selectedIDs = [];
         let formdata = new FormData;
 
@@ -273,7 +269,7 @@ require_once("php/header.php");
             formdata.append("filename", "<?php echo $themeImage; ?>");
         }
 
-        $('.song_checkbox').each(function() {
+        $('.song_checkbox').each(function () {
             if ($(this).prop('checked')) {
                 selectedIDs.push($(this).val());
             }
@@ -290,17 +286,17 @@ require_once("php/header.php");
                 enctype: 'multipart/form-data',
                 processData: false,
                 contentType: false,
-                beforeSend: function() {
+                beforeSend: function () {
                     $('#loader').show();
                 },
-                success: function(output) {
+                success: function (output) {
                     alert("Theme Updated Successfully");
                     location.reload(true);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error("AJAX Error: " + status + " - " + error);
                 },
-                complete: function() {
+                complete: function () {
                     // Hide the loader when the request is complete
                     $('#loader').hide();
                 }
