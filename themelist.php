@@ -108,7 +108,7 @@ require_once("php/header2.php");
                                  $path = 'themeimage_uploads/';
                                  $completePath = $path.$row['theme_image'];
                               echo ($row['theme_image']!=NULL || !empty($row['theme_image'])) && file_exists($completePath) ?
-                              "<a href='theme1.php?id=" . base64_encode($row['id']) . "'><img class='theme-img' src='themeimage_uploads/" . $row['theme_image'] . "' style='max-height: 200px; width: 100%;' alt='Image Not found'></a>": "
+                              "<a href='theme1.php?id=" . base64_encode($row['id']) . "'><img class='theme-img' src='themeimage_uploads/" . $row['theme_image'] . "' style='max-height: 200px; width: auto;' alt='Image Not found'></a>": "
                               <a href='theme1.php?id=" . base64_encode($row['id']) . "'><svg class='bd-placeholder-img card-img-top' width='100%' height='200'
                                               role='img' aria-label='Placeholder: Thumbnail'
                                               preserveAspectRatio='xMidYMid slice' focusable='false'>
@@ -144,8 +144,8 @@ require_once("php/header2.php");
                                  $completePath = $path.$row['theme_image'];
                               echo ($row['theme_image']!=NULL || !empty($row['theme_image'])) && file_exists($completePath) ?
                               "
-                              <a href='theme1.php?id=" . base64_encode($row['id']) . "'><img class='theme-img' src='themeimage_uploads/" . $row['theme_image'] . "' style='max-height: 200px; width: 100%;' alt='Image Not found'></a>": "
-                              <a href='theme1.php?id=" . base64_encode($row['id']) . "'><svg class='bd-placeholder-img card-img-top' width='100%' height='200'
+                              <a href='theme1.php?id=" . base64_encode($row['id']) . "'><img class='theme-img' src='themeimage_uploads/" . $row['theme_image'] . "' style='max-height: 200px; width: auto;' alt='Image Not found'></a>": "
+                              <a href='theme1.php?id=" . base64_encode($row['id']) . "'><svg class='bd-placeholder-img card-img-top' width='100%' height='auto'
                                               xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Placeholder: Thumbnail'
                                               preserveAspectRatio='xMidYMid slice' focusable='false'>
                                               <title>Placeholder</title>

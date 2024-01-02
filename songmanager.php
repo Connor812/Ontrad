@@ -39,8 +39,7 @@ if (isset($_GET['message'])) {
                 <div class="col-8">
                     <h3>Song Manager</h3>
                     <div class="input-group mb-3 d-none">
-                        <input type="text" class="form-control" placeholder="SEARCH SONG NAME"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="text" class="form-control" placeholder="SEARCH SONG NAME" aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-outline-secondary" type="button" id="searchsong">SEARCH</button>
                     </div>
                 </div>
@@ -73,8 +72,7 @@ if (isset($_GET['message'])) {
             <div class="alert alert-secondary py-2" role="alert" style="text-align:center" ;>
                 <div class="row input-clr">
                     <div class="col">
-                        <select class="form-select form-select-sm mb-1" aria-label=".form-select-sm example"
-                            name="circa" required>
+                        <select class="form-select form-select-sm mb-1" aria-label=".form-select-sm example" name="circa" required>
                             <option value="">CIRCA</option>
                             <option value="1750-1799">1750-1799</option>
                             <option value="1800-1849">1800-1849</option>
@@ -84,8 +82,7 @@ if (isset($_GET['message'])) {
                         </select>
                     </div>
                     <div class="col">
-                        <select class="form-select form-select-sm mb-1" aria-label=".form-select-sm example"
-                            name="region" required>
+                        <select class="form-select form-select-sm mb-1" aria-label=".form-select-sm example" name="region" required>
                             <option value="">REGION</option>
                             <option value="East">East</option>
                             <option value="South Central">South Central</option>
@@ -97,21 +94,25 @@ if (isset($_GET['message'])) {
                 </div>
             </div>
             <!--Annootation-->
-            <h4 class="label"> <label for="shortannotation">Annotations</label></h4>
-            <div> <label for="checkbox">Instrumental</label>
+            <div class="row">
+                <div class="col-4">
+                    <h4 class="label"> <label for="shortannotation">Annotations</label></h4>
 
-                <input type="hidden" id="checkbox" name="checkbox" value="0">
-                <input type="checkbox" name="checkbox" id="checkbox" value="1">
-                <!-- <p id="textscores" style="display:none">Checkbox is CHECKED!</p> -->
-                <?php $checkbox = (isset($_POST['checkbox'])) ? intval($_POST['checkbox']) : 0; // returns 0 or 1 
-                ?>
+                </div>
+                <div class="col-8">
+
+                    <input type="hidden" id="checkbox" name="checkbox" value="0">
+                    <input type="checkbox" name="checkbox" id="checkbox" value="1">
+                    <!-- <p id="textscores" style="display:none">Checkbox is CHECKED!</p> -->
+                    <?php $checkbox = (isset($_POST['checkbox'])) ? intval($_POST['checkbox']) : 0; // returns 0 or 1 
+                    ?>
+                    <label for="checkbox">Instrumental</label>
+                </div>
             </div>
 
             <div class="row input-clr">
-                <textarea class="form-control m-2 mb-3" rows="2" id="comment" placeholder="Short Annotation"
-                    name="shortanno" required></textarea>
-                <textarea class="form-control m-2 mb-2" rows="5" id="comment" placeholder="Long Annotation"
-                    name="longanno"></textarea>
+                <textarea class="form-control m-2 mb-3" rows="2" id="comment" placeholder="Short Annotation" name="shortanno" required></textarea>
+                <textarea class="form-control m-2 mb-2" rows="5" id="comment" placeholder="Long Annotation" name="longanno"></textarea>
             </div>
             <div class="row input-clr py-3">
                 <div class="col-sm-6">
@@ -119,8 +120,7 @@ if (isset($_GET['message'])) {
                     <div>
                         <div class="form-group">
                             <h4 class="label"> <label for="imageannotation">Image Annotation</label></h4>
-                            <textarea class="form-control" rows="3" name="imageanno"
-                                placeholder="Image info"></textarea>
+                            <textarea class="form-control" rows="3" name="imageanno" placeholder="Image info"></textarea>
                         </div>
                         <br>
                         <h4 class="label">
@@ -134,15 +134,14 @@ if (isset($_GET['message'])) {
                                 <div class="container mt-1">
                                     <div class="form-group upload-btn-wrapper" style="overflow: none;">
                                         <button class="btn btn-primary" id="fileButton">Choose File</button>
-                                        <input class="form-control" id="image_input" type="file" name="uploadfile"
-                                            value="">
+                                        <input class="form-control" id="image_input" type="file" name="uploadfile" value="">
                                     </div>
                                     <div class="form-group">
                                     </div>
                                 </div>
                             </div>
                             <script type="text/javascript">
-                                document.addEventListener('DOMContentLoaded', function () {
+                                document.addEventListener('DOMContentLoaded', function() {
                                     const imageInput = document.getElementById('image_input');
                                     const imagePreview = document.getElementById('image_preview');
                                     const fileButton = document.getElementById('fileButton');
@@ -164,12 +163,12 @@ if (isset($_GET['message'])) {
                                                 imagePreview.src = 'images/placeholder.jpg'; // Set to default image
 
                                                 // Clear the file input after a short delay
-                                                setTimeout(function () {
+                                                setTimeout(function() {
                                                     imageInput.value = '';
                                                 }, 0);
 
                                                 // Set the button text back to 'Choose File' after a short delay
-                                                setTimeout(function () {
+                                                setTimeout(function() {
                                                     fileButton.innerText = 'Choose File';
                                                 }, 50); // Adjust timing to ensure it happens after the alert
                                                 alert('Please select a valid image file (e.g., JPEG, PNG, GIF).');
@@ -194,8 +193,7 @@ if (isset($_GET['message'])) {
                                 </h4>
                                 <a href="images/placeholder.jpg"></a>
                                 <div class="img py-2">
-                                    <img src="images/placeholder.jpg" class="img-fluid img-thumbnail" alt="Lights"
-                                        style="width:70%" id="thumb-preview">
+                                    <img src="images/placeholder.jpg" class="img-fluid img-thumbnail" alt="Lights" style="width:70%" id="thumb-preview">
                                 </div>
                             </div>
                             <div class="row">
@@ -203,14 +201,13 @@ if (isset($_GET['message'])) {
                                     <div class="container mt-1">
                                         <div class="custom-file mb-1 upload-btn-wrapper">
                                             <button id="file-thumb-button" class="btn btn-primary">Choose File</button>
-                                            <input type="file" class="custom-file-input" name="imagethumb"
-                                                id="image-input-thumb">
+                                            <input type="file" class="custom-file-input" name="imagethumb" id="image-input-thumb">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <script type="text/javascript">
-                                document.addEventListener('DOMContentLoaded', function () {
+                                document.addEventListener('DOMContentLoaded', function() {
                                     const imageInput = document.getElementById('image-input-thumb');
                                     const imagePreview = document.getElementById('thumb-preview');
                                     const fileButton = document.getElementById('file-thumb-button');
@@ -232,12 +229,12 @@ if (isset($_GET['message'])) {
                                                 imagePreview.src = 'images/placeholder.jpg'; // Set to default image
 
                                                 // Clear the file input after a short delay
-                                                setTimeout(function () {
+                                                setTimeout(function() {
                                                     imageInput.value = '';
                                                 }, 0);
 
                                                 // Set the button text back to 'Choose File' after a short delay
-                                                setTimeout(function () {
+                                                setTimeout(function() {
                                                     fileButton.innerText = 'Choose File';
                                                 }, 50); // Adjust timing to ensure it happens after the alert
                                                 alert('Please select a valid image file (e.g., JPEG, PNG, GIF).');
@@ -261,30 +258,27 @@ if (isset($_GET['message'])) {
                             <!--sheet music-->
                             <div class="form-group py-3 ">
                                 <h4 class="label"> <label for="sheetannotation">Sheet Annotation</label></h4>
-                                <textarea class="form-control" rows="3" name="sheetanno"
-                                    placeholder="Sheet info"></textarea>
+                                <textarea class="form-control" rows="3" name="sheetanno" placeholder="Sheet info"></textarea>
                             </div>
                             <br>
                             <h4 class="label"> <label>Sheet Music</label> </h4>
                             <div style="width: 100%; height: auto; border-style: solid;">
-                                <embed id="embed-sheet-music" src="images/sheet1.png"
-                                    style="width: 100%; height: 700px;">
+                                <embed id="embed-sheet-music" src="images/sheet1.png" style="width: 100%; height: 700px;">
                             </div>
                             <div class="row">
                                 <div class="col-sm-10 p-2">
                                     <div class="container mt-1">
                                         <div class="custom-file mb-1 upload-btn-wrapper">
                                             <button id="chooseFileBtn" class="btn btn-primary">Choose File</button>
-                                            <input type="file" class="custom-file-input" name="sheetmusic"
-                                                id="sheet-thumb">
+                                            <input type="file" class="custom-file-input" name="sheetmusic" id="sheet-thumb">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <script>
-                                document.addEventListener('DOMContentLoaded', function () {
+                                document.addEventListener('DOMContentLoaded', function() {
                                     // File input change event
-                                    document.getElementById('sheet-thumb').addEventListener('change', function () {
+                                    document.getElementById('sheet-thumb').addEventListener('change', function() {
                                         handleFileSelect(this);
                                     });
 
@@ -299,7 +293,7 @@ if (isset($_GET['message'])) {
                                             if (file.type === 'application/pdf') {
                                                 // Read the selected file and update the embed element
                                                 var reader = new FileReader();
-                                                reader.onload = function (e) {
+                                                reader.onload = function(e) {
                                                     document.getElementById('embed-sheet-music').src = e.target.result;
                                                 };
                                                 reader.readAsDataURL(file);
@@ -307,11 +301,11 @@ if (isset($_GET['message'])) {
                                                 // Alert the user for the wrong document type
                                                 alert('Please upload a PDF file.');
                                                 // Clear the file input after a short delay
-                                                setTimeout(function () {
+                                                setTimeout(function() {
                                                     input.value = '';
                                                 }, 0);
                                                 // Set the button text back to 'Choose File' after a short delay
-                                                setTimeout(function () {
+                                                setTimeout(function() {
                                                     chooseFileBtn.innerText = 'Choose File';
                                                 }, 0);
                                             }
@@ -333,8 +327,7 @@ if (isset($_GET['message'])) {
                     <div class="container-fluid">
                         <div class="form-group">
                             <h4 class="label"> <label for="annotation">Audio Annotation</label></h4>
-                            <textarea class="form-control" rows="3" name="audioanno"
-                                placeholder="Audio info"></textarea>
+                            <textarea class="form-control" rows="3" name="audioanno" placeholder="Audio info"></textarea>
                         </div>
                         <br>
                         <h4 class="label"><label for="audio1">Audio1</label></h4>
@@ -370,7 +363,7 @@ if (isset($_GET['message'])) {
                                         fileInput.value = ''; // Clear the input
                                         audioPlayer.src = ''; // Reset audio player
 
-                                        setTimeout(function () {
+                                        setTimeout(function() {
                                             audioFileButton.innerText = 'Choose File'; // Reset button text
                                         }, 50);
 
@@ -422,7 +415,7 @@ if (isset($_GET['message'])) {
                                         fileInput.value = ''; // Clear the input
                                         audioPlayer.src = ''; // Reset audio player
 
-                                        setTimeout(function () {
+                                        setTimeout(function() {
                                             audioFileButton.innerText = 'Choose File'; // Reset button text
                                         }, 50);
 
@@ -440,8 +433,7 @@ if (isset($_GET['message'])) {
                         <hr>
                         <div class=" py-3">
                             <h4 class="label pb-2"> <label for="imageannotation">Video Annotation</label></h4>
-                            <textarea class="form-control" rows="3" name="videoanno"
-                                placeholder="Video info"></textarea>
+                            <textarea class="form-control" rows="3" name="videoanno" placeholder="Video info"></textarea>
                             <br>
                             <h4 class="label"> <label for="video1">Video1</label></h4>
                             <video width="520" height="440" controls id="videoplayer" poster="images/upload_video.jpg">
@@ -452,8 +444,7 @@ if (isset($_GET['message'])) {
                         <div class="container mt-1">
                             <div class="custom-file mb-1 upload-btn-wrapper">
                                 <button class="btn btn-primary" type="button">Choose File</button>
-                                <input type="file" class="custom-file-input" name="video1" id="video1"
-                                    onchange="checkFileSize(this)">
+                                <input type="file" class="custom-file-input" name="video1" id="video1" onchange="checkFileSize(this)">
                             </div>
                             <script>
                                 function checkFileSize(input) {
@@ -483,14 +474,14 @@ if (isset($_GET['message'])) {
                                             videoPlayer.removeAttribute('src'); // Remove video source
                                             videoPlayer.poster = 'images/upload_video.jpg'; // Reset poster if needed
                                             // Reset button text
-                                            setTimeout(function () {
+                                            setTimeout(function() {
                                                 button.innerText = 'Choose File';
                                             }, 50);
                                         }
                                     }
                                 }
 
-                                document.getElementById('video1').addEventListener('change', function () {
+                                document.getElementById('video1').addEventListener('change', function() {
                                     checkFileSize(this);
                                 });
                             </script>
@@ -505,15 +496,14 @@ if (isset($_GET['message'])) {
                                 <iframe id="youtubevideo" src="" style="display: none;width: 100%;    height: 280px;">
                                 </iframe>
                                 <div class="custom-file mb-1">
-                                    <input type="text" class="form-control" placeholder="YouTube" name="video2"
-                                        id="youtube">
+                                    <input type="text" class="form-control" placeholder="YouTube" name="video2" id="youtube">
                                 </div>
                             </div>
                         </div>
                         <script>
-                            document.addEventListener('DOMContentLoaded', function () {
+                            document.addEventListener('DOMContentLoaded', function() {
                                 // YouTube input field change event
-                                document.getElementById('youtube').addEventListener('input', function () {
+                                document.getElementById('youtube').addEventListener('input', function() {
                                     displayYouTubeVideo();
                                 });
                             });
@@ -565,10 +555,8 @@ if (isset($_GET['message'])) {
                     themes</p><br>
 
 
-                <input type="text" id="themeInput" class="form-control" placeholder="Themes" name="theme2"
-                    style="text-align: center;" value="">
-                <button type="button" class="btn btn-primary mt-2 mb-2" style="width: 30%;" data-toggle="modal"
-                    data-target="#themelist">Choose Themes</button>
+                <input type="text" id="themeInput" class="form-control" placeholder="Themes" name="theme2" style="text-align: center;" value="">
+                <button type="button" class="btn btn-primary mt-2 mb-2" style="width: 30%;" data-toggle="modal" data-target="#themelist">Choose Themes</button>
                 <div class="col-lg-2 col-md-3 col-sm-6">
                     <!-- The Edit Modal -->
                     <div class="modal fade" id="themelist">
@@ -607,8 +595,7 @@ if (isset($_GET['message'])) {
                                 </div>
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" id="choose-theme-btn" onclick="setSelectedThemes()"
-                                        class="btn btn-danger btn-small" data-dismiss="modal" aria-hidden="true">Choose
+                                    <button type="button" id="choose-theme-btn" onclick="setSelectedThemes()" class="btn btn-danger btn-small" data-dismiss="modal" aria-hidden="true">Choose
                                         Theme</button>
                                 </div>
                             </div>
@@ -682,8 +669,7 @@ if (isset($_GET['message'])) {
             <hr>
             <div style="text-align: center;">
                 <h4>Create page with media in database<br></h4>
-                <button type="submit" class="btn btn-primary" id="upload-song" input type="submit" form="uploadsong"
-                    value="Submit">UPLOAD PAGE</button>
+                <button type="submit" class="btn btn-primary" id="upload-song" input type="submit" form="uploadsong" value="Submit">UPLOAD PAGE</button>
             </div>
         </div>
         <!--end of container-->
@@ -694,7 +680,7 @@ if (isset($_GET['message'])) {
     <br>
 
     <script type="text/javascript">
-        jQuery(document).ready(function () {
+        jQuery(document).ready(function() {
             const fileInput = document.getElementById('video1');
             const progressBar = document.getElementById('progressBar');
 
@@ -715,7 +701,7 @@ if (isset($_GET['message'])) {
 
                 reader.readAsDataURL(file);
             });
-            jQuery('input[type=file]').change(function () {
+            jQuery('input[type=file]').change(function() {
 
                 var text = jQuery(this).val().split('\\').pop()
 
@@ -726,6 +712,7 @@ if (isset($_GET['message'])) {
 
         let selectedThemes = [];
         let selectedIds = [];
+
         function setSelectedThemes() {
             const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"].theme_title_load:checked');
             // console.log(selectedCheckboxes)
@@ -740,7 +727,6 @@ if (isset($_GET['message'])) {
                 alert('You can select up to three themes.');
             }
         }
-
     </script>
 
 </body>
