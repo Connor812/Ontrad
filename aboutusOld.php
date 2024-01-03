@@ -1,51 +1,6 @@
 <?php
 require_once "php/header2.php";
 ?>
-
-<body>
-    <div class="p-3">
-        <h4 style="text-align: center; padding: 0% 20%;"><small>"Non eaque iste aut iure nihil qui velit labore sed odio enim qui blanditiis molestiae. Ut delectus numquam et repellat tenetur eos inventore culpa et repellat quibusdam ut excepturi autem et galisum quia."</small> </h4>
-    </div>
-    <button class="tablink" onclick="openCity('ourstory', this, ' rgb(0, 68, 56)')" id="defaultOpen">OUR STORY</button>
-    <button class="tablink" onclick="openCity('volunteer', this, ' rgb(0, 68, 56)')">VOLUNTEERS</button>
-    <button class="tablink" onclick="openCity('support', this, ' rgb(0, 68, 56)')">SUPPORT</button>
-
-    <div id="ourstory" class="tabcontent">
-        <h1>OUR STORY</h1>
-        <div class="storytext">
-            <p>London is the capital city of England.</p>
-        </div>
-    </div>
-
-    <div id="volunteer" class="tabcontent">
-        <h1>VOLUNTEERS</h1>
-        <p>Paris is the capital of France.</p>
-    </div>
-
-    <div id="support" class="tabcontent">
-        <h1>SUPPORT</h1>
-        <p>Tokyo is the capital of Japan.</p>
-    </div>
-
-    <script>
-        function openCity(cityName, elmnt, color) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].style.backgroundColor = "";
-            }
-            document.getElementById(cityName).style.display = "block";
-            elmnt.style.backgroundColor = color;
-
-        }
-        // Get the element with id="defaultOpen" and click on it
-        document.getElementById("defaultOpen").click();
-    </script>
-
     <!--end of nav-->
     <div class="wrapper" style="min-height: 100vh;">
         <div style="height: 100px;"></div>
@@ -61,10 +16,12 @@ require_once "php/header2.php";
                                 Story</button>
                         </div>
                         <div class="col-sm-4" style="text-align: center;">
-                            <button type="button" class="button1" data-toggle="collapse" data-target="#contrib">Volunteers</button>
+                            <button type="button" class="button1" data-toggle="collapse"
+                                data-target="#contrib">Volunteers</button>
                         </div>
                         <div class="col-sm-4" style="text-align: center;">
-                            <button type="button" class="button1" data-toggle="collapse" data-target="#support">Support</button>
+                            <button type="button" class="button1" data-toggle="collapse"
+                                data-target="#support">Support</button>
                         </div>
                     </div>
                 </div>
@@ -292,15 +249,15 @@ require_once "php/header2.php";
             <div class="col-sm-2"></div>
         </div>
     </div>
-    <?php
-    require_once("php/footer.php");
+    <?php 
+        require_once("php/footer.php");
     ?>
     <script>
         var acc = document.getElementsByClassName("accordion");
         var i;
 
         for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
+            acc[i].addEventListener("click", function () {
                 this.classList.toggle("active");
                 var panel = this.nextElementSibling;
                 if (panel.style.maxHeight) {
@@ -320,7 +277,6 @@ require_once "php/header2.php";
                 text.style.display = "none";
             }
         }
-
         function myFunction() {
             var checkBox = document.getElementById("images");
             var text = document.getElementById("textimages");
@@ -330,7 +286,6 @@ require_once "php/header2.php";
                 text.style.display = "none";
             }
         }
-
         function myFunction() {
             var checkBox = document.getElementById("video");
             var text = document.getElementById("textvideo");
@@ -340,7 +295,6 @@ require_once "php/header2.php";
                 text.style.display = "none";
             }
         }
-
         function myFunction() {
             var checkBox = document.getElementById("load");
             var text = document.getElementById("textload");
@@ -350,6 +304,7 @@ require_once "php/header2.php";
                 text.style.display = "none";
             }
         }
+
     </script>
 </body>
 

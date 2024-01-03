@@ -1,34 +1,18 @@
 <?php
 require_once "php/header2.php";
 ?>
-    <!--end of nav-->
-    <div class="wrapper" style="min-height: 100vh;">
-        <div style="height: 100px;"></div>
+
+<body>
+    <div class="p-3">
         <h4 style="text-align: center; padding: 0% 20%;"><small>"Non eaque iste aut iure nihil qui velit labore sed odio enim qui blanditiis molestiae. Ut delectus numquam et repellat tenetur eos inventore culpa et repellat quibusdam ut excepturi autem et galisum quia."</small> </h4>
-        <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col">
-                <div class="container mt-3">
-                    <!--buttons-->
-                    <div class="row">
-                        <div class="col-sm-4" style="text-align: center;">
-                            <button type="button" class="button1" data-toggle="collapse" data-target="#story">Our
-                                Story</button>
-                        </div>
-                        <div class="col-sm-4" style="text-align: center;">
-                            <button type="button" class="button1" data-toggle="collapse"
-                                data-target="#contrib">Volunteers</button>
-                        </div>
-                        <div class="col-sm-4" style="text-align: center;">
-                            <button type="button" class="button1" data-toggle="collapse"
-                                data-target="#support">Support</button>
-                        </div>
-                    </div>
-                </div>
-                <hr style="width: 100%; color: darkgreen;">
-                <!--center text-->
-                <div id="story" class="collapse">
-                    <p>Since the late 1970s I have been seeking out, learning, performing and teaching the
+    </div>
+    <button class="tablink" onclick="openCity('ourstory', this, ' rgb(0, 68, 56, .3)')" id="defaultOpen">OUR STORY</button>
+    <button class="tablink" onclick="openCity('volunteer', this, ' rgb(0, 68, 56,.3)')">VOLUNTEERS</button>
+    <button class="tablink" onclick="openCity('support', this, ' rgb(0, 68, 56, .3)')">SUPPORT</button>
+
+    <div id="ourstory" class="tabcontent">
+        <div class="storytext">
+            <p><p>Since the late 1970s I have been seeking out, learning, performing and teaching the
                         grassroots music
                         of my home province of Ontario, Canada. I have continued this work up to the present,
                         and
@@ -92,12 +76,13 @@ require_once "php/header2.php";
                         any
                         errors or
                         omissions you may notice. Thanks!
-                    </p>
-                </div>
-                <div id="contrib" class="collapse">
-                    <h2 style="text-align: center;"> VOLUNTEER CONTRIBUTORS</h2>
+                    </p></p>
+        </div>
+    </div>
 
-                    <p>Many thanks to the following people for music and text transcriptions and audio recordings of
+    <div id="volunteer" class="tabcontent">
+        <div class="storytext">
+            <p>Many thanks to the following people for music and text transcriptions and audio recordings of
                         tunes and songs.
                     </p>
                     <div class="row py-3" style="text-align: center;">
@@ -120,17 +105,17 @@ require_once "php/header2.php";
                             Teilhard Frost<br>
                         </div>
                     </div>
-                    <img src="images/volunteers.png" style="width: 100%; height: auto;">
+                    
                     <br>
                 </div>
-                <div id="support" class="collapse">
-                    <h2 style="text-align: center;">FINANCIAL SUPPORT
-                    </h2>
+                </div>
+    </div>
 
-                    <p>The original version of this site was launched in 2017, with the help of a Kickstarter campaign
-                        supported by these generous friends.
-
-                    </p>
+    <div id="support" class="tabcontent">
+       <div class="storytext">
+       <p class="lead">The original version of this site was launched in 2017, with the help of a Kickstarter campaign
+                        supported by these generous friends.</p>
+                    <hr>
                     <div class="row py-3" style="text-align: center;">
                         <div class="col-sm-3">
                             <p>Ali Eisenhammer<br>
@@ -242,22 +227,38 @@ require_once "php/header2.php";
                     </div>
                     <p style="text-align: center;">Woman on the side of the road in Harrington
                     </p>
-                    <img src="images/bank.png" style="width: 100%; height: auto;">
-                    <br>
-                </div>
-            </div>
-            <div class="col-sm-2"></div>
-        </div>
+       </div>
+      
     </div>
-    <?php 
-        require_once("php/footer.php");
+
+    <script>
+        function openCity(cityName, elmnt, color) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(cityName).style.display = "block";
+            elmnt.style.backgroundColor = color;
+
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+
+    <?php
+    require_once("php/footer.php");
     ?>
     <script>
         var acc = document.getElementsByClassName("accordion");
         var i;
 
         for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
+            acc[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 var panel = this.nextElementSibling;
                 if (panel.style.maxHeight) {
@@ -277,6 +278,7 @@ require_once "php/header2.php";
                 text.style.display = "none";
             }
         }
+
         function myFunction() {
             var checkBox = document.getElementById("images");
             var text = document.getElementById("textimages");
@@ -286,6 +288,7 @@ require_once "php/header2.php";
                 text.style.display = "none";
             }
         }
+
         function myFunction() {
             var checkBox = document.getElementById("video");
             var text = document.getElementById("textvideo");
@@ -295,6 +298,7 @@ require_once "php/header2.php";
                 text.style.display = "none";
             }
         }
+
         function myFunction() {
             var checkBox = document.getElementById("load");
             var text = document.getElementById("textload");
@@ -304,7 +308,6 @@ require_once "php/header2.php";
                 text.style.display = "none";
             }
         }
-
     </script>
 </body>
 

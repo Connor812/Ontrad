@@ -12,7 +12,7 @@
 }
 
 .tablink:hover {
-  background-color: green;
+  background-color: rgba(0, 68, 56, .3);
 }
 
 /* Style the tab content */
@@ -24,17 +24,19 @@
 }
 
 #ourstory {background-color: rgba(0, 68, 56, 0.3)}
-#volunteer {background-color:green;}
-#support {background-color:blue;}
+#volunteer {background-color: rgba(0, 68, 56, 0.3);}
+#support {background-color: rgba(0, 68, 56, 0.3);}
 
 .storytext {
   padding: 2% 5% 2% 5%;
   margin: 2% 5% 2% 5%;
   background-color: white;
+  color: black;
   border-radius: 10px;
   border-color:  rgb(0, 68, 56);
   border-width: 2px;
   border-style: solid;
+  text-align: left;
 }
 
 /* end of about us */
