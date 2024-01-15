@@ -69,6 +69,13 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.whiteline {
+  border-top: #eee;
+  color: white;
+text-align: center;
+  
+}
+
 .button-wrap {
   display: flex;
   align-items: center;

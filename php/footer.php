@@ -1,8 +1,10 @@
+<hr style="border-top: 2px solid white;">
+
 <div class="container-fluid ontradgreenlite py-3" style="width: 100%; color:white;">
     <h4 class="text-center">CONTACT US</h4>
     <div class="row p-2">
         <div class="col" style="width: 100%; text-align: center;">
-            <h5 style="color: darkgreen;"><a style="color: darkgreen;"
+            <h5 style="color: white;"><a style="color: white;"
                     href="mailto:mail@ontariotraditionalmusic.com">mail@ontariotraditionalmusic.com</a></h5>
         </div>
     </div>

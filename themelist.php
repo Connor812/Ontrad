@@ -222,7 +222,10 @@ require_once("php/header2.php");
     </div><!--end of scrolling songlist -->
     <!--end of media-->
     <!-- FOOTER (Contact Section) -->
-    <!-- Container (Contact Section) -->
+    <?php
+    require_once("php/footer.php");
+    ?>
+    <!-- Container (Contact Section)
     <div class="container-fluid ontradgreenlite py-3" style="width: 100%; color:white;">
         <h5 class="text-center">CONTACT US</h5>
         <div class="row">
@@ -231,13 +234,13 @@ require_once("php/header2.php");
             </div>
         </div>
         <br>
-        <!-- Button to Open the Modal -->
+         Button to Open the Modal
         <div style="text-align: center;">
             <button type="button" class="button1" data-toggle="modal" data-target="#dropline">
                 Drop us a line
             </button>
         </div>
-        <!-- The Modal -->
+         The Modal 
         <div class="modal" id="dropline">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -272,8 +275,8 @@ require_once("php/header2.php");
             <p><small>- CREATED BY BUSINESSLORE -</small>
             </p>
         </div>
-        </div>
-    </div>
+        </div> 
+    </div> -->
     <script>
         var acc = document.getElementsByClassName("accordion");
         var i;
